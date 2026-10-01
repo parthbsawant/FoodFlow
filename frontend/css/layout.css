@@ -1,0 +1,56 @@
+/* Main App */
+.app{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+}
+
+/* Top Header */
+
+header a img{
+    width: 200px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    align-items: center;
+}
+
+.search-bar{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.profile-section{
+    display: flex;
+    flex-direction: row;
+}
+
+/* Sidebar Section */
+
+aside{
+    padding: var(--spacing-xl);
+    margin: var(--spacing-lg);
+}
+
+.sidebar-nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item{
+    padding: var(--spacing-lg);
+    margin: var(--spacing-sm);
+    list-style: none;
+    text-align: center;
+}
