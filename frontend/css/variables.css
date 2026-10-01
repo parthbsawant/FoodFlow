@@ -1,4 +1,5 @@
 :root{
+    /* Colors */
     --color-primary: #FF6B35; 
     --color-secondary: #2563EB;
     --color-success: #16A34A;
@@ -6,12 +7,35 @@
     --color-warning: #F59E0B;
     --color-danger: #EF4444;
     --color-info: #06B6D4;
+
     --color-background: #F8FAFC; 
     --color-surface: #FFFFFF;
+
     --color-text-primary: #0F172A;
     --color-text-secondary: #64748B;
+
     --color-border: #E2E8F0;
     --color-muted: #94A3BB;
+
     --color-background-sidebar: #1E293B;
     --color-sidebar-active: #FFEDD5;
+
+    /* Spacing 
+    XS   → very small
+    SM   → small
+    MD   → normal
+    LG   → large
+    XL   → extra large
+    2XL  → very large
+    3XL  → very large+
+    4XL  → maximum common spacing */
+
+    --spacing-xsm: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 40px;
+    --spacing-4xl: 48px;
 }
