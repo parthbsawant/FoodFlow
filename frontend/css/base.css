@@ -6,3 +6,56 @@ body{
     line-height: 1.5;
 }
 
+h1{
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+}
+
+h2{
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+h3{
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+p{
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+a{
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+button{
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+input, select, textarea{
+    font-family: inherit;
+    font-size: inherit;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
