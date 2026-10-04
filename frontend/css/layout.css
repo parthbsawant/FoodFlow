@@ -88,11 +88,11 @@ header a img {
     font-weight: var(--font-weight-medium);
 }
 
-/* Sidebar Section */
-
+/* Aside : Sidebar Navigation */
 aside{
+    background-color: var(--color-background-sidebar);
     padding: var(--spacing-xl);
-    margin: var(--spacing-lg);
+    margin: 0;
 }
 
 .sidebar-nav{
@@ -104,9 +104,31 @@ aside{
     padding: var(--spacing-lg);
     margin: var(--spacing-sm);
     list-style: none;
-    text-align: center;
+    text-align: left;
 }
 
+.nav-item a{
+    color: var(--color-surface);
+    display: flex;
+    align-items: center;
+
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.nav-item.active a{
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    gap: var(--spacing-sm);
+}
+
+.nav-item a:hover{
+    text-decoration: underline;
+}
+
+.nav-item img{
+    width: 30px;
+}
 
 /* Main Content */
 .main-content {
