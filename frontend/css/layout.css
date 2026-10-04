@@ -68,34 +68,83 @@ aside{
     padding-bottom: var(--spacing-sm);
 }
 
-.summary-section{
+/* .summary-section{
+    margin: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+} */
+
+/* .summary-cards{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+} */
+
+/* .summary-card {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 90px;
+    align-items: center;
+    column-gap: var(--spacing-sm);
+
+    border: 2px solid var(--color-border);
+    padding: var(--spacing-md);
+    margin: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+} */
+
+/* .summary-card img:first-child {
+    width: 72px;
+}
+
+.summary-card img:last-child {
+    width: 90px;
+} */
+
+/* .summary-card:nth-child(1) {
+    background-color: #ECF3FD;
+}
+
+.summary-card:nth-child(2) {
+    background-color: #EDFCF3;
+}
+
+.summary-card:nth-child(3) {
+    background-color: #FEF9F0;
+}
+
+.summary-card:nth-child(4) {
+    background-color: #F6F0FE;
+} */
+
+
+/* .summary-card-information{
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .change-comparison{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+} */
+
+/* .summary-value{
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+} */
+
+/* Summary Section */
+
+.summary-section {
     margin: var(--spacing-sm);
     padding-bottom: var(--spacing-sm);
 }
 
-.summary-cards{
+.summary-cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* .summary-card{
-    display: grid;
-    grid-template-columns: 88px minmax(0, 1fr) 120px;
-    align-items: center;
-    border: 2px solid var(--color-border);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-sm);
-
-    border-radius: var(--radius-lg);
-}
-
-.summary-card img:first-child{
-    width: 88px;
-}
-
-.summary-card img:last-child{
-    width: 120px;
-} */
+/* Summary Card */
 
 .summary-card {
     display: grid;
@@ -107,15 +156,11 @@ aside{
     padding: var(--spacing-md);
     margin: var(--spacing-sm);
     border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
 }
 
-.summary-card img:first-child {
-    width: 72px;
-}
-
-.summary-card img:last-child {
-    width: 90px;
-}
+/* Card Backgrounds */
 
 .summary-card:nth-child(1) {
     background-color: #ECF3FD;
@@ -133,22 +178,100 @@ aside{
     background-color: #F6F0FE;
 }
 
+/* Summary Card Images */
 
-.summary-card-information{
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
+.summary-card img:first-child {
+    width: 72px;
 }
 
-.change-comparison{
+.summary-card img:last-child {
+    width: 90px;
+}
+
+/* Summary Card Information */
+
+.summary-card-information {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+/* Card Heading */
+
+.summary-card-information h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    line-height: 1.25;
+}
+
+/* Main Value */
+
+.summary-value {
+    margin: 0;
+
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+/* Comparison */
+
+.change-comparison {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+
+    margin-top: var(--spacing-xs);
 }
 
-.summary-value{
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
+.change-comparison p {
+    margin: 0;
+
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+}
+
+/* Percentage */
+
+.change-comparison p:first-child {
+    padding: 4px 8px;
+
+    border-radius: var(--radius-full);
+
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Positive Change - Blue Card */
+
+.summary-card:nth-child(1) .change-comparison p:first-child {
+    color: var(--color-success);
+    background-color: #DCFCE7;
+}
+
+/* Positive Change - Green Card */
+
+.summary-card:nth-child(2) .change-comparison p:first-child {
+    color: var(--color-success);
+    background-color: #DCFCE7;
+}
+
+/* Negative / Warning Change - Orange Card */
+
+.summary-card:nth-child(3) .change-comparison p:first-child {
+    color: var(--color-danger);
+    background-color: #FEE2E2;
+}
+
+/* Positive Change - Purple Card */
+
+.summary-card:nth-child(4) .change-comparison p:first-child {
+    color: var(--color-success);
+    background-color: #DCFCE7;
 }
 
 .dashboard-row-1{
