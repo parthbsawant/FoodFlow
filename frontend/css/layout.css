@@ -518,3 +518,69 @@ aside{
     background-color: var(--color-background);
 }
 
+/* Order Status Section */
+.order-status-section{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg);
+}
+
+.order-section-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.order-section-card{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-section-card p:first-child{
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+}
+
+.status-label{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.status-label img{
+    width: 50px;
+}
+
+.status-label p{
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.pending-orders{
+    background-color: #FCF3DC;
+}
+
+.preparing-orders{
+    background-color: #E2EDFD;
+}
+
+.completed-orders{
+    background-color: #E4F8EF;
+}
+
+.cancelled-orders{
+    background-color: #FBE8E8;
+}
+
