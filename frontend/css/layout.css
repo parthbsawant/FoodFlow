@@ -586,12 +586,55 @@ aside{
 
 /* Orders Page CSS */
 
+
 /* Orders Introduction */
+
+.orders-page .dashboard-intro{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: var(--spacing-lg);
+    padding: var(--spacing-sm) 0;
+}
+
+.orders-page .intro-info{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.orders-page .intro-info h1{
+    margin: 0;
+}
+
+.orders-page .intro-info p{
+    margin: 0;
+}
+
+
+/* New Order Button */
 
 .new-order-button{
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.new-order-button button{
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-sm);
+    transition: 0.3s ease;
+}
+
+.new-order-button button:hover{
+    background-color: #E85A2A;
+    border-color: #E85A2A;
 }
 
 
@@ -616,6 +659,10 @@ aside{
     gap: var(--spacing-lg);
 }
 
+.all-orders-header h2{
+    margin: 0;
+}
+
 
 /* All Orders Functionalities */
 
@@ -632,12 +679,33 @@ aside{
     margin-left: 0;
 }
 
+.all-orders-functionalities .search-bar input{
+    width: 280px;
+}
+
 
 /* Order Status Filter */
 
 .all-orders-status{
     display: flex;
     align-items: center;
+}
+
+.all-orders-status select{
+    min-width: 140px;
+    height: 40px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+}
+
+.all-orders-status select:focus{
+    outline: none;
+    border-color: var(--color-primary);
 }
 
 
@@ -664,6 +732,7 @@ aside{
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-secondary);
+    white-space: nowrap;
 }
 
 
@@ -687,12 +756,12 @@ aside{
 
 .all-orders th:nth-child(2),
 .all-orders td:nth-child(2){
-    width: 20%;
+    width: 22%;
 }
 
 .all-orders th:nth-child(3),
 .all-orders td:nth-child(3){
-    width: 15%;
+    width: 13%;
 }
 
 .all-orders th:nth-child(4),
@@ -710,4 +779,78 @@ aside{
 .all-orders td:nth-child(6){
     width: 15%;
     text-align: center;
+}
+
+
+/* Order Status Badges */
+
+.orders-page .status-badge{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 32px;
+    padding: 0 var(--spacing-md);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* Pending */
+
+.orders-page .status-badge.pending{
+    color: var(--color-danger);
+    background-color: #FEE2E2;
+}
+
+
+/* Preparing */
+
+.orders-page .status-badge.preparing{
+    color: var(--color-warning);
+    background-color: #FEF3C7;
+}
+
+
+/* Ready */
+
+.orders-page .status-badge.ready{
+    color: var(--color-secondary);
+    background-color: #DBEAFE;
+}
+
+
+/* Completed */
+
+.orders-page .status-badge.completed{
+    color: var(--color-success);
+    background-color: #DCFCE7;
+}
+
+
+/* Cancelled */
+
+.orders-page .status-badge.cancelled{
+    color: var(--color-danger);
+    background-color: #FEE2E2;
+}
+
+
+/* Edit Button */
+
+.orders-page .edit-button{
+    width: 60px;
+    height: 32px;
+    border: 2px solid var(--color-secondary);
+    border-radius: var(--radius-full);
+    background-color: var(--color-secondary);
+    color: var(--color-surface);
+    font-weight: var(--font-weight-semibold);
+    transition: 0.3s ease;
+}
+
+.orders-page .edit-button:hover{
+    background-color: #001F61;
+    border-color: #001F61;
 }
