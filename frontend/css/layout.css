@@ -546,7 +546,7 @@ aside{
     justify-content: space-between;
 }
 
-.order-section-card p:first-child{
+.status-count{
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-secondary);
