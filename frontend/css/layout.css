@@ -420,3 +420,54 @@ aside{
 .recent-orders-section td:nth-child(7) {
     text-align: center;
 }
+
+
+/* Quick Actions Section */
+
+.quick-actions-section{
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    margin: var(--spacing-lg);
+}
+
+.quick-actions-buttons{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    margin: var(--spacing-lg);
+}
+
+.quick-actions-button{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    margin: var(--spacing-lg);
+}
+
+.button-internals{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-internals p{
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+}
+
+.button-internals img:first-child{
+    width: 80px;
+}
+
+.button-internals img:last-child{
+    width: 40px;
+}
