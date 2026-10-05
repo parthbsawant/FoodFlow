@@ -1,0 +1,334 @@
+/* Responsive Design */
+
+
+/* Large Tablet / Small Desktop */
+
+@media (max-width: 1200px){
+
+    /* Summary Section */
+
+    .summary-cards{
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    /* Dashboard Rows */
+
+    .dashboard-row-1{
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-row-2{
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Recent Orders */
+
+    .recent-orders-section{
+        overflow-x: auto;
+    }
+
+
+    /* Quick Actions */
+
+    .quick-actions-buttons{
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* Tablet */
+
+@media (max-width: 900px){
+
+    /* Application Layout */
+
+    .app-body{
+        grid-template-columns: 200px minmax(0, 1fr);
+    }
+
+
+    /* Header */
+
+    .header{
+        min-height: 70px;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    header a img{
+        width: 150px;
+    }
+
+    .search-bar{
+        margin-left: var(--spacing-lg);
+    }
+
+    .search-bar input{
+        width: 280px;
+    }
+
+
+    /* Summary Cards */
+
+    .summary-card{
+        grid-template-columns: 60px minmax(0, 1fr) 70px;
+    }
+
+    .summary-card img:first-child{
+        width: 60px;
+    }
+
+    .summary-card img:last-child{
+        width: 70px;
+    }
+
+
+    /* Quick Actions */
+
+    .button-internals p{
+        font-size: var(--font-size-lg);
+    }
+
+    .button-internals img:first-child{
+        width: 65px;
+    }
+
+    .button-internals img:last-child{
+        width: 32px;
+    }
+
+
+    /* Order Status */
+
+    .order-section-card{
+        padding: var(--spacing-md);
+    }
+
+    .status-label img{
+        width: 45px;
+    }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px){
+
+    /* Application Layout */
+
+    .app-body{
+        display: block;
+    }
+
+
+    /* Sidebar */
+
+    aside{
+        padding: var(--spacing-sm);
+    }
+
+    .sidebar-nav ul{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-item{
+        padding: 0;
+        margin: var(--spacing-xs);
+        flex: 1;
+    }
+
+    .nav-item a{
+        justify-content: center;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm);
+    }
+
+    .nav-item span{
+        font-size: var(--font-size-sm);
+    }
+
+    .nav-item img{
+        width: 24px;
+    }
+
+
+    /* Header */
+
+    .header{
+        min-height: auto;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    .search-bar{
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .search-bar input{
+        width: 100%;
+    }
+
+
+    /* Main Content */
+
+    .main-content{
+        width: 100%;
+    }
+
+    .dashboard-intro{
+        margin: var(--spacing-lg);
+    }
+
+
+    /* Summary Section */
+
+    .summary-cards{
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card{
+        grid-template-columns: 72px minmax(0, 1fr) 90px;
+    }
+
+
+    /* Dashboard Rows */
+
+    .dashboard-row-1{
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-row-2{
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Recent Orders */
+
+    .recent-orders-section{
+        overflow-x: auto;
+    }
+
+    .recent-orders-section table{
+        min-width: 700px;
+    }
+
+
+    /* Quick Actions */
+
+    .quick-actions-buttons{
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    /* Popular Menu */
+
+    .popular-menu-section{
+        overflow-x: auto;
+    }
+
+    .popular-menu-section table{
+        min-width: 600px;
+    }
+
+
+    /* Order Status */
+
+    .order-section-cards{
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* Small Mobile */
+
+@media (max-width: 480px){
+
+    /* Header */
+
+    .header{
+        padding: var(--spacing-sm);
+    }
+
+    header a img{
+        width: 130px;
+    }
+
+    .profile-section{
+        gap: var(--spacing-sm);
+    }
+
+    .profile-section img{
+        width: 20px;
+    }
+
+    .profile-section button{
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+
+
+    /* Dashboard Intro */
+
+    .dashboard-intro{
+        margin: var(--spacing-md);
+    }
+
+    .dashboard-intro h1{
+        font-size: var(--font-size-2xl);
+    }
+
+
+    /* Summary Cards */
+
+    .summary-card{
+        grid-template-columns: 56px minmax(0, 1fr) 65px;
+        padding: var(--spacing-sm);
+    }
+
+    .summary-card img:first-child{
+        width: 56px;
+    }
+
+    .summary-card img:last-child{
+        width: 65px;
+    }
+
+    .summary-card-information h3{
+        font-size: var(--font-size-md);
+    }
+
+    .summary-value{
+        font-size: var(--font-size-xl);
+    }
+
+
+    /* Quick Actions */
+
+    .quick-actions-buttons{
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Order Status */
+
+    .order-section-cards{
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Order Status Cards */
+
+    .order-section-card{
+        margin: var(--spacing-sm);
+    }
+
+}

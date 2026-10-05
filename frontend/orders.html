@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodFlow - Orders</title>
+
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <a href="index.html">
+
+                <img src="assets/logo/website-logo.png" alt="FoodFlow">
+
+            </a>
+
+
+            <!-- Search Bar -->
+
+            <div class="search-bar">
+
+                <img src="assets/icons/searchbar.png" alt="">
+
+                <!-- <label for="searchbar">Search</label> -->
+
+                <input
+                    type="text"
+                    name="search"
+                    id="searchbar"
+                    placeholder="Search orders, menu items & customers"
+                >
+
+            </div>
+
+
+            <!-- Profile Section -->
+
+            <div class="profile-section">
+
+                <img src="assets/icons/notifications.png" alt="">
+
+                <button type="button">
+                    Profile Information
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="app-body">
+
+
+            <!-- Sidebar -->
+
+            <aside>
+
+                <nav class="sidebar-nav">
+
+                    <ul>
+
+                        <li class="nav-item">
+
+                            <a href="index.html">
+
+                                <img
+                                    src="/frontend/assets/icons/aside-section/dashboard.png"
+                                    alt=""
+                                >
+
+                                <span>Dashboard</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item active">
+
+                            <a href="orders.html">
+
+                                <img
+                                    src="/frontend/assets/icons/aside-section/cart.png"
+                                    alt=""
+                                >
+
+                                <span>Orders</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="menu.html">
+
+                                <img
+                                    src="/frontend/assets/icons/aside-section/menu.png"
+                                    alt=""
+                                >
+
+                                <span>Menu</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="customers.html">
+
+                                <img
+                                    src="/frontend/assets/icons/aside-section/customers.png"
+                                    alt=""
+                                >
+
+                                <span>Customers</span>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- Main Content -->
+
+            <main class="main-content">
+
+
+                <!-- Orders Introduction -->
+
+                <section class="dashboard-intro">
+
+                    <div class="intro-info">
+
+                        <h1>Orders</h1>
+
+                        <p>
+                            Manage and track all the restaurant orders.
+                        </p>
+
+                    </div>
+
+
+                    <div class="new-order-button">
+
+                        <button type="button">
+                            + New Order
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Orders Summary -->
+
+                <section class="summary-section">
+
+                    <div class="summary-cards">
+
+
+                        <!-- Total Orders -->
+
+                        <div class="summary-card">
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/total-orders.png"
+                                alt="Total Orders Image"
+                            >
+
+                            <div class="summary-card-information">
+
+                                <h3>Total Orders</h3>
+
+                                <p class="summary-value">48</p>
+
+                                <div class="change-comparison">
+
+                                    <p>%xyz</p>
+
+                                    <p>v/s</p>
+
+                                    <p>Yesterday</p>
+
+                                </div>
+
+                            </div>
+
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/graph-total-orders.png"
+                                alt="Graph Image"
+                            >
+
+                        </div>
+
+
+                        <!-- Preparing Orders -->
+
+                        <div class="summary-card">
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/total-revenue.png"
+                                alt="Preparing Orders Image"
+                            >
+
+                            <div class="summary-card-information">
+
+                                <h3>Preparing Orders</h3>
+
+                                <p class="summary-value">10</p>
+
+                                <div class="change-comparison">
+
+                                    <p>%xyz</p>
+
+                                    <p>v/s</p>
+
+                                    <p>Yesterday</p>
+
+                                </div>
+
+                            </div>
+
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/graph-total-revenue.png"
+                                alt="Graph Image"
+                            >
+
+                        </div>
+
+
+                        <!-- Pending Orders -->
+
+                        <div class="summary-card">
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/pending-orders.png"
+                                alt="Pending Orders Image"
+                            >
+
+                            <div class="summary-card-information">
+
+                                <h3>Pending Orders</h3>
+
+                                <p class="summary-value">12</p>
+
+                                <div class="change-comparison">
+
+                                    <p>%xyz</p>
+
+                                    <p>v/s</p>
+
+                                    <p>Yesterday</p>
+
+                                </div>
+
+                            </div>
+
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/graph-pending-orders.png"
+                                alt="Graph Image"
+                            >
+
+                        </div>
+
+
+                        <!-- Completed Orders -->
+
+                        <div class="summary-card">
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/completed-orders.png"
+                                alt="Completed Orders Image"
+                            >
+
+                            <div class="summary-card-information">
+
+                                <h3>Completed Orders</h3>
+
+                                <p class="summary-value">36</p>
+
+                                <div class="change-comparison">
+
+                                    <p>%xyz</p>
+
+                                    <p>v/s</p>
+
+                                    <p>Yesterday</p>
+
+                                </div>
+
+                            </div>
+
+
+                            <img
+                                src="/frontend/assets/icons/summary-section/graph-completed-orders.png"
+                                alt="Graph Image"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                <!-- All Orders -->
+
+                <section class="all-orders-table">
+
+
+                    <!-- All Orders Header -->
+
+                    <div class="all-orders-header">
+
+                        <h3>All Orders</h3>
+
+
+                        <div class="all-orders-functionalities">
+
+
+                            <!-- Orders Search -->
+
+                            <div class="search-bar">
+
+                                <img
+                                    src="assets/icons/searchbar.png"
+                                    alt=""
+                                >
+
+                                <!-- <label for="order-searchbar">Search</label> -->
+
+                                <input
+                                    type="text"
+                                    name="order-search"
+                                    id="order-searchbar"
+                                    placeholder="Search orders by ID or customer name"
+                                >
+
+                            </div>
+
+
+                            <!-- Order Status Filter -->
+
+                            <div class="all-orders-status">
+
+                                <select
+                                    name="order-status"
+                                    id="order-status"
+                                >
+
+                                    <option value="all">
+                                        All Status
+                                    </option>
+
+                                    <option value="pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="preparing">
+                                        Preparing
+                                    </option>
+
+                                    <option value="ready">
+                                        Ready
+                                    </option>
+
+                                    <option value="completed">
+                                        Completed
+                                    </option>
+
+                                    <option value="cancelled">
+                                        Cancelled
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Orders Table -->
+
+                    <div class="all-orders">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Order ID</th>
+
+                                    <th>Customer</th>
+
+                                    <th>Items</th>
+
+                                    <th>Amount</th>
+
+                                    <th>Status</th>
+
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                <!-- Order 1 -->
+
+                                <tr>
+
+                                    <td>#0125</td>
+
+                                    <td>Rahul Sharma</td>
+
+                                    <td>3 Items</td>
+
+                                    <td>Rs. 745</td>
+
+                                    <td>
+
+                                        <span class="status-badge preparing">
+                                            Preparing
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button">
+                                            Edit
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Order 2 -->
+
+                                <tr>
+
+                                    <td>#1024</td>
+
+                                    <td>Priya Desai</td>
+
+                                    <td>2 Items</td>
+
+                                    <td>Rs. 420</td>
+
+                                    <td>
+
+                                        <span class="status-badge pending">
+                                            Pending
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button">
+                                            Edit
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Order 3 -->
+
+                                <tr>
+
+                                    <td>#1025</td>
+
+                                    <td>Amit Patel</td>
+
+                                    <td>4 Items</td>
+
+                                    <td>Rs. 820</td>
+
+                                    <td>
+
+                                        <span class="status-badge ready">
+                                            Ready
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button">
+                                            Edit
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Order 4 -->
+
+                                <tr>
+
+                                    <td>#1026</td>
+
+                                    <td>Sneha Verma</td>
+
+                                    <td>1 Item</td>
+
+                                    <td>Rs. 280</td>
+
+                                    <td>
+
+                                        <span class="status-badge completed">
+                                            Completed
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button">
+                                            Edit
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Order 5 -->
+
+                                <tr>
+
+                                    <td>#1027</td>
+
+                                    <td>Karan Mehta</td>
+
+                                    <td>3 Items</td>
+
+                                    <td>Rs. 650</td>
+
+                                    <td>
+
+                                        <span class="status-badge cancelled">
+                                            Cancelled
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button">
+                                            Edit
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                </section>
+
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

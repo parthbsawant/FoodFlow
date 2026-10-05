@@ -584,3 +584,130 @@ aside{
     background-color: #FBE8E8;
 }
 
+/* Orders Page CSS */
+
+/* Orders Introduction */
+
+.new-order-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+/* All Orders Section */
+
+.all-orders-table{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg);
+}
+
+
+/* All Orders Header */
+
+.all-orders-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+}
+
+
+/* All Orders Functionalities */
+
+.all-orders-functionalities{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+
+/* Orders Search */
+
+.all-orders-functionalities .search-bar{
+    margin-left: 0;
+}
+
+
+/* Order Status Filter */
+
+.all-orders-status{
+    display: flex;
+    align-items: center;
+}
+
+
+/* All Orders Table */
+
+.all-orders{
+    margin-top: var(--spacing-lg);
+    overflow-x: auto;
+}
+
+.all-orders table{
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+/* All Orders Table Header */
+
+.all-orders thead{
+    background-color: var(--color-background);
+}
+
+.all-orders th{
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+}
+
+
+/* All Orders Table Rows */
+
+.all-orders tbody tr{
+    height: 56px;
+}
+
+.all-orders tbody tr:hover{
+    background-color: var(--color-background);
+}
+
+
+/* Orders Table Alignment */
+
+.all-orders th:nth-child(1),
+.all-orders td:nth-child(1){
+    width: 15%;
+}
+
+.all-orders th:nth-child(2),
+.all-orders td:nth-child(2){
+    width: 20%;
+}
+
+.all-orders th:nth-child(3),
+.all-orders td:nth-child(3){
+    width: 15%;
+}
+
+.all-orders th:nth-child(4),
+.all-orders td:nth-child(4){
+    width: 15%;
+}
+
+.all-orders th:nth-child(5),
+.all-orders td:nth-child(5){
+    width: 20%;
+    text-align: center;
+}
+
+.all-orders th:nth-child(6),
+.all-orders td:nth-child(6){
+    width: 15%;
+    text-align: center;
+}
