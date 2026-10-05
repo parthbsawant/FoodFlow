@@ -488,3 +488,33 @@ aside{
 .button-internals img:last-child{
     width: 40px;
 }
+
+/* Popular Menu Table */
+.popular-menu-section{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.popular-menu-section table th{
+    background-color: var(--color-background);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    vertical-align: middle;
+}
+
+.popular-menu-section tbody tr{
+    height: 56px;
+}
+
+.popular-menu-section tbody tr:hover{
+    background-color: var(--color-background);
+}
+
