@@ -438,7 +438,7 @@ aside{
 
 .quick-actions-buttons{
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 1fr 1fr;
     margin: var(--spacing-lg);
 }
 
@@ -446,9 +446,26 @@ aside{
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     box-shadow: var(--shadow-sm);
+    gap: var(--spacing-lg);
     margin: var(--spacing-lg);
+}
+
+.quick-actions-button:nth-child(1){
+    background-color: #FBE8E8;
+}
+
+.quick-actions-button:nth-child(2){
+    background-color: #E4F8EF;
+}
+
+.quick-actions-button:nth-child(3){
+    background-color: #E2EDFD;
+}
+
+.quick-actions-button:nth-child(4){
+    background-color: #FCF3DC;
 }
 
 .button-internals{
