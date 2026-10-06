@@ -90,16 +90,17 @@
                             Manage and track all the restaurant orders.
                         </p>
                     </div>
+
                     <div class="new-order-button">
                         <button type="button">
                             + New Order
                         </button>
                     </div>
                 </section>
-                <!-- Orders Summary -->
+
                 <section class="summary-section">
                     <div class="summary-cards">
-                        <!-- Total Orders -->
+
                         <div class="summary-card">
                             <img
                                 src="assets/icons/summary-section/total-orders.png"
@@ -119,7 +120,7 @@
                                 alt=""
                             >
                         </div>
-                        <!-- Preparing Orders -->
+
                         <div class="summary-card">
                             <img
                                 src="assets/icons/summary-section/total-revenue.png"
@@ -139,7 +140,7 @@
                                 alt=""
                             >
                         </div>
-                        <!-- Pending Orders -->
+
                         <div class="summary-card">
                             <img
                                 src="assets/icons/summary-section/pending-orders.png"
@@ -159,7 +160,7 @@
                                 alt=""
                             >
                         </div>
-                        <!-- Completed Orders -->
+
                         <div class="summary-card">
                             <img
                                 src="assets/icons/summary-section/completed-orders.png"
@@ -182,7 +183,6 @@
                     </div>
                 </section>
 
-                <!-- All Orders -->
                 <section class="all-orders-table">
                     <!-- All Orders Header -->
                     <div class="all-orders-header">
@@ -349,6 +349,624 @@
                         </table>
                     </div>
                 </section>
+
+                <!-- Add New Order Modal -->
+
+                <div class="order-modal-overlay">
+
+                    <div class="add-new-order">
+
+
+                        <!-- Modal Header -->
+
+                        <div class="ano-header">
+
+                            <div class="ano-header-info">
+
+                                <h2>Add New Order</h2>
+
+                                <p>
+                                    Create a new order for a customer.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="close-modal-button"
+                                aria-label="Close Add New Order modal"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+
+                        <!-- Customer Details -->
+
+                        <section class="customer-details-card">
+
+
+                            <div class="customer-header">
+
+                                <div class="section-title">
+
+                                    <img
+                                        src="assets/icons/customer.png"
+                                        alt=""
+                                    >
+
+                                    <h3>Customer Details</h3>
+
+                                </div>
+
+
+                                <a href="#" class="add-customer-link">
+                                    + Add New Customer
+                                </a>
+
+                            </div>
+
+
+                            <div class="customer-form">
+
+
+                                <!-- Customer Name -->
+
+                                <div class="customer-name">
+
+                                    <label for="customer-searchbar">
+                                        Customer Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="customer-searchbar"
+                                        placeholder="Search Customers"
+                                    >
+
+                                </div>
+
+
+                                <!-- Customer Contact -->
+
+                                <div class="customer-contact">
+
+
+                                    <div class="phone-number">
+
+                                        <label for="phonenumber">
+                                            Phone Number
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="phonenumber"
+                                            placeholder="Enter Phone Number"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="email">
+
+                                        <label for="email-id">
+                                            Email (Optional)
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            id="email-id"
+                                            placeholder="Enter Email Address"
+                                        >
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Add Menu Items -->
+
+                        <section class="add-menu-items-card">
+
+
+                            <div class="add-menu-header">
+
+                                <div class="section-title">
+
+                                    <img
+                                        src="assets/icons/menu.png"
+                                        alt=""
+                                    >
+
+                                    <h3>Add Menu Items</h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Menu Search and Filter -->
+
+                            <div class="menu-search">
+
+
+                                <div class="menu-searchbar">
+
+                                    <img
+                                        src="assets/icons/searchbar.png"
+                                        alt=""
+                                    >
+
+                                    <input
+                                        type="text"
+                                        id="searchbarMenu"
+                                        placeholder="Search Menu Items"
+                                    >
+
+                                </div>
+
+
+                                <div class="menu-category">
+
+                                    <select
+                                        name="menu-category"
+                                        id="menu-category"
+                                    >
+
+                                        <option
+                                            value="all-categories"
+                                            selected
+                                        >
+                                            All Categories
+                                        </option>
+
+                                        <option value="starters">
+                                            Starters
+                                        </option>
+
+                                        <option value="main-course">
+                                            Main Course
+                                        </option>
+
+                                        <option value="snacks">
+                                            Snacks
+                                        </option>
+
+                                        <option value="desserts">
+                                            Desserts
+                                        </option>
+
+                                        <option value="south-indian">
+                                            South Indian
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- Menu Items Table -->
+
+                            <div class="menu-table">
+
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Item Name</th>
+
+                                            <th>Category</th>
+
+                                            <th>Price</th>
+
+                                            <th>Action</th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+
+
+                                        <!-- Menu Item -->
+
+                                        <tr>
+
+                                            <td>
+                                                Margherita Pizza
+                                            </td>
+
+                                            <td>
+                                                <span class="menu-category-badge">
+                                                    Snacks
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Rs. 260
+                                            </td>
+
+                                            <td>
+
+                                                <button
+                                                    type="button"
+                                                    class="add-item-button"
+                                                >
+                                                    Add Item
+                                                </button>
+
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>
+                                                Paneer Tikka
+                                            </td>
+
+                                            <td>
+                                                <span class="menu-category-badge">
+                                                    Starters
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Rs. 220
+                                            </td>
+
+                                            <td>
+
+                                                <button
+                                                    type="button"
+                                                    class="add-item-button"
+                                                >
+                                                    Add Item
+                                                </button>
+
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>
+                                                Masala Dosa
+                                            </td>
+
+                                            <td>
+                                                <span class="menu-category-badge">
+                                                    South Indian
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Rs. 180
+                                            </td>
+
+                                            <td>
+
+                                                <button
+                                                    type="button"
+                                                    class="add-item-button"
+                                                >
+                                                    Add Item
+                                                </button>
+
+                                            </td>
+
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Order Items -->
+
+                        <section class="order-summary-card">
+
+
+                            <div class="order-summary-header">
+
+                                <div class="section-title">
+
+                                    <img
+                                        src="assets/icons/cart.png"
+                                        alt=""
+                                    >
+
+                                    <h3>Order Items</h3>
+
+                                </div>
+
+
+                                <span class="order-items-count">
+                                    3 Items
+                                </span>
+
+                            </div>
+
+
+                            <!-- Selected Items -->
+
+                            <div class="order-summary-items">
+
+
+                                <!-- Food Item -->
+
+                                <div class="food-item">
+
+
+                                    <div class="food-item-info">
+
+                                        <h4>
+                                            Margherita Pizza
+                                        </h4>
+
+                                        <p>
+                                            Rs. 260 × 2
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="edit-items">
+
+
+                                        <button
+                                            type="button"
+                                            class="quantity-button"
+                                        >
+                                            −
+                                        </button>
+
+
+                                        <span class="quantity">
+                                            2
+                                        </span>
+
+
+                                        <button
+                                            type="button"
+                                            class="quantity-button"
+                                        >
+                                            +
+                                        </button>
+
+
+                                        <p class="item-total">
+                                            Rs. 520
+                                        </p>
+
+
+                                        <button
+                                            type="button"
+                                            class="delete-item-button"
+                                            aria-label="Remove Margherita Pizza"
+                                        >
+
+                                            <img
+                                                src="assets/icons/delete.png"
+                                                alt=""
+                                            >
+
+                                        </button>
+
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Food Item -->
+
+                                <div class="food-item">
+
+
+                                    <div class="food-item-info">
+
+                                        <h4>
+                                            Paneer Tikka
+                                        </h4>
+
+                                        <p>
+                                            Rs. 220 × 1
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="edit-items">
+
+
+                                        <button
+                                            type="button"
+                                            class="quantity-button"
+                                        >
+                                            −
+                                        </button>
+
+
+                                        <span class="quantity">
+                                            1
+                                        </span>
+
+
+                                        <button
+                                            type="button"
+                                            class="quantity-button"
+                                        >
+                                            +
+                                        </button>
+
+
+                                        <p class="item-total">
+                                            Rs. 220
+                                        </p>
+
+
+                                        <button
+                                            type="button"
+                                            class="delete-item-button"
+                                            aria-label="Remove Paneer Tikka"
+                                        >
+
+                                            <img
+                                                src="assets/icons/delete.png"
+                                                alt=""
+                                            >
+
+                                        </button>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Special Instructions -->
+
+                        <section class="special-instructions">
+
+
+                            <div class="instructions-header">
+
+                                <div class="section-title">
+
+                                    <img
+                                        src="assets/icons/instructions.png"
+                                        alt=""
+                                    >
+
+                                    <h3>
+                                        Special Instructions
+                                    </h3>
+
+                                </div>
+
+                                <span>
+                                    Optional
+                                </span>
+
+                            </div>
+
+
+                            <div class="instructions-textarea">
+
+                                <textarea
+                                    name="special-instructions"
+                                    id="sp-instructions"
+                                    placeholder="e.g. Less spice, extra cheese, no onions..."
+                                ></textarea>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Final Bill -->
+
+                        <section class="final-bill">
+
+
+                            <div class="bill-header">
+
+                                <div class="section-title">
+
+                                    <img
+                                        src="assets/icons/bill.png"
+                                        alt=""
+                                    >
+
+                                    <h3>Order Summary</h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="bill-info">
+
+
+                                <div class="subtotal">
+
+                                    <p>Subtotal</p>
+
+                                    <p>
+                                        Rs. 740
+                                    </p>
+
+                                </div>
+
+
+                                <div class="total-amount">
+
+                                    <h3>Total Amount</h3>
+
+                                    <h3>
+                                        Rs. 740
+                                    </h3>
+
+                                </div>
+
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Modal Footer -->
+
+                        <div class="ano-footer">
+
+                            <button
+                                type="button"
+                                class="cancel-order-button"
+                            >
+                                Cancel
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="create-order-button"
+                            >
+                                Create Order
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
             </main>
         </div>
     </div>
