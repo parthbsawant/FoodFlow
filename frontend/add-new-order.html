@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+    <body>
+        <div class="add-new-order">
+            <div class="ano-info">
+                <h2>Add New Order</h2>
+                <p>Create a new order for a customer.</p>
+            </div>
+
+            <div class="customer-details">
+                <div class="customer-header">
+                    <img src="" alt="">
+                    <h3>Customer Details</h3>
+                    <a href="#">+ Add New Customer</a>
+                </div>
+                
+                <div class="customer-details">
+                    <div class="customer-name">
+                        <h4>Customer Name</h4>
+                        <input type="text" id="customer-searchbar" placeholder="Search Customers">
+                    </div>
+
+                    <div class="customer-contact">
+                        <div class="phone-number">
+                            <h4>Phone Number</h4>
+                            <input type="text" id="phonenumber" placeholder="Enter Phone Number">
+                        </div>
+
+                        <div class="email">
+                            <h4>Email (Optional)</h4>
+                            <input type="text" id="email-id" placeholder="Enter Email Address">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-menu-items">
+                <div class="add-menu-header">
+                    <img src="" alt="">
+                    <h3>Add Menu Items</h3>
+                </div>
+
+                <div class="menu-search">
+                    <div class="menu-searchbar">
+                        <input type="text" id="searchbarMenu" placeholder="Search Menu Items....">
+                    </div>
+
+                    <div class="menu-category">
+                        <select name="menu-category" id="menu-category">
+                            <option value="all-categories" selected>All Categories</option>
+                            <option value="starters">Starters</option>
+                            <option value="main-course">Main Course</option>
+                            <option value="snacks">Snacks</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="south-indian">South Indian</option>
+                        </select>
+                    </div>
+
+                    <div class="menu-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Margherita Pizza</td>
+                                    <td>Snacks</td>
+                                    <td>Rs. 260</td>
+                                    <td>
+                                        <button type="button">
+                                            Add Item
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="order-summary-header">
+                    <img src="" alt="">
+                    <h3>Order Items</h3>
+                    <p>3 Items</p>
+                </div>
+
+                <div class="order-summary-items">
+                    <div class="food-item">
+                        <p>Margherita Pizza</p>
+
+                        <div class="edit-items">
+                            <button type="button">-</button>
+                            <button type="button">Quantity</button>
+                            <button type="button">+</button>
+
+                            <p>Total Amount</p>
+                            <a href="#">
+                                <img src="" alt="delete-bin-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-instructions">
+                <div class="instructions-header">
+                    <img src="" alt="">
+                    <p>Special Instructions (Optional)</p>
+                </div>
+
+                <div class="instructions-textarea">
+                    <textarea name="special-instructions" id="sp-instructions" placeholder="e.g Less Spice, extra Cheese, no onions...."></textarea>
+                </div>
+            </div>
+
+            <div class="final-bill">
+                <img src="" alt="bill-image">
+                <div class="bill-info">
+                    <div class="subtotal">
+                        <p>Subtotal</p>
+                        <p>amount</p>
+                    </div>
+                    <div class="discount">
+                        <p>Discount</p>
+                        <p>Discount Amount</p>
+                    </div>
+
+                    <div class="total-amount">
+                        <h3>Total Amount</h3>
+                        <h3>Amount</h3>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </body>
+    <footer></footer>
+</body>
+</html>
