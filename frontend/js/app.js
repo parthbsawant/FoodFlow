@@ -1,5 +1,4 @@
 // Add New Order Modal Functionality
-
 const openOrderModalButton = document.getElementById("open-order-modal");
 const orderModal = document.getElementById("order-modal");
 const closeOrderModalButton = document.getElementById("close-order-modal");
