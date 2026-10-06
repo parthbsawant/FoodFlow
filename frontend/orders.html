@@ -92,7 +92,11 @@
                     </div>
 
                     <div class="new-order-button">
-                        <button type="button">
+                        <button
+                            type="button"
+                            class="new-order-button-trigger"
+                            id="open-order-modal"
+                        >
                             + New Order
                         </button>
                     </div>
@@ -352,18 +356,16 @@
 
                 <!-- Add New Order Modal -->
 
-                <div class="order-modal-overlay">
+                <div class="order-modal-overlay" id="order-modal" hidden>
 
-                    <div class="add-new-order">
-
-
+                    <div class="add-new-order" class="add-new-order" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
                         <!-- Modal Header -->
 
                         <div class="ano-header">
 
                             <div class="ano-header-info">
 
-                                <h2>Add New Order</h2>
+                                <h2 id="order-modal-title">Add New Order</h2>
 
                                 <p>
                                     Create a new order for a customer.
@@ -375,6 +377,7 @@
                             <button
                                 type="button"
                                 class="close-modal-button"
+                                id="close-order-modal"
                                 aria-label="Close Add New Order modal"
                             >
                                 ×
@@ -948,6 +951,7 @@
                             <button
                                 type="button"
                                 class="cancel-order-button"
+                                id="cancel-order-modal"
                             >
                                 Cancel
                             </button>
