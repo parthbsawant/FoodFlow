@@ -1,4 +1,4 @@
-// Recent Orders Table : Table
+// Recent Orders Table : Dashbaord
 const recentOrders = [
     {
         id: 1025,
@@ -104,4 +104,45 @@ const dashboardStats = [
         change: "10%",
         comparison: "Yesterday"
     }
+];
+
+
+// All Orders Table : Orders Page
+
+const orders = [
+    {
+        id: 1025,
+        customer: "Rahul Sharma",
+        items: 3,
+        amount: 745,
+        status: "Preparing"
+    },
+    {
+        id: 1024,
+        customer: "Priya Desai",
+        items: 2,
+        amount: 420,
+        status: "Pending"
+    },
+    {
+        id: 1023,
+        customer: "Amit Patel",
+        items: 4,
+        amount: 980,
+        status: "Ready"
+    },
+    {
+        id: 1022,
+        customer: "Sneha Verma",
+        items: 1,
+        amount: 280,
+        status: "Completed"
+    },
+    {
+        id: 1021,
+        customer: "Karan Mehta",
+        items: 3,
+        amount: 650,
+        status: "Cancelled"
+    },
 ];

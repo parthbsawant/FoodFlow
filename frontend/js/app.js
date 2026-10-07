@@ -1,9 +1,12 @@
 //Dashboard
 //Recent Orders Table : Dashboard
 
-const recentOrdersTable = document.querySelector('.recent-orders-section tbody');
+const recentOrdersTable =
+    document.querySelector(".recent-orders-section tbody");
 
-renderRecentOrdersTable(recentOrders);
+if(recentOrdersTable){
+    renderRecentOrdersTable(recentOrders);
+}
 
 function renderRecentOrdersTable(data){
 
@@ -34,7 +37,9 @@ function renderRecentOrdersTable(data){
 
 const popularMenuItemsTable = document.querySelector(".popular-menu-section tbody");
 
-renderPopularMenuItemsTable(popularMenuItems);
+if(popularMenuItemsTable){
+    renderPopularMenuItemsTable(popularMenuItems);
+}
 
 function renderPopularMenuItemsTable(data){
 
@@ -57,14 +62,53 @@ function renderPopularMenuItemsTable(data){
 
 const summaryCards = document.querySelectorAll(".summary-card");
 
-dashboardStats.forEach((stat, index) => {
-    summaryCards[index].querySelector(".summary-value").textContent = stat.value;
-    summaryCards[index].querySelector(".change-comparison p").textContent = stat.change;
+if(summaryCards.length > 0){
+    dashboardStats.forEach((stat, index) => {
+        summaryCards[index].querySelector(".summary-value").textContent = stat.value;
+        summaryCards[index].querySelector(".change-comparison p").textContent = stat.change;
+    });
+}
 
-});
 
+// Orders Page 
 
+//All Orders Table
 
+const allOrdersTable = document.querySelector(".all-orders tbody");
+
+if(allOrdersTable){
+    renderAllOrdersTable(orders);
+}
+
+function renderAllOrdersTable(data){
+
+    allOrdersTable.innerHTML = "";    
+
+    for(let i = 0; i < data.length; i++){
+        const row = `<tr>
+                        <td>${data[i].id}</td>
+                        <td>${data[i].customer}</td>
+                        <td>${data[i].items} Items</td>
+                        <td>Rs.${data[i].amount}</td>
+                        <td>
+                            <span class="status-badge ${data[i].status.toLowerCase()}">
+                                ${data[i].status}
+                            </span>
+                        </td>
+                        <td>
+                            <button
+                                type="button"
+                                class="edit-button"
+                            >
+                                Edit
+                            </button>
+                        </td>
+                    </tr>`
+        
+        allOrdersTable.innerHTML += row;
+    }
+
+}
 
 
 
@@ -93,22 +137,30 @@ function openOrderModal(){
     orderModal.hidden = false;
 }
 
-openOrderModalButton.addEventListener("click", function(){
-    orderModal.hidden = false;
-});
+if(openOrderModalButton){
+    openOrderModalButton.addEventListener("click", function(){
+        orderModal.hidden = false;
+    });
+}
 
-closeOrderModalButton.addEventListener("click", function(){
-    closeOrderModal();
-})
-
-cancelOrderModalButton.addEventListener("click", function(){
-    closeOrderModal();
-})
-
-orderModal.addEventListener("click", function(event){
-    if(event.target === orderModal){
+if(closeOrderModalButton){
+    closeOrderModalButton.addEventListener("click", function(){
         closeOrderModal();
-    }
-});
+    });
+}
+
+if(cancelOrderModalButton){
+    cancelOrderModalButton.addEventListener("click", function(){
+        closeOrderModal();
+    });
+}
+
+if(orderModal){
+    orderModal.addEventListener("click", function(event){
+        if(event.target === orderModal){
+            closeOrderModal();
+        }
+    });
+}
 
 
