@@ -1877,3 +1877,518 @@ aside{
 body.modal-open{
     overflow: hidden;
 }
+
+/* Quick Actions Section */
+
+/* NEW ORDER MODAL */
+
+
+/*1. NEW ORDER CARD*/
+
+.new-order-card {
+    width: min(700px, 100%);
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+
+/* 2. MODAL HEADER */
+
+.new-order-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: var(--spacing-lg);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* Left side of header */
+
+.left-section h2 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.left-section p {
+    margin: var(--spacing-xs) 0 0;
+
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+
+/* Right side of header */
+
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.close-new-order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+}
+
+.close-new-order img {
+    width: 18px;
+    height: 18px;
+}
+
+.close-new-order:hover {
+    background-color: var(--background);
+}
+
+
+/*3. NEW ORDER BODY */
+
+.new-order-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+
+    padding: var(--spacing-lg);
+}
+
+
+/* 4. COMMON LABEL STYLING */
+
+.new-order-body label {
+    display: block;
+
+    margin-bottom: var(--spacing-xs);
+
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+
+/* 5. COMMON INPUT / SELECT / TEXTAREA STYLING */
+
+.new-order-body input,
+.new-order-body select,
+.new-order-body textarea {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-primary);
+
+    background-color: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Placeholder */
+
+.new-order-body input::placeholder,
+.new-order-body textarea::placeholder {
+    color: var(--muted);
+}
+
+
+/* Focus state */
+
+.new-order-body input:focus,
+.new-order-body select:focus,
+.new-order-body textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.12);
+}
+
+
+/* 6. CUSTOMER NAME */
+
+.customer-name {
+    width: 100%;
+}
+
+
+/* 7. ORDER TYPE */
+
+.order-type {
+    width: 100%;
+}
+
+
+/* 8. MENU ITEMS SECTION */
+
+.items {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 9. ADD ITEM ROW */
+
+.add-item-row {
+    display: grid;
+
+    grid-template-columns: 1fr 80px auto;
+
+    gap: var(--spacing-sm);
+
+    align-items: center;
+}
+
+
+/* Quantity input */
+
+#item-quantity {
+    text-align: center;
+}
+
+
+/* Add Item button */
+
+.add-item-button {
+    height: 42px;
+
+    padding: 0 var(--spacing-md);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--surface);
+    background-color: var(--secondary);
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.add-item-button:hover {
+    background-color: #1d4ed8;
+}
+
+.add-item-button:active {
+    transform: translateY(1px);
+}
+
+
+/* 10. SELECTED ITEMS */
+
+.selected-items {
+    margin-top: var(--spacing-md);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+}
+
+
+/* Selected Items heading */
+
+.selected-items h3 {
+    margin: 0;
+
+    padding: var(--spacing-sm) var(--spacing-md);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--text-primary);
+
+    background-color: var(--background);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* 11. INDIVIDUAL SELECTED ITEM */
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--spacing-md);
+
+    padding: var(--spacing-md);
+
+    background-color: var(--surface);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* Remove border from last item */
+
+.selected-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Item information */
+
+.selected-item-info {
+    min-width: 0;
+}
+
+.selected-item-info p {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--text-primary);
+}
+
+.selected-item-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 13px;
+
+    color: var(--text-secondary);
+}
+
+
+/* 12. SELECTED ITEM ACTIONS */
+
+.selected-item-actions {
+    display: flex;
+    align-items: center;
+
+    gap: var(--spacing-sm);
+}
+
+
+/* Item total */
+
+.selected-item-total {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--text-primary);
+
+    white-space: nowrap;
+}
+
+
+/* Remove button */
+
+.remove-item-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    font-size: 18px;
+    line-height: 1;
+
+    color: var(--danger);
+
+    background-color: transparent;
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+}
+
+.remove-item-button:hover {
+    background-color: #FEF2F2;
+}
+
+
+/* 13. SPECIAL INSTRUCTIONS */
+
+.special-instructions {
+    width: 100%;
+}
+
+.special-instructions textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+/* 14. ORDER TOTAL */
+
+.order-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: var(--spacing-md);
+
+    background-color: var(--sidebar-active);
+
+    border-radius: var(--radius-md);
+}
+
+.order-total span {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--text-secondary);
+}
+
+.order-total strong {
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--text-primary);
+}
+
+
+/* 15. MODAL FOOTER */
+
+.new-order-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: var(--spacing-sm);
+
+    padding: var(--spacing-md) var(--spacing-lg);
+
+    background-color: var(--background);
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* 16. CANCEL BUTTON */
+
+.cancel-new-order {
+    height: 40px;
+
+    padding: 0 var(--spacing-lg);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--text-primary);
+
+    background-color: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.cancel-new-order:hover {
+    background-color: var(--background);
+    border-color: var(--muted);
+}
+
+
+/* 17. CREATE ORDER BUTTON */
+
+.create-new-order {
+    height: 40px;
+
+    padding: 0 var(--spacing-lg);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--surface);
+
+    background-color: var(--primary);
+
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.create-new-order:hover {
+    background-color: #e85b2a;
+}
+
+.create-new-order:active {
+    transform: translateY(1px);
+}
+
+
+/* 18. RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .new-order-card {
+        width: calc(100% - 24px);
+    }
+
+    .new-order-header {
+        padding: var(--spacing-md);
+    }
+
+    .new-order-body {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .add-item-row {
+        grid-template-columns: 1fr 70px;
+    }
+
+    .add-item-button {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .new-order-footer {
+        padding: var(--spacing-md);
+    }
+
+}
