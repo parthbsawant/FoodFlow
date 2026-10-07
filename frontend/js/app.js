@@ -1,5 +1,5 @@
 //Dashboard
-//Recent Orders Table 
+//Recent Orders Table : Dashboard
 
 const recentOrdersTable = document.querySelector('.recent-orders-section tbody');
 
@@ -29,6 +29,51 @@ function renderRecentOrdersTable(data){
         recentOrdersTable.innerHTML += row;                
     }
 }
+
+//Popular Menu Items Table : Dashboard
+
+const popularMenuItemsTable = document.querySelector(".popular-menu-section tbody");
+
+renderPopularMenuItemsTable(popularMenuItems);
+
+function renderPopularMenuItemsTable(data){
+
+    popularMenuItemsTable.innerHTML = "";
+
+    for(let i = 0; i < data.length; i++){
+        const row = `<tr>
+                        <td>${data[i].rank}</td>
+                        <td>${data[i].item}</td>
+                        <td>${data[i].category}</td>
+                        <td>${data[i].orders}</td>
+                        <td>${data[i].revenue}</td> 
+                    </tr>`
+        
+        popularMenuItemsTable.innerHTML += row;
+    }
+}
+
+//Summary Cards Section : Dashboard
+
+const summaryCards = document.querySelectorAll(".summary-card");
+
+dashboardStats.forEach((stat, index) => {
+    summaryCards[index].querySelector(".summary-value").textContent = stat.value;
+    summaryCards[index].querySelector(".change-comparison p").textContent = stat.change;
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
