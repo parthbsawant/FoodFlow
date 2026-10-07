@@ -60,12 +60,12 @@ function renderPopularMenuItemsTable(data){
 
 //Summary Cards Section : Dashboard
 
-const summaryCards = document.querySelectorAll(".summary-card");
+const summaryCardsDashboardPage = document.querySelectorAll(".dashboard-page .summary-card");
 
-if(summaryCards.length > 0){
+if(summaryCardsDashboardPage.length > 0){
     dashboardStats.forEach((stat, index) => {
-        summaryCards[index].querySelector(".summary-value").textContent = stat.value;
-        summaryCards[index].querySelector(".change-comparison p").textContent = stat.change;
+        summaryCardsDashboardPage[index].querySelector(".summary-value").textContent = stat.value;
+        summaryCardsDashboardPage[index].querySelector(".change-comparison p").textContent = stat.change;
     });
 }
 
@@ -110,6 +110,17 @@ function renderAllOrdersTable(data){
 
 }
 
+
+//Summary Cards : Orders Page
+
+const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-card");
+
+if(summaryCardsOrdersPage.length > 0){
+    orderPageStats.forEach((stat, index) => {
+        summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = stat.value;
+        summaryCardsOrdersPage[index].querySelector(".change-comparison p").textContent = stat.change;
+    });
+}
 
 
 
