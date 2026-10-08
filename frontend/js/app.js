@@ -8,7 +8,20 @@ function completeStats(){
 
     const totalRevenue = orders.reduce((total, order) => total + order.amount, 0);
     const totalOrders = orders.length;
+
+
+    return{
+        pendingOrders,
+        preparingOrders,
+        readyOrders,
+        completedOrders,
+        cancelledOrders,
+        totalRevenue,
+        totalOrders
+    }
 }
+
+const orderStats = completeStats();
 
 //Dashboard
 //Recent Orders Table : Dashboard
@@ -70,10 +83,16 @@ function renderPopularMenuItemsTable(data){
 //Summary Cards Section : Dashboard
 const summaryCardsDashboardPage = document.querySelectorAll(".dashboard-page .summary-card");
 
+const dashboardStats = [
+    orderStats.totalOrders,
+    orderStats.totalRevenue,
+    orderStats.pendingOrders,
+    orderStats.completedOrders
+];
+
 if(summaryCardsDashboardPage.length > 0){
     dashboardStats.forEach((stat, index) => {
-        summaryCardsDashboardPage[index].querySelector(".summary-value").textContent = stat.value;
-        summaryCardsDashboardPage[index].querySelector(".change-comparison p").textContent = stat.change;
+        summaryCardsDashboardPage[index].querySelector(".summary-value").textContent = stat;
     });
 }
 
