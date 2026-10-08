@@ -145,6 +145,13 @@ const orders = [
         amount: 650,
         status: "Cancelled"
     },
+    {
+        id: 10321,
+        customer: "Peter Shinde",
+        items: 5234,
+        amount: 61331450,
+        status: "Cancelled"
+    }
 ];
 
 //Order Page : Order Stats Data

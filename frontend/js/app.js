@@ -1,6 +1,5 @@
 //Dashboard
 //Recent Orders Table : Dashboard
-
 const recentOrdersTable =
     document.querySelector(".recent-orders-section tbody");
 
@@ -34,7 +33,6 @@ function renderRecentOrdersTable(data){
 }
 
 //Popular Menu Items Table : Dashboard
-
 const popularMenuItemsTable = document.querySelector(".popular-menu-section tbody");
 
 if(popularMenuItemsTable){
@@ -59,7 +57,6 @@ function renderPopularMenuItemsTable(data){
 }
 
 //Summary Cards Section : Dashboard
-
 const summaryCardsDashboardPage = document.querySelectorAll(".dashboard-page .summary-card");
 
 if(summaryCardsDashboardPage.length > 0){
@@ -69,86 +66,7 @@ if(summaryCardsDashboardPage.length > 0){
     });
 }
 
-
-// Orders Page 
-//All Orders Table
-
-const allOrdersTable = document.querySelector(".all-orders tbody");
-
-if(allOrdersTable){
-    renderAllOrdersTable(orders);
-}
-
-function renderAllOrdersTable(data){
-
-    allOrdersTable.innerHTML = "";    
-
-    for(let i = 0; i < data.length; i++){
-        const row = `<tr>
-                        <td>${data[i].id}</td>
-                        <td>${data[i].customer}</td>
-                        <td>${data[i].items} Items</td>
-                        <td>Rs.${data[i].amount}</td>
-                        <td>
-                            <span class="status-badge ${data[i].status.toLowerCase()}">
-                                ${data[i].status}
-                            </span>
-                        </td>
-                        <td>
-                            <button
-                                type="button"
-                                class="edit-button"
-                            >
-                                Edit
-                            </button>
-                        </td>
-                    </tr>`
-        
-        allOrdersTable.innerHTML += row;
-    }
-
-}
-
-
-//Summary Cards : Orders Page
-
-const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-card");
-
-if(summaryCardsOrdersPage.length > 0){
-    const pendingOrders = orders.filter(order => order.status === "Pending").length;
-    const preparingOrders = orders.filter(order => order.status === "Preparing").length;
-    const readyOrders = orders.filter(order => order.status === "Ready").length;
-    const completedOrders = orders.filter(order => order.status === "Completed").length;
-    const totalOrders = orders.length;
-
-    const orderStatusCounts = [
-        totalOrders,
-        preparingOrders,
-        pendingOrders,
-        completedOrders
-    ]
-
-    const percentPendingOrders = ((pendingOrders/totalOrders) * 100);
-    const percentPreparingOrders = ((preparingOrders/totalOrders) * 100);
-    const percentCompletedOrders = ((completedOrders/totalOrders) * 100);
-
-    const orderStatusPercentages = [
-        100,
-        percentPreparingOrders,
-        percentPendingOrders,
-        percentCompletedOrders
-    ];
-
-    orderStatusCounts.forEach((count, index) => {
-        summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = count;
-        summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index]}%`;
-    })
-}
-
-
-
 //Quick Actions Section : Add New Order Modal
-
 const openNewOrderModalButton = document.querySelector("#new-order-quick-action");
 const newOrderModalOverlay = document.querySelector(".new-order-modal-overlay");
 const closeNewOrderModalButton = document.querySelector(".close-new-order");
@@ -195,7 +113,6 @@ document.addEventListener("keydown", function(event){
 })
 
 //Quick Actions Section : Add New Menu Item Modal
-
 const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-action");
 const addMenuItemOverlay = document.querySelector("#add-menu-modal-overlay");
 const closeAddMenuItemModalButton = document.querySelector(".close-add-menu");
@@ -291,7 +208,6 @@ document.addEventListener("keydown", function(event){
 })
 
 //Quick Actions Section : View Orders Button
-
 const viewAllOrdersButton = document.querySelector("#view-all-order-quick-action");
 
 if(viewAllOrdersButton){
@@ -302,7 +218,6 @@ if(viewAllOrdersButton){
 
 
 // Add New Order Modal Functionality
-
 const openOrderModalButton = document.getElementById("open-order-modal");
 const orderModal = document.getElementById("order-modal");
 const closeOrderModalButton = document.getElementById("close-order-modal");
@@ -343,4 +258,92 @@ if(orderModal){
 }
 
 
+//Order-Status Section : Dashboard Page
+const pendingOrders = orders.filter(order => order.status === "Pending").length;
+const preparingOrders = orders.filter(order => order.status === "Preparing").length;
+const readyOrders = orders.filter(order => order.status === "Ready").length;
+const completedOrders = orders.filter(order => order.status === "Completed").length;
+const cancelledOrders = orders.filter(order => order.status === "Cancelled").length;
+const totalOrders = orders.length;
 
+const orderStatusSectionCards = document.querySelectorAll(".order-section-card");
+
+const orderStatusSectionValues = [
+    pendingOrders,
+    preparingOrders,
+    completedOrders,
+    cancelledOrders
+];
+
+if(orderStatusSectionCards.length > 0){
+    orderStatusSectionCards.forEach((card, index) => {
+        card.querySelector(".status-count").textContent = orderStatusSectionValues[index];
+    })
+}
+
+//Orders Page
+//All Orders Table
+const allOrdersTable = document.querySelector(".all-orders tbody");
+
+if(allOrdersTable){
+    renderAllOrdersTable(orders);
+}
+
+function renderAllOrdersTable(data){
+
+    allOrdersTable.innerHTML = "";    
+
+    for(let i = 0; i < data.length; i++){
+        const row = `<tr>
+                        <td>${data[i].id}</td>
+                        <td>${data[i].customer}</td>
+                        <td>${data[i].items} Items</td>
+                        <td>Rs.${data[i].amount}</td>
+                        <td>
+                            <span class="status-badge ${data[i].status.toLowerCase()}">
+                                ${data[i].status}
+                            </span>
+                        </td>
+                        <td>
+                            <button
+                                type="button"
+                                class="edit-button"
+                            >
+                                Edit
+                            </button>
+                        </td>
+                    </tr>`
+        
+        allOrdersTable.innerHTML += row;
+    }
+
+}
+
+//Summary Cards : Orders Page
+const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-card");
+
+if(summaryCardsOrdersPage.length > 0){
+
+    const orderStatusCounts = [
+        totalOrders,
+        preparingOrders,
+        pendingOrders,
+        completedOrders
+    ]
+
+    const percentPendingOrders = ((pendingOrders/totalOrders) * 100);
+    const percentPreparingOrders = ((preparingOrders/totalOrders) * 100);
+    const percentCompletedOrders = ((completedOrders/totalOrders) * 100);
+
+    const orderStatusPercentages = [
+        100,
+        percentPreparingOrders,
+        percentPendingOrders,
+        percentCompletedOrders
+    ];
+
+    orderStatusCounts.forEach((count, index) => {
+        summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = count;
+        summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index]}%`;
+    })
+}
