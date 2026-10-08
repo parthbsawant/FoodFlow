@@ -564,6 +564,12 @@ aside{
     justify-content: space-between;
 }
 
+.order-section-card:last-child {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+}
+
 .status-count{
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
@@ -600,6 +606,10 @@ aside{
 
 .cancelled-orders{
     background-color: #FBE8E8;
+}
+
+.ready-orders {
+    background-color: #EEE9FD;
 }
 
 /* Orders Page CSS */

@@ -292,10 +292,11 @@ if(orderModal){
 const orderStatusSectionCards = document.querySelectorAll(".order-section-card");
 
 const orderStatusSectionValues = [
-    pendingOrders,
-    preparingOrders,
-    completedOrders,
-    cancelledOrders
+    orderStats.pendingOrders,
+    orderStats.preparingOrders,
+    orderStats.readyOrders,
+    orderStats.completedOrders,
+    orderStats.cancelledOrders
 ];
 
 if(orderStatusSectionCards.length > 0){
