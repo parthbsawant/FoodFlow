@@ -4,7 +4,7 @@ const recentOrdersTable =
     document.querySelector(".recent-orders-section tbody");
 
 if(recentOrdersTable){
-    renderRecentOrdersTable(recentOrders);
+    renderRecentOrdersTable(orders);
 }
 
 function renderRecentOrdersTable(data){
@@ -19,8 +19,7 @@ function renderRecentOrdersTable(data){
                         <td>${data[i].amount}</td>
                         <td>
                             <span class="status-badge ${data[i].status.toLowerCase()}">${data[i].status}</span>
-                        </td>
-                        <td>${data[i].time}</td> 
+                        </td> 
                         <td>
                             <button type="button" class="edit-button">
                                 Edit 
