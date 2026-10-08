@@ -163,17 +163,63 @@ if(newOrderModalOverlay){
     })
 }
 
-if(document){
-    document.addEventListener("keydown", function(event){
-        if(event.key == "Escape"){
-            closeNewOrderModal();
+document.addEventListener("keydown", function(event){
+    if(newOrderModalOverlay && event.key == "Escape"){
+        closeNewOrderModal();
+    }
+})
+
+//Quick Actions Section : Add New Menu Item Modal
+
+const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-action");
+const addMenuItemOverlay = document.querySelector("#add-menu-modal-overlay");
+const closeAddMenuItemModalButton = document.querySelector(".close-add-menu");
+const cancelAddmenuItemModalButton = document.querySelector(".cancel-add-menu")
+
+function openAddMenuModal(){
+    addMenuItemOverlay.hidden = false;
+}
+
+function closeAddMenuModal(){
+    addMenuItemOverlay.hidden = true;
+}
+
+if(openAddMenuItemModalButton){
+    openAddMenuItemModalButton.addEventListener("click", function(){
+        openAddMenuModal();
+    })
+}
+
+if(closeAddMenuItemModalButton){
+    closeAddMenuItemModalButton.addEventListener("click", function(){
+        closeAddMenuModal();
+    })
+}
+
+if(cancelAddmenuItemModalButton){
+    cancelAddmenuItemModalButton.addEventListener("click", function(){
+        closeAddMenuModal();
+    })
+}
+
+if(addMenuItemOverlay){
+    addMenuItemOverlay.addEventListener("click", function(event){
+        if(event.target === addMenuItemOverlay){
+            closeAddMenuModal();
         }
     })
 }
 
-
+if(document){
+    document.addEventListener("keydown", function(event){
+        if(addMenuItemOverlay && event.key === "Escape"){
+            closeAddMenuModal();
+        }
+    })
+}
 
 // Add New Order Modal Functionality
+
 const openOrderModalButton = document.getElementById("open-order-modal");
 const orderModal = document.getElementById("order-modal");
 const closeOrderModalButton = document.getElementById("close-order-modal");

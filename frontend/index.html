@@ -518,6 +518,154 @@
     
                     </div>
                 </div>
+
+                <div class="add-menu-modal-overlay" id="add-menu-modal-overlay" hidden>
+
+                    <div class="add-menu-card">
+
+                        <div class="add-menu-header">
+
+                            <div class="left-section">
+
+                                <h2>Add New Menu Item</h2>
+
+                                <p>Add a new menu item to your restaurant menu</p>
+
+                            </div>
+
+                            <div class="right-section">
+
+                                <button
+                                    type="button"
+                                    class="close-add-menu"
+                                    aria-label="Close modal"
+                                >
+
+                                    <img
+                                        src="/frontend/assets/icons/close.png"
+                                        alt="Close modal"
+                                    >
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="add-menu-body">
+
+                            <!-- Item Name -->
+
+                            <div class="item-name">
+
+                                <label for="item-name">Item Name</label>
+
+                                <input
+                                    type="text"
+                                    name="item-name"
+                                    id="item-name"
+                                    placeholder="Enter menu item name"
+                                >
+
+                            </div>
+
+
+                            <!-- Category -->
+
+                            <div class="item-category">
+
+                                <label for="item-category">Category</label>
+
+                                <select
+                                    name="item-category"
+                                    id="item-category"
+                                >
+
+                                    <option value="" selected disabled>
+                                        Select category
+                                    </option>
+
+                                    <option value="starters">
+                                        Starters
+                                    </option>
+
+                                    <option value="main-course">
+                                        Main Course
+                                    </option>
+
+                                    <option value="south-indian">
+                                        South Indian
+                                    </option>
+
+                                    <option value="desserts">
+                                        Desserts
+                                    </option>
+
+                                    <option value="beverages">
+                                        Beverages
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Price -->
+
+                            <div class="item-price">
+
+                                <label for="item-price">Price (Rs.)</label>
+
+                                <input
+                                    type="number"
+                                    name="item-price"
+                                    id="item-price"
+                                    placeholder="Enter price"
+                                    min="0"
+                                >
+
+                            </div>
+
+
+                            <!-- Description -->
+
+                            <div class="item-description">
+
+                                <label for="item-description">
+                                    Description (Optional)
+                                </label>
+
+                                <textarea
+                                    name="item-description"
+                                    id="item-description"
+                                    placeholder="Enter a short description..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="add-menu-footer">
+
+                            <button
+                                type="button"
+                                class="cancel-add-menu"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                type="button"
+                                class="add-menu-item"
+                            >
+                                Add Item
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
     
             </main>
         </div>
