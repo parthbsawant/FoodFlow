@@ -142,6 +142,8 @@ document.addEventListener("keydown", function(event){
     }
 })
 
+
+
 //Quick Actions Section : Add New Menu Item Modal
 const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-action");
 const addMenuItemOverlay = document.querySelector("#add-menu-modal-overlay");
@@ -196,6 +198,32 @@ const addCustomerModalOverlay = document.querySelector("#add-customer-modal-over
 const openAddCustomerModalButton = document.querySelector("#add-customer-quick-action");
 const closeAddCustomerModalButton = document.querySelector(".close-add-customer");
 const cancelAddCustomerModalButton = document.querySelector(".cancel-add-customer");
+
+const inputNewCustomerName = document.querySelector("#new-customer-name");
+const inputNewCustomerPhone = document.querySelector("#customer-phone");
+const inputNewCustomerEmail = document.querySelector("#customer-email");
+const addCustomerModalButton = document.querySelector(".add-customer-button");
+
+
+if(addCustomerModalButton){
+    addCustomerModalButton.addEventListener("click", function(){
+        const customerName = inputNewCustomerName.value;
+        const customerPhone = inputNewCustomerPhone.value;
+        const customerEmail = inputNewCustomerEmail.value;
+
+        const customersData = {
+            id: customers.length + 1,
+            name: customerName,
+            phone: customerPhone,
+            email: customerEmail
+        }
+
+        customers.push(customersData);
+
+
+        closeAddCustomerModal();
+    });
+}
 
 function openAddCustomerModal(){
     addCustomerModalOverlay.hidden = false;
@@ -349,15 +377,15 @@ const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-
 if(summaryCardsOrdersPage.length > 0){
 
     const orderStatusCounts = [
-        totalOrders,
-        preparingOrders,
-        pendingOrders,
-        completedOrders
+        orderStats.totalOrders,
+        orderStats.preparingOrders,
+        orderStats.pendingOrders,
+        orderStats.completedOrders
     ]
 
-    const percentPendingOrders = ((pendingOrders/totalOrders) * 100);
-    const percentPreparingOrders = ((preparingOrders/totalOrders) * 100);
-    const percentCompletedOrders = ((completedOrders/totalOrders) * 100);
+    const percentPendingOrders = ((orderStats.pendingOrders/orderStats.totalOrders) * 100);
+    const percentPreparingOrders = ((orderStats.preparingOrders/orderStats.totalOrders) * 100);
+    const percentCompletedOrders = ((orderStats.completedOrders/orderStats.totalOrders) * 100);
 
     const orderStatusPercentages = [
         100,
