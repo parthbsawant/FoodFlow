@@ -893,3 +893,292 @@
 }
 
 
+/* ------------------------------------------------------- */
+/* Add New Customer Modal */
+
+.add-customer-modal-overlay {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(15, 23, 42, 0.45);
+
+    z-index: 1000;
+}
+
+.add-customer-modal-overlay[hidden] {
+    display: none;
+}
+
+
+/* Modal Card */
+
+.add-customer-card {
+    width: min(560px, calc(100vw - 40px));
+    max-height: calc(100vh - 40px);
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+
+    overflow: hidden;
+
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: #0f172a;
+}
+
+
+/* Header */
+
+.add-customer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 20px 24px 18px;
+
+    background-color: #ffffff;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.add-customer-header .left-section h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    color: #0f172a;
+}
+
+.add-customer-header .left-section p {
+    margin: 5px 0 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #64748b;
+}
+
+
+/* Close Button */
+
+.add-customer-header .right-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-add-customer {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background-color: transparent;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.close-add-customer:hover {
+    background-color: #f1f5f9;
+}
+
+.close-add-customer img {
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+}
+
+
+/* Body */
+
+.add-customer-body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 24px 28px;
+
+    background-color: #ffffff;
+
+    overflow-y: auto;
+}
+
+
+/* Labels */
+
+.add-customer-body label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #334155;
+}
+
+
+/* Inputs */
+
+.add-customer-body input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    color: #0f172a;
+
+    background-color: #ffffff;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-customer-body input::placeholder {
+    color: #94a3b8;
+}
+
+.add-customer-body input:focus {
+    border-color: #ff6b35;
+
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+
+/* Footer */
+
+.add-customer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    padding: 14px 24px;
+
+    background-color: #ffffff;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+/* Cancel Button */
+
+.cancel-add-customer {
+    height: 38px;
+
+    padding: 0 16px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #334155;
+
+    background-color: #ffffff;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.cancel-add-customer:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+}
+
+
+/* Add Customer Button */
+
+.add-customer-button {
+    height: 38px;
+
+    padding: 0 17px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    background-color: #ff6b35;
+
+    border: 1px solid #ff6b35;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-customer-button:hover {
+    background-color: #ea580c;
+
+    box-shadow: 0 3px 8px rgba(255, 107, 53, 0.2);
+}
+
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    .add-customer-card {
+        width: calc(100vw - 24px);
+    }
+
+    .add-customer-header {
+        padding: 17px 18px;
+    }
+
+    .add-customer-body {
+        padding: 18px;
+    }
+
+    .add-customer-footer {
+        padding: 12px 18px;
+    }
+
+}

@@ -71,7 +71,6 @@ if(summaryCardsDashboardPage.length > 0){
 
 
 // Orders Page 
-
 //All Orders Table
 
 const allOrdersTable = document.querySelector(".all-orders tbody");
@@ -218,12 +217,59 @@ if(document){
     })
 }
 
+
+//Quick Actions Section : Add New Customer
+const addCustomerModalOverlay = document.querySelector("#add-customer-modal-overlay");
+const openAddCustomerModalButton = document.querySelector("#add-customer-quick-action");
+const closeAddCustomerModalButton = document.querySelector(".close-add-customer");
+const cancelAddCustomerModalButton = document.querySelector(".cancel-add-customer");
+
+function openAddCustomerModal(){
+    addCustomerModalOverlay.hidden = false;
+}
+
+function closeAddCustomerModal(){
+    addCustomerModalOverlay.hidden = true;
+}
+
+if(openAddCustomerModalButton){
+    openAddCustomerModalButton.addEventListener("click", function(){
+        openAddCustomerModal();
+    })
+}
+
+if(closeAddCustomerModalButton){
+    closeAddCustomerModalButton.addEventListener("click", function(){
+        closeAddCustomerModal();
+    })
+}
+
+if(cancelAddCustomerModalButton){
+    cancelAddCustomerModalButton.addEventListener("click", function(){
+        closeAddCustomerModal();
+    })
+}
+
+if(addCustomerModalOverlay){
+    addCustomerModalOverlay.addEventListener("click", function(event){
+        if(event.target === addCustomerModalOverlay){
+            closeAddCustomerModal();
+        }
+    })
+}
+
+document.addEventListener("keydown", function(event){
+    if(addCustomerModalOverlay && event.key === "Escape"){
+        closeAddCustomerModal();
+    }
+})
+
+
 // Add New Order Modal Functionality
 
 const openOrderModalButton = document.getElementById("open-order-modal");
 const orderModal = document.getElementById("order-modal");
 const closeOrderModalButton = document.getElementById("close-order-modal");
-
 const cancelOrderModalButton = document.getElementById("cancel-order-modal");
 
 function closeOrderModal(){
@@ -259,5 +305,6 @@ if(orderModal){
         }
     });
 }
+
 
 
