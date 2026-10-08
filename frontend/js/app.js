@@ -264,6 +264,16 @@ document.addEventListener("keydown", function(event){
     }
 })
 
+//Quick Actions Section : View Orders Button
+
+const viewAllOrdersButton = document.querySelector("#view-all-order-quick-action");
+
+if(viewAllOrdersButton){
+    viewAllOrdersButton.addEventListener("click", function(){
+        window.location.href = "orders.html"
+    })
+}
+
 
 // Add New Order Modal Functionality
 
