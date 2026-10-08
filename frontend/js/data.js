@@ -148,25 +148,25 @@ const orders = [
 ];
 
 //Order Page : Order Stats Data
-const orderPageStats = [
-    {
-        title: "Total Orders",
-        value: 48,
-        change: 12
-    },
-    {
-        title: "Preparing Orders",
-        value: 10,
-        change: 8
-    },
-    {
-        title: "Pending Orders",
-        value: 12,
-        change: 20
-    },
-    {
-        title: "Completed Orders",
-        value: 36,
-        change: 10
-    }
-];
+// const orderPageStats = [
+//     {
+//         title: "Total Orders",
+//         value: 48,
+//         change: 12
+//     },
+//     {
+//         title: "Preparing Orders",
+//         value: 10,
+//         change: 8
+//     },
+//     {
+//         title: "Pending Orders",
+//         value: 12,
+//         change: 20
+//     },
+//     {
+//         title: "Completed Orders",
+//         value: 36,
+//         change: 10
+//     }
+// ];

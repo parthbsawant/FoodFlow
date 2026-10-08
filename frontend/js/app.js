@@ -115,11 +115,37 @@ function renderAllOrdersTable(data){
 const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-card");
 
 if(summaryCardsOrdersPage.length > 0){
-    orderPageStats.forEach((stat, index) => {
-        summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = stat.value;
-        summaryCardsOrdersPage[index].querySelector(".change-comparison p").textContent = stat.change;
-    });
+    const pendingOrders = orders.filter(order => order.status === "Pending").length;
+    const preparingOrders = orders.filter(order => order.status === "Preparing").length;
+    const readyOrders = orders.filter(order => order.status === "Ready").length;
+    const completedOrders = orders.filter(order => order.status === "Completed").length;
+    const totalOrders = orders.length;
+
+    const orderStatusCounts = [
+        totalOrders,
+        preparingOrders,
+        pendingOrders,
+        completedOrders
+    ]
+
+    const percentPendingOrders = ((pendingOrders/totalOrders) * 100);
+    const percentPreparingOrders = ((preparingOrders/totalOrders) * 100);
+    const percentCompletedOrders = ((completedOrders/totalOrders) * 100);
+
+    const orderStatusPercentages = [
+        100,
+        percentPreparingOrders,
+        percentPendingOrders,
+        percentCompletedOrders
+    ];
+
+    orderStatusCounts.forEach((count, index) => {
+        summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = count;
+        summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index]}%`;
+    })
 }
+
+
 
 //Quick Actions Section : Add New Order Modal
 

@@ -231,11 +231,14 @@ aside{
 /* Comparison */
 
 .change-comparison {
-    display: flex;
+   display: flex;
     align-items: center;
     gap: var(--spacing-sm);
 
     margin-top: var(--spacing-xs);
+
+    white-space: nowrap;
+    flex-wrap: nowrap;
 }
 
 .change-comparison p {
