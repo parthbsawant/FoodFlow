@@ -344,6 +344,6 @@ if(summaryCardsOrdersPage.length > 0){
 
     orderStatusCounts.forEach((count, index) => {
         summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = count;
-        summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index]}%`;
+        summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index].toFixed(2)}%`;
     })
 }

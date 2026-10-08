@@ -1,48 +1,100 @@
-// Recent Orders Table : Dashbaord
-const recentOrders = [
+// Customer Data
+
+const customers = [
     {
-        id: 1025,
-        customer: "Rahul Sharma",
-        items: 3,
-        amount: 745,
-        status: "Preparing",
-        time: "12:30 PM"
+        id: 1,
+        name: "Rahul Sharma",
+        phone: "9876543210",
+        email: "rahul.sharma@example.com"
     },
     {
-        id: 1024,
-        customer: "Priya Desai",
-        items: 2,
-        amount: 420,
-        status: "Pending",
-        time: "12:15 PM"
+        id: 2,
+        name: "Priya Desai",
+        phone: "9876543211",
+        email: "priya.desai@example.com"
     },
     {
-        id: 1023,
-        customer: "Amit Patel",
-        items: 4,
-        amount: 980,
-        status: "Ready",
-        time: "11:50 AM"
+        id: 3,
+        name: "Amit Patel",
+        phone: "9876543212",
+        email: "amit.patel@example.com"
     },
     {
-        id: 1022,
-        customer: "Sneha Verma",
-        items: 1,
-        amount: 280,
-        status: "Completed",
-        time: "11:30 AM"
+        id: 4,
+        name: "Sneha Verma",
+        phone: "9876543213",
+        email: "sneha.verma@example.com"
     },
     {
-        id: 1021,
-        customer: "Karan Mehta",
-        items: 3,
-        amount: 650,
-        status: "Completed",
-        time: "11:10 AM"
+        id: 5,
+        name: "Karan Mehta",
+        phone: "9876543214",
+        email: "karan.mehta@example.com"
     }
 ];
 
-//Popular Menu Items Table : Dashboard 
+// Menu Items Data
+
+const menuItems = [
+    {
+        id: 101,
+        name: "Margherita Pizza",
+        category: "Pizza",
+        price: 260,
+        available: true
+    },
+    {
+        id: 102,
+        name: "Paneer Tikka",
+        category: "Starters",
+        price: 220,
+        available: true
+    },
+    {
+        id: 103,
+        name: "Masala Dosa",
+        category: "South Indian",
+        price: 200,
+        available: true
+    },
+    {
+        id: 104,
+        name: "Pav Bhaji",
+        category: "Breakfast",
+        price: 115,
+        available: true
+    },
+    {
+        id: 105,
+        name: "Veg Biryani",
+        category: "Main Course",
+        price: 200,
+        available: true
+    },
+    {
+        id: 106,
+        name: "Veg Hakka Noodles",
+        category: "Chinese",
+        price: 180,
+        available: true
+    },
+    {
+        id: 107,
+        name: "Veg Manchurian",
+        category: "Chinese",
+        price: 190,
+        available: true
+    },
+    {
+        id: 108,
+        name: "Butter Naan",
+        category: "Breads",
+        price: 60,
+        available: true
+    }
+];
+
+// Popular Menu Items Table
 const popularMenuItems = [
     {
         rank: 1,
@@ -74,41 +126,8 @@ const popularMenuItems = [
     }
 ];
 
-//Summary Cards Section : Dashboard
-const dashboardStats = [
-    {
-        id: "total-orders",
-        title: "Total Orders",
-        value: 48,
-        change: "12%",
-        comparison: "Yesterday"
-    },
-    {
-        id: "total-revenue",
-        title: "Today's Revenue",
-        value: 18450,
-        change: "8%",
-        comparison: "Yesterday"
-    },
-    {
-        id: "pending-orders",
-        title: "Pending Orders",
-        value: 12,
-        change: "20%",
-        comparison: "Yesterday"
-    },
-    {
-        id: "completed-orders",
-        title: "Completed Orders",
-        value: 36,
-        change: "10%",
-        comparison: "Yesterday"
-    }
-];
 
-
-// All Orders Table : Orders Page
-
+// Orders Data
 const orders = [
     {
         id: 1025,
@@ -144,36 +163,5 @@ const orders = [
         items: 3,
         amount: 650,
         status: "Cancelled"
-    },
-    {
-        id: 10321,
-        customer: "Peter Shinde",
-        items: 5234,
-        amount: 61331450,
-        status: "Cancelled"
     }
 ];
-
-//Order Page : Order Stats Data
-// const orderPageStats = [
-//     {
-//         title: "Total Orders",
-//         value: 48,
-//         change: 12
-//     },
-//     {
-//         title: "Preparing Orders",
-//         value: 10,
-//         change: 8
-//     },
-//     {
-//         title: "Pending Orders",
-//         value: 12,
-//         change: 20
-//     },
-//     {
-//         title: "Completed Orders",
-//         value: 36,
-//         change: 10
-//     }
-// ];
