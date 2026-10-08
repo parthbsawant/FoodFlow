@@ -1,3 +1,15 @@
+//ALl Calculations Rquired : 
+function completeStats(){
+    const pendingOrders = orders.filter(order => order.status === "Pending").length;
+    const preparingOrders = orders.filter(order => order.status === "Preparing").length;
+    const readyOrders = orders.filter(order => order.status === "Ready").length;
+    const completedOrders = orders.filter(order => order.status === "Completed").length;
+    const cancelledOrders = orders.filter(order => order.status === "Cancelled").length;
+
+    const totalRevenue = orders.reduce((total, order) => total + order.amount, 0);
+    const totalOrders = orders.length;
+}
+
 //Dashboard
 //Recent Orders Table : Dashboard
 const recentOrdersTable =
@@ -258,13 +270,6 @@ if(orderModal){
 
 
 //Order-Status Section : Dashboard Page
-const pendingOrders = orders.filter(order => order.status === "Pending").length;
-const preparingOrders = orders.filter(order => order.status === "Preparing").length;
-const readyOrders = orders.filter(order => order.status === "Ready").length;
-const completedOrders = orders.filter(order => order.status === "Completed").length;
-const cancelledOrders = orders.filter(order => order.status === "Cancelled").length;
-const totalOrders = orders.length;
-
 const orderStatusSectionCards = document.querySelectorAll(".order-section-card");
 
 const orderStatusSectionValues = [
