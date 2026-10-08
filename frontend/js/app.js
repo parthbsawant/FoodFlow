@@ -122,14 +122,54 @@ if(summaryCardsOrdersPage.length > 0){
     });
 }
 
+//Quick Actions Section : Add New Order Modal
 
+const openNewOrderModalButton = document.querySelector("#new-order-quick-action");
+const newOrderModalOverlay = document.querySelector(".new-order-modal-overlay");
+const closeNewOrderModalButton = document.querySelector(".close-new-order");
+const cancelNewOrderModalButton = document.querySelector(".cancel-new-order");
 
+function closeNewOrderModal(){
+    newOrderModalOverlay.hidden = true;
+}
 
+function openNewOrderModal(){
+    newOrderModalOverlay.hidden = false;
+}
 
+if(openNewOrderModalButton){
+    openNewOrderModalButton.addEventListener("click", function(){
+        openNewOrderModal();
+    })
+}
 
+if(closeNewOrderModalButton){
+    closeNewOrderModalButton.addEventListener("click", function(){
+        closeNewOrderModal();
+    })
+}
 
+if(cancelNewOrderModalButton){
+    cancelNewOrderModalButton.addEventListener("click", function(){
+        closeNewOrderModal();
+    })
+}
 
+if(newOrderModalOverlay){
+    newOrderModalOverlay.addEventListener("click", function(event){
+        if(event.target === newOrderModalOverlay){
+            closeNewOrderModal();
+        }
+    })
+}
 
+if(document){
+    document.addEventListener("keydown", function(event){
+        if(event.key == "Escape"){
+            closeNewOrderModal();
+        }
+    })
+}
 
 
 

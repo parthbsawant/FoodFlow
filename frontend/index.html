@@ -183,34 +183,38 @@
                          <h2>Quick Actions</h2>
         
                          <div class="quick-actions-buttons">
-                            <button type="button" class="quick-actions-button">
+                            <button type="button" class="quick-actions-button" id="new-order-quick-action">
                                 <div class="button-internals">
                                     <img src="/frontend/assets/icons/quick-actions-section/new-order.png" alt="New Order Cart Image">
                                     <p>New Order</p>
                                     <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
-                            <button type="button" class="quick-actions-button">
+
+                            <button type="button" class="quick-actions-button" id="add-menu-quick-action">
                                 <div class="button-internals">
                                     <img src="/frontend/assets/icons/quick-actions-section/add-menu-item.png" alt="Add Menu Item Image">
                                     <p>Add Menu Item</p>
                                     <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
-                            <button type="button" class="quick-actions-button">
+
+                            <button type="button" class="quick-actions-button" id="add-customer-quick-action">
                                 <div class="button-internals">
                                     <img src="/frontend/assets/icons/quick-actions-section/customers.png" alt="Add Customer Image">
                                     <p>Add Customer</p>
                                     <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
-                            <button type="button" class="quick-actions-button">
+
+                            <button type="button" class="quick-actions-button" id="view-all-order-quick-action">
                                 <div class="button-internals">
                                     <img src="/frontend/assets/icons/quick-actions-section/view-orders.png" alt="View Orders Image">
                                     <p>View All Orders</p>
                                     <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
+
                          </div>
                     </section>
                 </div>
@@ -305,212 +309,214 @@
                     </section>
                 </div>
 
-                <div class="new-order-card">
-
-                    <!-- New Order Header -->
-                    <div class="new-order-header">
-
-                        <div class="left-section">
-                            <h2>Create New Order</h2>
-                            <p>Add a new order for a customer</p>
-                        </div>
-
-                        <div class="right-section">
-                            <button type="button" class="close-new-order" aria-label="Close modal">
-                                <img src="cross.png" alt="Close modal">
-                            </button>
-                        </div>
-
-                    </div>
-
-
-                    <!-- New Order Body -->
-                    <div class="new-order-body">
-
-                        <!-- Customer Name -->
-                        <div class="customer-name">
-                            <label for="customer-name">Customer Name</label>
-
-                            <input
-                                type="text"
-                                name="customer-name"
-                                id="customer-name"
-                                placeholder="Enter customer name"
-                            >
-                        </div>
-
-
-                        <!-- Order Type -->
-                        <div class="order-type">
-
-                            <label for="order-type">Order Type</label>
-
-                            <select name="order-type" id="order-type">
-
-                                <option value="dine-in" selected>
-                                    Dine In
-                                </option>
-
-                                <option value="take-away">
-                                    Take Away
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <!-- Menu Items -->
-                        <div class="items">
-
-                            <label for="menu-item">Menu Item</label>
-
-                            <div class="add-item-row">
-
-                                <select name="menu-item" id="menu-item">
-
-                                    <option value="" selected disabled>
-                                        Select Menu Item
-                                    </option>
-
-                                    <option value="margherita-pizza">
-                                        Margherita Pizza - Rs. 260
-                                    </option>
-
-                                    <option value="paneer-tikka">
-                                        Paneer Tikka - Rs. 220
-                                    </option>
-
-                                    <option value="masala-dosa">
-                                        Masala Dosa - Rs. 180
-                                    </option>
-
-                                    <option value="veg-biryani">
-                                        Veg Biryani - Rs. 200
-                                    </option>
-
-                                </select>
-
-                                <input
-                                    type="number"
-                                    name="item-quantity"
-                                    id="item-quantity"
-                                    min="1"
-                                    value="1"
-                                    placeholder="Qty"
-                                >
-
-                                <button type="button" class="add-item-button">
-                                    Add Item
+                <div class="new-order-modal-overlay" id="new-order-modal-overlay" hidden>
+                    <div class="new-order-card">
+    
+                        <!-- New Order Header -->
+                        <div class="new-order-header">
+    
+                            <div class="left-section">
+                                <h2>Create New Order</h2>
+                                <p>Add a new order for a customer</p>
+                            </div>
+    
+                            <div class="right-section">
+                                <button type="button" class="close-new-order" aria-label="Close modal">
+                                    <img src="/frontend/assets/icons/close.png" alt="Close modal">
                                 </button>
-
                             </div>
-
-
-                            <!-- Selected Items -->
-                            <div class="selected-items">
-
-                                <h3>Selected Items</h3>
-
-                                <div class="selected-item">
-
-                                    <div class="selected-item-info">
-                                        <p>Margherita Pizza</p>
-                                        <span>Rs. 260 × 2</span>
-                                    </div>
-
-                                    <div class="selected-item-actions">
-                                        <span class="selected-item-total">
-                                            Rs. 520
-                                        </span>
-
-                                        <button
-                                            type="button"
-                                            class="remove-item-button"
-                                            aria-label="Remove item"
-                                        >
-                                            ×
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                                <div class="selected-item">
-
-                                    <div class="selected-item-info">
-                                        <p>Paneer Tikka</p>
-                                        <span>Rs. 220 × 1</span>
-                                    </div>
-
-                                    <div class="selected-item-actions">
-                                        <span class="selected-item-total">
-                                            Rs. 220
-                                        </span>
-
-                                        <button
-                                            type="button"
-                                            class="remove-item-button"
-                                            aria-label="Remove item"
-                                        >
-                                            ×
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
+    
+                        </div>
+    
+    
+                        <!-- New Order Body -->
+                        <div class="new-order-body">
+    
+                            <!-- Customer Name -->
+                            <div class="customer-name">
+                                <label for="customer-name">Customer Name</label>
+    
+                                <input
+                                    type="text"
+                                    name="customer-name"
+                                    id="customer-name"
+                                    placeholder="Enter customer name"
+                                >
                             </div>
-
+    
+    
+                            <!-- Order Type -->
+                            <div class="order-type">
+    
+                                <label for="order-type">Order Type</label>
+    
+                                <select name="order-type" id="order-type">
+    
+                                    <option value="dine-in" selected>
+                                        Dine In
+                                    </option>
+    
+                                    <option value="take-away">
+                                        Take Away
+                                    </option>
+    
+                                </select>
+    
+                            </div>
+    
+    
+                            <!-- Menu Items -->
+                            <div class="items">
+    
+                                <label for="menu-item">Menu Item</label>
+    
+                                <div class="add-item-row">
+    
+                                    <select name="menu-item" id="menu-item">
+    
+                                        <option value="" selected disabled>
+                                            Select Menu Item
+                                        </option>
+    
+                                        <option value="margherita-pizza">
+                                            Margherita Pizza - Rs. 260
+                                        </option>
+    
+                                        <option value="paneer-tikka">
+                                            Paneer Tikka - Rs. 220
+                                        </option>
+    
+                                        <option value="masala-dosa">
+                                            Masala Dosa - Rs. 180
+                                        </option>
+    
+                                        <option value="veg-biryani">
+                                            Veg Biryani - Rs. 200
+                                        </option>
+    
+                                    </select>
+    
+                                    <input
+                                        type="number"
+                                        name="item-quantity"
+                                        id="item-quantity"
+                                        min="1"
+                                        value="1"
+                                        placeholder="Qty"
+                                    >
+    
+                                    <button type="button" class="add-item-button">
+                                        Add Item
+                                    </button>
+    
+                                </div>
+    
+    
+                                <!-- Selected Items -->
+                                <div class="selected-items">
+    
+                                    <h3>Selected Items</h3>
+    
+                                    <div class="selected-item">
+    
+                                        <div class="selected-item-info">
+                                            <p>Margherita Pizza</p>
+                                            <span>Rs. 260 × 2</span>
+                                        </div>
+    
+                                        <div class="selected-item-actions">
+                                            <span class="selected-item-total">
+                                                Rs. 520
+                                            </span>
+    
+                                            <button
+                                                type="button"
+                                                class="remove-item-button"
+                                                aria-label="Remove item"
+                                            >
+                                                ×
+                                            </button>
+                                        </div>
+    
+                                    </div>
+    
+                                    <div class="selected-item">
+    
+                                        <div class="selected-item-info">
+                                            <p>Paneer Tikka</p>
+                                            <span>Rs. 220 × 1</span>
+                                        </div>
+    
+                                        <div class="selected-item-actions">
+                                            <span class="selected-item-total">
+                                                Rs. 220
+                                            </span>
+    
+                                            <button
+                                                type="button"
+                                                class="remove-item-button"
+                                                aria-label="Remove item"
+                                            >
+                                                ×
+                                            </button>
+    
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+    
+    
+                            <!-- Special Instructions -->
+                            <div class="special-instructions">
+    
+                                <label for="special-instructions">
+                                    Special Instructions
+                                </label>
+    
+                                <textarea
+                                    name="special-instructions"
+                                    id="special-instructions"
+                                    placeholder="e.g. Less spice, extra cheese, no onions..."
+                                ></textarea>
+    
+                            </div>
+    
+    
+                            <!-- Order Total -->
+                            <div class="order-total">
+    
+                                <span>Total Amount</span>
+    
+                                <strong>Rs. 740</strong>
+    
+                            </div>
+    
                         </div>
-
-
-                        <!-- Special Instructions -->
-                        <div class="special-instructions">
-
-                            <label for="special-instructions">
-                                Special Instructions
-                            </label>
-
-                            <textarea
-                                name="special-instructions"
-                                id="special-instructions"
-                                placeholder="e.g. Less spice, extra cheese, no onions..."
-                            ></textarea>
-
+    
+    
+                        <!-- New Order Footer -->
+                        <div class="new-order-footer">
+    
+                            <button
+                                type="button"
+                                class="cancel-new-order"
+                            >
+                                Cancel
+                            </button>
+    
+                            <button
+                                type="button"
+                                class="create-new-order"
+                            >
+                                Create Order
+                            </button>
+    
                         </div>
-
-
-                        <!-- Order Total -->
-                        <div class="order-total">
-
-                            <span>Total Amount</span>
-
-                            <strong>Rs. 740</strong>
-
-                        </div>
-
+    
                     </div>
-
-
-                    <!-- New Order Footer -->
-                    <div class="new-order-footer">
-
-                        <button
-                            type="button"
-                            class="cancel-new-order"
-                        >
-                            Cancel
-                        </button>
-
-                        <button
-                            type="button"
-                            class="create-new-order"
-                        >
-                            Create Order
-                        </button>
-
-                    </div>
-
                 </div>
     
             </main>
