@@ -102,6 +102,103 @@ const newOrderModalOverlay = document.querySelector(".new-order-modal-overlay");
 const closeNewOrderModalButton = document.querySelector(".close-new-order");
 const cancelNewOrderModalButton = document.querySelector(".cancel-new-order");
 
+const inputNewOrderCustomerName = document.querySelector("#customer-name");
+const inputNewOrderCustomerOrderType = document.querySelector("#order-type");
+const inputNewOrderMenuItem = document.querySelector("#menu-item");
+const inputNewOrderItemQuantity = document.querySelector("#item-quantity");
+const buttonNewOrderAddItem = document.querySelector(".add-item-button");
+const inputNewOrderSpecialInstructions = document.querySelector("#special-instructions");
+const createOrderButton = document.querySelector(".create-new-order");
+const selectedItemsList = document.querySelector(".selected-items-list");
+
+const selectedOrderItems = [];
+
+function renderSelectedItems(){
+    selectedItemsList.innerHTML = "";
+
+    selectedOrderItems.forEach(function(item, index){
+        const selectedItem = document.createElement("div");
+        selectedItem.className = "selected-item";
+
+        selectedItem.innerHTML = `
+            <div class="selected-item-info">
+                <p>${item.name}</p>
+                <span>Rs. ${item.price} × ${item.quantity}</span>
+            </div>
+            <div class="selected-item-actions">
+                <span class="selected-item-total">Rs. ${item.price * item.quantity}</span>
+                <button type="button" class="remove-item-button" data-index="${index}" aria-label="Remove ${item.name}">×</button>
+            </div>
+        `;
+
+        selectedItemsList.appendChild(selectedItem);
+    });
+}
+
+if(buttonNewOrderAddItem){
+    buttonNewOrderAddItem.addEventListener("click", function(){
+        const newOrderMenuItem = inputNewOrderMenuItem.value;
+        const newOrderItemQuantity = Number(inputNewOrderItemQuantity.value);
+
+        const selectedMenuItem = menuItems.find(menuItem => menuItem.id === Number(newOrderMenuItem));
+
+        if(!selectedMenuItem || newOrderItemQuantity < 1 || !Number.isInteger(newOrderItemQuantity)){
+            return;
+        }
+
+        const selectedItemData = {
+            id: selectedMenuItem.id,
+            name: selectedMenuItem.name,
+            price: selectedMenuItem.price,
+            quantity: newOrderItemQuantity
+        };
+
+        selectedOrderItems.push(selectedItemData);
+        renderSelectedItems();
+    });
+}
+
+if(selectedItemsList){
+    selectedItemsList.addEventListener("click", function(event){
+        if(event.target.classList.contains("remove-item-button")){
+            const itemIndex = Number(event.target.dataset.index);
+            selectedOrderItems.splice(itemIndex, 1);
+            renderSelectedItems();
+        }
+    });
+}
+
+if(createOrderButton){
+    createOrderButton.addEventListener("click", function(){
+        const newOrderCustomerName = inputNewOrderCustomerName.value;
+        const newOrderCustomerOrderType = inputNewOrderCustomerOrderType.value;
+        const newOrderSpecialInstructions = inputNewOrderSpecialInstructions.value;
+
+        if(!newOrderCustomerName.trim() || selectedOrderItems.length === 0){
+            return;
+        }
+
+        const newOrderTotalAmount = selectedOrderItems.reduce(function(total, item){
+            return total + item.price * item.quantity;
+        }, 0);
+
+        const orderData = {
+            id: orders.length ? Math.max(...orders.map(order => order.id)) + 1 : 1,
+            name: newOrderCustomerName,
+            orderType: newOrderCustomerOrderType,
+            items: selectedOrderItems.map(item => ({...item})),
+            amount: newOrderTotalAmount,
+            specialInstructions: newOrderSpecialInstructions,
+            status: "Pending"
+        };
+
+        orders.push(orderData);
+        selectedOrderItems.length = 0;
+        renderSelectedItems();
+        closeNewOrderModal();
+    });
+}
+
 function closeNewOrderModal(){
     newOrderModalOverlay.hidden = true;
 }
@@ -113,19 +210,19 @@ function openNewOrderModal(){
 if(openNewOrderModalButton){
     openNewOrderModalButton.addEventListener("click", function(){
         openNewOrderModal();
-    })
+    });
 }
 
 if(closeNewOrderModalButton){
     closeNewOrderModalButton.addEventListener("click", function(){
         closeNewOrderModal();
-    })
+    });
 }
 
 if(cancelNewOrderModalButton){
     cancelNewOrderModalButton.addEventListener("click", function(){
         closeNewOrderModal();
-    })
+    });
 }
 
 if(newOrderModalOverlay){
@@ -133,14 +230,15 @@ if(newOrderModalOverlay){
         if(event.target === newOrderModalOverlay){
             closeNewOrderModal();
         }
-    })
+    });
 }
 
 document.addEventListener("keydown", function(event){
-    if(newOrderModalOverlay && event.key == "Escape"){
+    if(newOrderModalOverlay && event.key === "Escape"){
         closeNewOrderModal();
     }
-})
+});
+
 
 
 

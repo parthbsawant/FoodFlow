@@ -323,162 +323,52 @@
 
                 <div class="new-order-modal-overlay" id="new-order-modal-overlay" hidden>
                     <div class="new-order-card">
-    
-                        <!-- New Order Header -->
                         <div class="new-order-header">
-    
                             <div class="left-section">
                                 <h2>Create New Order</h2>
                                 <p>Add a new order for a customer</p>
                             </div>
-    
                             <div class="right-section">
                                 <button type="button" class="close-new-order" aria-label="Close modal">
                                     <img src="/frontend/assets/icons/close.png" alt="Close modal">
                                 </button>
                             </div>
-    
                         </div>
-    
-    
-                        <!-- New Order Body -->
                         <div class="new-order-body">
-    
-                            <!-- Customer Name -->
                             <div class="customer-name">
                                 <label for="customer-name">Customer Name</label>
-    
-                                <input
-                                    type="text"
-                                    name="customer-name"
-                                    id="customer-name"
-                                    placeholder="Enter customer name"
-                                >
+                                <input type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" >
                             </div>
     
-    
-                            <!-- Order Type -->
                             <div class="order-type">
-    
                                 <label for="order-type">Order Type</label>
-    
                                 <select name="order-type" id="order-type">
-    
-                                    <option value="dine-in" selected>
-                                        Dine In
-                                    </option>
-    
-                                    <option value="take-away">
-                                        Take Away
-                                    </option>
-    
+                                    <option value="dine-in" selected> Dine In </option>
+                                    <option value="take-away"> Take Away </option>
                                 </select>
-    
                             </div>
-    
-    
-                            <!-- Menu Items -->
+
+                            
                             <div class="items">
-    
                                 <label for="menu-item">Menu Item</label>
-    
                                 <div class="add-item-row">
-    
                                     <select name="menu-item" id="menu-item">
-    
-                                        <option value="" selected disabled>
-                                            Select Menu Item
-                                        </option>
-    
-                                        <option value="margherita-pizza">
-                                            Margherita Pizza - Rs. 260
-                                        </option>
-    
-                                        <option value="paneer-tikka">
-                                            Paneer Tikka - Rs. 220
-                                        </option>
-    
-                                        <option value="masala-dosa">
-                                            Masala Dosa - Rs. 180
-                                        </option>
-    
-                                        <option value="veg-biryani">
-                                            Veg Biryani - Rs. 200
-                                        </option>
-    
+                                        <option value="" selected disabled>Select Menu Item</option>
+                                        <option value="101">Margherita Pizza - Rs. 260</option>
+                                        <option value="102">Paneer Tikka - Rs. 220</option>
+                                        <option value="103">Masala Dosa - Rs. 200</option>
+                                        <option value="105">Veg Biryani - Rs. 200</option>
                                     </select>
-    
-                                    <input
-                                        type="number"
-                                        name="item-quantity"
-                                        id="item-quantity"
-                                        min="1"
-                                        value="1"
-                                        placeholder="Qty"
-                                    >
-    
-                                    <button type="button" class="add-item-button">
-                                        Add Item
-                                    </button>
-    
+                                    <input type="number" name="item-quantity" id="item-quantity" min="1" value="1" placeholder="Qty">
+                                    <button type="button" class="add-item-button">Add Item</button>
                                 </div>
-    
-    
-                                <!-- Selected Items -->
+
                                 <div class="selected-items">
-    
                                     <h3>Selected Items</h3>
-    
-                                    <div class="selected-item">
-    
-                                        <div class="selected-item-info">
-                                            <p>Margherita Pizza</p>
-                                            <span>Rs. 260 × 2</span>
-                                        </div>
-    
-                                        <div class="selected-item-actions">
-                                            <span class="selected-item-total">
-                                                Rs. 520
-                                            </span>
-    
-                                            <button
-                                                type="button"
-                                                class="remove-item-button"
-                                                aria-label="Remove item"
-                                            >
-                                                ×
-                                            </button>
-                                        </div>
-    
-                                    </div>
-    
-                                    <div class="selected-item">
-    
-                                        <div class="selected-item-info">
-                                            <p>Paneer Tikka</p>
-                                            <span>Rs. 220 × 1</span>
-                                        </div>
-    
-                                        <div class="selected-item-actions">
-                                            <span class="selected-item-total">
-                                                Rs. 220
-                                            </span>
-    
-                                            <button
-                                                type="button"
-                                                class="remove-item-button"
-                                                aria-label="Remove item"
-                                            >
-                                                ×
-                                            </button>
-    
-                                        </div>
-    
-                                    </div>
-    
+                                    <div class="selected-items-list"></div>
                                 </div>
-    
                             </div>
+
     
     
                             <!-- Special Instructions -->
@@ -507,9 +397,6 @@
                             </div>
     
                         </div>
-    
-    
-                        <!-- New Order Footer -->
                         <div class="new-order-footer">
     
                             <button
@@ -527,12 +414,10 @@
                             </button>
     
                         </div>
-    
                     </div>
                 </div>
 
                 <div class="add-menu-modal-overlay" id="add-menu-modal-overlay" hidden>
-
                     <div class="add-menu-card">
 
                         <div class="add-menu-header">
@@ -676,7 +561,6 @@
                         </div>
 
                     </div>
-
                 </div>
 
                 <div class="add-customer-modal-overlay" id="add-customer-modal-overlay" hidden>
