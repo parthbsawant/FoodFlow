@@ -607,6 +607,76 @@
                     </div>
 
                 </div>
+
+                <!-- Edit Order Modal -->
+                <div class="edit-order-modal-overlay" id="edit-order-modal-overlay" hidden>
+                    <div class="edit-order-card" role="dialog" aria-modal="true" aria-labelledby="edit-order-title">
+
+                        <div class="edit-order-header">
+                            <div>
+                                <h2 id="edit-order-title">Edit Order</h2>
+                                <p>Update the order details below.</p>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="close-edit-order"
+                                aria-label="Close modal"
+                            >
+                                &times;
+                            </button>
+                        </div>
+
+                        <div class="edit-order-body">
+                            <div class="edit-order-field">
+                                <label for="edit-order-customer">Customer Name</label>
+                                <input
+                                    type="text"
+                                    id="edit-order-customer"
+                                    placeholder="Enter customer name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="edit-order-field">
+                                <label for="edit-order-status">Order Status</label>
+                                <select id="edit-order-status">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Preparing">Preparing</option>
+                                    <option value="Ready">Ready</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
+                            </div>
+
+                            <div class="edit-order-field">
+                                <label for="edit-order-instructions">Special Instructions</label>
+                                <textarea
+                                    id="edit-order-instructions"
+                                    placeholder="Optional instructions"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="edit-order-footer">
+                            <button type="button" class="delete-edit-order">
+                                Delete Order
+                            </button>
+
+                            <div class="edit-order-actions">
+                                <button type="button" class="cancel-edit-order">
+                                    Cancel
+                                </button>
+
+                                <button type="button" class="save-edit-order">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
     
             </main>
         </div>

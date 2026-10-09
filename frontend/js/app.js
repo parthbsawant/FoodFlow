@@ -32,31 +32,43 @@ if(recentOrdersTable){
     renderRecentOrdersTable(orders);
 }
 
-function renderRecentOrdersTable(data){
+function renderRecentOrdersTable(data) {
+    if (!recentOrdersTable) {
+        return;
+    }
 
     recentOrdersTable.innerHTML = "";
 
-    for(let i = 0; i < data.length; i++){
-        //
-        const totalItemQuantity = Array.isArray(data[i].items) ? data[i].items.reduce((total, item) => total + item.quantity, 0) : data[i].items;
-        const row = `<tr>
-                        <td>${data[i].id}</td>
-                        <td>${data[i].customer}</td>
-                        <td>${totalItemQuantity} Items</td>
-                        <td>Rs.${data[i].amount}</td>
-                        <td>
-                            <span class="status-badge ${data[i].status.toLowerCase()}">
-                                ${data[i].status}
-                            </span>
-                        </td>
-                        <td>
-                            <button type="button" class="edit-button">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>`;
+    for (let i = 0; i < data.length; i++) {
+        const totalItemQuantity = Array.isArray(data[i].items)
+            ? data[i].items.reduce(
+                (total, item) => total + item.quantity,
+                0
+            )
+            : data[i].items;
 
-        recentOrdersTable.innerHTML += row;                
+        const row = `<tr>
+            <td>${data[i].id}</td>
+            <td>${data[i].customer}</td>
+            <td>${totalItemQuantity} Items</td>
+            <td>Rs. ${data[i].amount}</td>
+            <td>
+                <span class="status-badge ${data[i].status.toLowerCase()}">
+                    ${data[i].status}
+                </span>
+            </td>
+            <td>
+                <button
+                    type="button"
+                    class="edit-button"
+                    data-order-id="${data[i].id}"
+                >
+                    Edit
+                </button>
+            </td>
+        </tr>`;
+
+        recentOrdersTable.innerHTML += row;
     }
 }
 
@@ -483,34 +495,44 @@ if(allOrdersTable){
     renderAllOrdersTable(orders);
 }
 
-function renderAllOrdersTable(data){
-
-    allOrdersTable.innerHTML = "";    
-
-    for(let i = 0; i < data.length; i++){
-        const row = `<tr>
-                        <td>${data[i].id}</td>
-                        <td>${data[i].customer}</td>
-                        <td>${data[i].items} Items</td>
-                        <td>Rs.${data[i].amount}</td>
-                        <td>
-                            <span class="status-badge ${data[i].status.toLowerCase()}">
-                                ${data[i].status}
-                            </span>
-                        </td>
-                        <td>
-                            <button
-                                type="button"
-                                class="edit-button"
-                            >
-                                Edit
-                            </button>
-                        </td>
-                    </tr>`
-        
-        allOrdersTable.innerHTML += row;
+function renderAllOrdersTable(data) {
+    if (!allOrdersTable) {
+        return;
     }
 
+    allOrdersTable.innerHTML = "";
+
+    for (let i = 0; i < data.length; i++) {
+        const totalItemQuantity = Array.isArray(data[i].items)
+            ? data[i].items.reduce(
+                (total, item) => total + item.quantity,
+                0
+            )
+            : data[i].items;
+
+        const row = `<tr>
+            <td>${data[i].id}</td>
+            <td>${data[i].customer}</td>
+            <td>${totalItemQuantity} Items</td>
+            <td>Rs. ${data[i].amount}</td>
+            <td>
+                <span class="status-badge ${data[i].status.toLowerCase()}">
+                    ${data[i].status}
+                </span>
+            </td>
+            <td>
+                <button
+                    type="button"
+                    class="edit-button"
+                    data-order-id="${data[i].id}"
+                >
+                    Edit
+                </button>
+            </td>
+        </tr>`;
+
+        allOrdersTable.innerHTML += row;
+    }
 }
 
 //Summary Cards : Orders Page
@@ -541,3 +563,153 @@ if(summaryCardsOrdersPage.length > 0){
         summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index].toFixed(2)}%`;
     })
 }
+
+//Edit Order Modal : Dashboard Page and Orders Page
+
+const editOrderModalOverlay = document.querySelector(
+    "#edit-order-modal-overlay"
+);
+
+const editOrderCustomer = document.querySelector("#edit-order-customer");
+const editOrderStatus = document.querySelector("#edit-order-status");
+const editOrderInstructions = document.querySelector(
+    "#edit-order-instructions"
+);
+
+const closeEditOrderButton = document.querySelector(".close-edit-order");
+const cancelEditOrderButton = document.querySelector(".cancel-edit-order");
+const saveEditOrderButton = document.querySelector(".save-edit-order");
+const deleteEditOrderButton = document.querySelector(".delete-edit-order");
+
+let selectedOrderId = null;
+
+function openEditOrderModal(orderId) {
+    const selectedOrder = orders.find(
+        order => order.id === Number(orderId)
+    );
+
+    if (!selectedOrder || !editOrderModalOverlay) {
+        return;
+    }
+
+    selectedOrderId = selectedOrder.id;
+
+    editOrderCustomer.value = selectedOrder.customer;
+    editOrderStatus.value = selectedOrder.status;
+    editOrderInstructions.value = selectedOrder.specialInstructions || "";
+
+    editOrderModalOverlay.hidden = false;
+}
+
+function closeEditOrderModal() {
+    if (!editOrderModalOverlay) {
+        return;
+    }
+
+    editOrderModalOverlay.hidden = true;
+    selectedOrderId = null;
+}
+
+function handleEditOrderClick(event) {
+    const editButton = event.target.closest(".edit-button");
+
+    if (!editButton) {
+        return;
+    }
+
+    openEditOrderModal(editButton.dataset.orderId);
+}
+
+
+if (recentOrdersTable) {
+    recentOrdersTable.addEventListener("click", handleEditOrderClick);
+}
+
+if (allOrdersTable) {
+    allOrdersTable.addEventListener("click", handleEditOrderClick);
+}
+
+if (saveEditOrderButton) {
+    saveEditOrderButton.addEventListener("click", function () {
+        const customerName = editOrderCustomer.value.trim();
+
+        if (!customerName || selectedOrderId === null) {
+            return;
+        }
+
+        const selectedOrder = orders.find(
+            order => order.id === selectedOrderId
+        );
+
+        if (!selectedOrder) {
+            closeEditOrderModal();
+            return;
+        }
+
+        selectedOrder.customer = customerName;
+        selectedOrder.status = editOrderStatus.value;
+        selectedOrder.specialInstructions =
+            editOrderInstructions.value.trim();
+
+        // Re-render whichever tables exist on this page
+        renderRecentOrdersTable(orders);
+        renderAllOrdersTable(orders);
+
+        closeEditOrderModal();
+    });
+}
+
+
+if (deleteEditOrderButton) {
+    deleteEditOrderButton.addEventListener("click", function () {
+        if (selectedOrderId === null) {
+            return;
+        }
+        const shouldDelete = window.confirm(
+            "Are you sure you want to delete this order?"
+        );
+        if (!shouldDelete) {
+            return;
+        }
+        const orderIndex = orders.findIndex(
+            order => order.id === selectedOrderId
+        );
+        if (orderIndex === -1) {
+            closeEditOrderModal();
+            return;
+        }
+        orders.splice(orderIndex, 1);
+        renderRecentOrdersTable(orders);
+        renderAllOrdersTable(orders);
+
+        closeEditOrderModal();
+    });
+}
+if (closeEditOrderButton) {
+    closeEditOrderButton.addEventListener(
+        "click",
+        closeEditOrderModal
+    );
+}
+if (cancelEditOrderButton) {
+    cancelEditOrderButton.addEventListener(
+        "click",
+        closeEditOrderModal
+    );
+}
+if (editOrderModalOverlay) {
+    editOrderModalOverlay.addEventListener("click", function (event) {
+        if (event.target === editOrderModalOverlay) {
+            closeEditOrderModal();
+        }
+    });
+}
+document.addEventListener("keydown", function (event) {
+    if (
+        editOrderModalOverlay &&
+        event.key === "Escape" &&
+        !editOrderModalOverlay.hidden
+    ) {
+        closeEditOrderModal();
+    }
+});
