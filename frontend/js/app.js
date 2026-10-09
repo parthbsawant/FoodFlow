@@ -40,7 +40,7 @@ function renderRecentOrdersTable(data){
         const row = `<tr>
                         <td>${data[i].id}</td>
                         <td>${data[i].customer}</td>
-                        <td>${data[i].items}</td>
+                        <td>${Array.isArray(data[i].items) ? data[i].items.reduce((total, item) => total + item.quantity, 0) : data[i].items}</td>
                         <td>${data[i].amount}</td>
                         <td>
                             <span class="status-badge ${data[i].status.toLowerCase()}">${data[i].status}</span>
@@ -110,8 +110,17 @@ const buttonNewOrderAddItem = document.querySelector(".add-item-button");
 const inputNewOrderSpecialInstructions = document.querySelector("#special-instructions");
 const createOrderButton = document.querySelector(".create-new-order");
 const selectedItemsList = document.querySelector(".selected-items-list");
+const newOrderTotalDisplay = document.querySelector("#new-order-total");
 
 const selectedOrderItems = [];
+
+function updateNewOrderTotal(){
+    const totalAmount = selectedOrderItems.reduce(function(total, item){
+        return total + item.price * item.quantity;
+    }, 0);
+
+    newOrderTotalDisplay.textContent = `Rs. ${totalAmount}`;
+}
 
 function renderSelectedItems(){
     selectedItemsList.innerHTML = "";
@@ -154,6 +163,7 @@ if(buttonNewOrderAddItem){
         };
 
         selectedOrderItems.push(selectedItemData);
+        updateNewOrderTotal();
         renderSelectedItems();
     });
 }
@@ -164,6 +174,7 @@ if(selectedItemsList){
             const itemIndex = Number(event.target.dataset.index);
             selectedOrderItems.splice(itemIndex, 1);
             renderSelectedItems();
+            updateNewOrderTotal();
         }
     });
 }
@@ -184,7 +195,7 @@ if(createOrderButton){
 
         const orderData = {
             id: orders.length ? Math.max(...orders.map(order => order.id)) + 1 : 1,
-            name: newOrderCustomerName,
+            customer: newOrderCustomerName,
             orderType: newOrderCustomerOrderType,
             items: selectedOrderItems.map(item => ({...item})),
             amount: newOrderTotalAmount,
@@ -193,9 +204,11 @@ if(createOrderButton){
         };
 
         orders.push(orderData);
+        renderRecentOrdersTable(orders);
         selectedOrderItems.length = 0;
         renderSelectedItems();
         closeNewOrderModal();
+        updateNewOrderTotal();
     });
 }
 
