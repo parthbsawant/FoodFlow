@@ -37,20 +37,24 @@ function renderRecentOrdersTable(data){
     recentOrdersTable.innerHTML = "";
 
     for(let i = 0; i < data.length; i++){
+        //
+        const totalItemQuantity = Array.isArray(data[i].items) ? data[i].items.reduce((total, item) => total + item.quantity, 0) : data[i].items;
         const row = `<tr>
                         <td>${data[i].id}</td>
                         <td>${data[i].customer}</td>
-                        <td>${Array.isArray(data[i].items) ? data[i].items.reduce((total, item) => total + item.quantity, 0) : data[i].items}</td>
-                        <td>${data[i].amount}</td>
+                        <td>${totalItemQuantity} Items</td>
+                        <td>Rs.${data[i].amount}</td>
                         <td>
-                            <span class="status-badge ${data[i].status.toLowerCase()}">${data[i].status}</span>
-                        </td> 
+                            <span class="status-badge ${data[i].status.toLowerCase()}">
+                                ${data[i].status}
+                            </span>
+                        </td>
                         <td>
                             <button type="button" class="edit-button">
-                                Edit 
+                                Edit
                             </button>
                         </td>
-                    </tr>`
+                    </tr>`;
 
         recentOrdersTable.innerHTML += row;                
     }
