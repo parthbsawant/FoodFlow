@@ -246,7 +246,34 @@ document.addEventListener("keydown", function(event){
 const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-action");
 const addMenuItemOverlay = document.querySelector("#add-menu-modal-overlay");
 const closeAddMenuItemModalButton = document.querySelector(".close-add-menu");
-const cancelAddmenuItemModalButton = document.querySelector(".cancel-add-menu")
+const cancelAddmenuItemModalButton = document.querySelector(".cancel-add-menu");
+
+const menuItemName = document.querySelector("#item-name");
+const menuItemCategory = document.querySelector("#item-category");
+const menuItemPrice = document.querySelector("#item-price");
+const menuItemDescription = document.querySelector("#item-description");
+const addMenuItemButton = document.querySelector(".add-menu-item");
+
+if(addMenuItemButton){
+    addMenuItemButton.addEventListener("click", function(){
+        const itemName = menuItemName.value;
+        const itemCategory = menuItemCategory.value;
+        const itemPrice = Number(menuItemPrice.value);
+        const itemDescription = menuItemDescription.value;
+
+        const newMenuItemData = {
+            id : menuItems.length+1,
+            name : itemName,
+            category : itemCategory,
+            price : itemPrice,
+            available: true
+        }
+
+        menuItems.push(newMenuItemData);
+
+        closeAddMenuModal();
+    })
+}
 
 function openAddMenuModal(){
     addMenuItemOverlay.hidden = false;
