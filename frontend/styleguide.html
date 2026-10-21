@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodFlow - UI Styleguide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styleguide.css">
+</head>
+<body>
+    <div class="guide">
+
+        <section class="page-header">
+            <div>
+                <h1 class="page-title">FoodFlow UI Styleguide</h1>
+                <p class="page-subtitle">Every component used in the app, in one place. Review this before the pages are rebuilt.</p>
+            </div>
+        </section>
+
+        <!-- Colors -->
+        <section class="guide-section">
+            <h2>Colors</h2>
+            <p>Brand, status and neutral colors. Every color in the app comes from these tokens.</p>
+            <div class="swatches">
+                <div class="card swatch"><div class="swatch-color" style="background: var(--color-primary)"></div><div class="swatch-info"><strong>Primary</strong><span>#FF6B35</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--color-secondary)"></div><div class="swatch-info"><strong>Secondary</strong><span>#2563EB</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--color-success)"></div><div class="swatch-info"><strong>Success</strong><span>#16A34A</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--color-warning)"></div><div class="swatch-info"><strong>Warning</strong><span>#F59E0B</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--color-danger)"></div><div class="swatch-info"><strong>Danger</strong><span>#EF4444</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--color-accent)"></div><div class="swatch-info"><strong>Purple</strong><span>#8B5CF6</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--gray-900)"></div><div class="swatch-info"><strong>Text Primary</strong><span>#0F172A</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--gray-500)"></div><div class="swatch-info"><strong>Text Secondary</strong><span>#64748B</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--gray-200)"></div><div class="swatch-info"><strong>Border</strong><span>#E2E8F0</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--gray-50)"></div><div class="swatch-info"><strong>Background</strong><span>#F8FAFC</span></div></div>
+                <div class="card swatch"><div class="swatch-color" style="background: var(--gray-800)"></div><div class="swatch-info"><strong>Sidebar</strong><span>#1E293B</span></div></div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="guide-section">
+            <h2>Typography</h2>
+            <p>Inter, with a fixed size scale so headings, labels and body text stay consistent.</p>
+            <div class="card card-body">
+                <div class="type-sample"><span>Page title · 28 / 700</span><p class="page-title">Good morning, Parth!</p></div>
+                <div class="type-sample"><span>Card title · 18 / 600</span><p class="card-title">Recent Orders</p></div>
+                <div class="type-sample"><span>Stat value · 26 / 700</span><p class="stat-value">Rs. 4,335</p></div>
+                <div class="type-sample"><span>Body · 14 / 400</span><p style="font-size: 14px; color: var(--color-text-body)">Manage and track all the restaurant orders.</p></div>
+                <div class="type-sample"><span>Label · 13 / 500</span><p class="label">Customer Name</p></div>
+                <div class="type-sample"><span>Caption · 12 / 400</span><p style="font-size: 12px">Showing 11 of 11 orders</p></div>
+            </div>
+        </section>
+
+        <!-- Icons -->
+        <section class="guide-section">
+            <h2>Icons</h2>
+            <p>Flat line icons that replace the 3D PNG icons. They take their color from the text color.</p>
+            <div class="icon-grid">
+                <div class="card icon-cell"><i data-icon="dashboard"></i>dashboard</div>
+                <div class="card icon-cell"><i data-icon="cart"></i>cart</div>
+                <div class="card icon-cell"><i data-icon="menu"></i>menu</div>
+                <div class="card icon-cell"><i data-icon="users"></i>users</div>
+                <div class="card icon-cell"><i data-icon="userPlus"></i>userPlus</div>
+                <div class="card icon-cell"><i data-icon="search"></i>search</div>
+                <div class="card icon-cell"><i data-icon="bell"></i>bell</div>
+                <div class="card icon-cell"><i data-icon="orders"></i>orders</div>
+                <div class="card icon-cell"><i data-icon="rupee"></i>rupee</div>
+                <div class="card icon-cell"><i data-icon="clock"></i>clock</div>
+                <div class="card icon-cell"><i data-icon="chef"></i>chef</div>
+                <div class="card icon-cell"><i data-icon="ready"></i>ready</div>
+                <div class="card icon-cell"><i data-icon="check"></i>check</div>
+                <div class="card icon-cell"><i data-icon="cancel"></i>cancel</div>
+                <div class="card icon-cell"><i data-icon="list"></i>list</div>
+                <div class="card icon-cell"><i data-icon="grid"></i>grid</div>
+                <div class="card icon-cell"><i data-icon="book"></i>book</div>
+                <div class="card icon-cell"><i data-icon="alert"></i>alert</div>
+                <div class="card icon-cell"><i data-icon="award"></i>award</div>
+                <div class="card icon-cell"><i data-icon="edit"></i>edit</div>
+                <div class="card icon-cell"><i data-icon="trash"></i>trash</div>
+                <div class="card icon-cell"><i data-icon="close"></i>close</div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="guide-section">
+            <h2>Buttons</h2>
+            <p>Only the buttons that already exist in the app, now sharing one style.</p>
+            <div class="card card-body">
+                <div class="guide-row">
+                    <span class="guide-label">Primary</span>
+                    <button type="button" class="btn btn-primary"><i data-icon="plus"></i>Add Menu Item</button>
+                    <button type="button" class="btn btn-primary">Create Order</button>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-primary" disabled>Disabled</button>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Secondary</span>
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="button" class="btn btn-secondary">Profile Information</button>
+                    <button type="button" class="btn btn-secondary">Add Item</button>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Danger</span>
+                    <button type="button" class="btn btn-danger">Delete Order</button>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Row actions</span>
+                    <button type="button" class="btn btn-secondary btn-sm"><i data-icon="edit"></i>Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm"><i data-icon="trash"></i>Delete</button>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Icon</span>
+                    <button type="button" class="btn btn-ghost btn-icon" aria-label="Notifications"><i data-icon="bell"></i></button>
+                    <button type="button" class="btn btn-ghost btn-icon btn-sm" aria-label="Close"><i data-icon="close"></i></button>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">View toggle</span>
+                    <div class="segmented">
+                        <button type="button" class="segmented-button active"><i data-icon="list"></i>Table View</button>
+                        <button type="button" class="segmented-button"><i data-icon="grid"></i>Card View</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section class="guide-section">
+            <h2>Form Controls</h2>
+            <p>Inputs used in the search bars, filters and modals.</p>
+            <div class="card card-body guide-grid-3">
+                <div class="field">
+                    <label class="label" for="g-input">Customer Name</label>
+                    <input class="input" id="g-input" type="text" placeholder="Enter customer name">
+                </div>
+                <div class="field">
+                    <label class="label" for="g-error">Phone Number</label>
+                    <input class="input input-error" id="g-error" type="tel" value="123">
+                </div>
+                <div class="field">
+                    <label class="label" for="g-disabled">Disabled</label>
+                    <input class="input" id="g-disabled" type="text" value="Not editable" disabled>
+                </div>
+                <div class="field">
+                    <label class="label" for="g-select">Order Type</label>
+                    <select class="select" id="g-select">
+                        <option>Dine In</option>
+                        <option>Take Away</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label" for="g-search">Search</label>
+                    <div class="search-input">
+                        <i data-icon="search"></i>
+                        <input class="input" id="g-search" type="text" placeholder="Search by order ID or customer">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="g-qty">Qty</label>
+                    <input class="input input-number" id="g-qty" type="number" value="1" min="1">
+                </div>
+                <div class="field" style="grid-column: 1 / -1">
+                    <label class="label" for="g-textarea">Special Instructions</label>
+                    <textarea class="textarea" id="g-textarea" placeholder="e.g. Less spice, extra cheese, no onions..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Badges -->
+        <section class="guide-section">
+            <h2>Badges, Tags &amp; Avatars</h2>
+            <p>Order status colors now match on every page (they were different on the Dashboard and Orders page).</p>
+            <div class="card card-body">
+                <div class="guide-row">
+                    <span class="guide-label">Order status</span>
+                    <span class="badge badge-dot badge-pending">Pending</span>
+                    <span class="badge badge-dot badge-preparing">Preparing</span>
+                    <span class="badge badge-dot badge-ready">Ready</span>
+                    <span class="badge badge-dot badge-completed">Completed</span>
+                    <span class="badge badge-dot badge-cancelled">Cancelled</span>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Availability</span>
+                    <span class="badge badge-dot badge-available">Available</span>
+                    <span class="badge badge-dot badge-low-stock">Low Stock</span>
+                    <span class="badge badge-dot badge-unavailable">Unavailable</span>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Customer type</span>
+                    <span class="badge badge-new">New</span>
+                    <span class="badge badge-regular">Regular</span>
+                    <span class="badge badge-loyal">Loyal</span>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Category</span>
+                    <span class="tag tag-0">Starters</span>
+                    <span class="tag tag-1">Main Course</span>
+                    <span class="tag tag-2">South Indian</span>
+                    <span class="tag tag-3">Pizza</span>
+                    <span class="tag tag-4">Chinese</span>
+                    <span class="tag tag-5">Breakfast</span>
+                </div>
+                <div class="guide-row">
+                    <span class="guide-label">Avatar</span>
+                    <span class="avatar avatar-0">RS</span>
+                    <span class="avatar avatar-1">PD</span>
+                    <span class="avatar avatar-2">AP</span>
+                    <span class="avatar avatar-3">SV</span>
+                    <span class="avatar avatar-4">KM</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stat Cards -->
+        <section class="guide-section">
+            <h2>Summary Cards</h2>
+            <p>Same four cards and the same numbers as now, with flat icons and a value that never wraps.</p>
+            <div class="stat-cards">
+                <div class="card stat-card">
+                    <div class="stat-card-top">
+                        <span class="icon-box icon-blue"><i data-icon="orders"></i></span>
+                        <img class="stat-graph" src="assets/icons/summary-section/graph-total-orders.png" alt="">
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Orders</span>
+                        <span class="stat-value">11</span>
+                        <div class="stat-meta"><span class="stat-pill">1</span>placed today</div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-card-top">
+                        <span class="icon-box icon-green"><i data-icon="rupee"></i></span>
+                        <img class="stat-graph" src="assets/icons/summary-section/graph-total-revenue.png" alt="">
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Revenue</span>
+                        <span class="stat-value">Rs. 4,335</span>
+                        <div class="stat-meta"><span class="stat-pill">Rs. 482</span>avg per order</div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-card-top">
+                        <span class="icon-box icon-amber"><i data-icon="clock"></i></span>
+                        <img class="stat-graph" src="assets/icons/summary-section/graph-pending-orders.png" alt="">
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Pending Orders</span>
+                        <span class="stat-value">2</span>
+                        <div class="stat-meta"><span class="stat-pill stat-pill-warning">18%</span>of total</div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-card-top">
+                        <span class="icon-box icon-purple"><i data-icon="check"></i></span>
+                        <img class="stat-graph" src="assets/icons/summary-section/graph-completed-orders.png" alt="">
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Completed Orders</span>
+                        <span class="stat-value">5</span>
+                        <div class="stat-meta"><span class="stat-pill">45%</span>of total</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions + Order Status -->
+        <section class="guide-section">
+            <h2>Quick Actions &amp; Order Status Overview</h2>
+            <p>The same four actions and five statuses as now. Each status gets a small bar showing its share of all orders.</p>
+            <div class="guide-grid-2">
+                <div class="card card-body">
+                    <div class="card-header">
+                        <h3 class="card-title">Quick Actions</h3>
+                    </div>
+                    <div class="quick-actions">
+                        <button type="button" class="quick-action">
+                            <span class="icon-box icon-box-sm icon-orange"><i data-icon="cart"></i></span>
+                            <span class="quick-action-label">New Order</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        <button type="button" class="quick-action">
+                            <span class="icon-box icon-box-sm icon-green"><i data-icon="menu"></i></span>
+                            <span class="quick-action-label">Add Menu Item</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        <button type="button" class="quick-action">
+                            <span class="icon-box icon-box-sm icon-blue"><i data-icon="userPlus"></i></span>
+                            <span class="quick-action-label">Add Customer</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        <button type="button" class="quick-action">
+                            <span class="icon-box icon-box-sm icon-amber"><i data-icon="list"></i></span>
+                            <span class="quick-action-label">View All Orders</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card card-body">
+                    <div class="card-header">
+                        <h3 class="card-title">Order Status Overview</h3>
+                    </div>
+                    <div class="status-tiles">
+                        <div class="status-tile">
+                            <span class="icon-box icon-box-sm icon-amber"><i data-icon="clock"></i></span>
+                            <span class="status-tile-label">Pending Orders</span>
+                            <span class="status-tile-bar" style="color: var(--color-warning)"><span style="width: 18%"></span></span>
+                            <span class="status-tile-count">2</span>
+                        </div>
+                        <div class="status-tile">
+                            <span class="icon-box icon-box-sm icon-blue"><i data-icon="chef"></i></span>
+                            <span class="status-tile-label">Preparing Orders</span>
+                            <span class="status-tile-bar" style="color: var(--color-secondary)"><span style="width: 18%"></span></span>
+                            <span class="status-tile-count">2</span>
+                        </div>
+                        <div class="status-tile">
+                            <span class="icon-box icon-box-sm icon-purple"><i data-icon="ready"></i></span>
+                            <span class="status-tile-label">Ready Orders</span>
+                            <span class="status-tile-bar" style="color: var(--color-accent)"><span style="width: 9%"></span></span>
+                            <span class="status-tile-count">1</span>
+                        </div>
+                        <div class="status-tile">
+                            <span class="icon-box icon-box-sm icon-green"><i data-icon="check"></i></span>
+                            <span class="status-tile-label">Completed Orders</span>
+                            <span class="status-tile-bar" style="color: var(--color-success)"><span style="width: 45%"></span></span>
+                            <span class="status-tile-count">5</span>
+                        </div>
+                        <div class="status-tile">
+                            <span class="icon-box icon-box-sm icon-red"><i data-icon="cancel"></i></span>
+                            <span class="status-tile-label">Cancelled Orders</span>
+                            <span class="status-tile-bar" style="color: var(--color-danger)"><span style="width: 9%"></span></span>
+                            <span class="status-tile-count">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table -->
+        <section class="guide-section">
+            <h2>Table</h2>
+            <p>One table style for every page: the header with search and filters, rows, and the count line underneath.</p>
+            <div class="card card-body">
+                <div class="card-header">
+                    <h3 class="card-title">All Orders</h3>
+                    <div class="toolbar">
+                        <div class="search-input">
+                            <i data-icon="search"></i>
+                            <input class="input" type="text" placeholder="Search by order ID or customer">
+                        </div>
+                        <select class="select">
+                            <option>All Status</option>
+                            <option>Pending</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Items</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date &amp; Time</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cell-strong">#1031</td>
+                                <td>Rohan Joshi</td>
+                                <td class="cell-muted">4 Items</td>
+                                <td class="cell-strong cell-number">Rs. 720</td>
+                                <td><span class="badge badge-dot badge-pending">Pending</span></td>
+                                <td class="cell-muted">21 Oct 2026, 07:43 am</td>
+                                <td class="text-right"><button type="button" class="btn btn-secondary btn-sm"><i data-icon="edit"></i>Edit</button></td>
+                            </tr>
+                            <tr>
+                                <td class="cell-strong">#1029</td>
+                                <td>Neha Kulkarni</td>
+                                <td class="cell-muted">3 Items</td>
+                                <td class="cell-strong cell-number">Rs. 520</td>
+                                <td><span class="badge badge-dot badge-preparing">Preparing</span></td>
+                                <td class="cell-muted">20 Oct 2026, 12:45 pm</td>
+                                <td class="text-right"><button type="button" class="btn btn-secondary btn-sm"><i data-icon="edit"></i>Edit</button></td>
+                            </tr>
+                            <tr>
+                                <td class="cell-strong">#1028</td>
+                                <td>Priya Desai</td>
+                                <td class="cell-muted">2 Items</td>
+                                <td class="cell-strong cell-number">Rs. 420</td>
+                                <td><span class="badge badge-dot badge-ready">Ready</span></td>
+                                <td class="cell-muted">20 Oct 2026, 12:30 pm</td>
+                                <td class="text-right"><button type="button" class="btn btn-secondary btn-sm"><i data-icon="edit"></i>Edit</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="card-footer-text">Showing 3 of 11 orders</p>
+            </div>
+
+            <div class="card card-body" style="margin-top: var(--spacing-lg)">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Orders</th>
+                                <th>Total Spent</th>
+                                <th>Type</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cell-person">
+                                        <span class="avatar avatar-1">RS</span>
+                                        <div class="cell-stack">
+                                            <span class="cell-title">Rahul Sharma</span>
+                                            <span class="cell-subtitle">rahul.sharma@example.com</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cell-muted">+91 9876543210</td>
+                                <td><a href="#" class="card-link">3 orders</a></td>
+                                <td class="cell-strong cell-number">Rs. 1,650</td>
+                                <td><span class="badge badge-loyal">Loyal</span></td>
+                                <td class="text-right">
+                                    <div class="row-actions">
+                                        <button type="button" class="btn btn-secondary btn-sm"><i data-icon="edit"></i>Edit</button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i data-icon="trash"></i>Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Card -->
+        <section class="guide-section">
+            <h2>Menu Card (Card View)</h2>
+            <p>Used on the Menu page when Card View is selected.</p>
+            <div class="menu-cards">
+                <div class="card menu-card">
+                    <div class="menu-card-top">
+                        <span class="icon-box icon-orange">M</span>
+                        <span class="badge badge-dot badge-available">Available</span>
+                    </div>
+                    <span class="menu-card-name">Margherita Pizza</span>
+                    <span class="menu-card-description">Classic cheese pizza with fresh basil</span>
+                    <div class="menu-card-info">
+                        <span class="tag tag-3">Pizza</span>
+                        <span class="menu-card-price">Rs. 260</span>
+                    </div>
+                    <div class="menu-card-footer">
+                        <span>3 orders</span>
+                        <div class="row-actions">
+                            <button type="button" class="btn btn-secondary btn-sm btn-icon" aria-label="Edit"><i data-icon="edit"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon" aria-label="Delete"><i data-icon="trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card menu-card">
+                    <div class="menu-card-top">
+                        <span class="icon-box icon-blue">G</span>
+                        <span class="badge badge-dot badge-low-stock">Low Stock</span>
+                    </div>
+                    <span class="menu-card-name">Gulab Jamun</span>
+                    <span class="menu-card-description">Two pieces, served warm</span>
+                    <div class="menu-card-info">
+                        <span class="tag tag-1">Desserts</span>
+                        <span class="menu-card-price">Rs. 90</span>
+                    </div>
+                    <div class="menu-card-footer">
+                        <span>2 orders</span>
+                        <div class="row-actions">
+                            <button type="button" class="btn btn-secondary btn-sm btn-icon" aria-label="Edit"><i data-icon="edit"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon" aria-label="Delete"><i data-icon="trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <section class="guide-section">
+            <h2>Modal</h2>
+            <p>One modal layout shared by New Order, Add / Edit Menu Item, Add / Edit Customer and Edit Order.</p>
+            <div class="modal modal-lg static-modal">
+                <div class="modal-header">
+                    <div>
+                        <h2 class="modal-title">Create New Order</h2>
+                        <p class="modal-subtitle">Add a new order for a customer</p>
+                    </div>
+                    <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close" aria-label="Close modal"><i data-icon="close"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="field">
+                        <label class="label" for="m-name">Customer Name</label>
+                        <input class="input" id="m-name" type="text" placeholder="Enter customer name">
+                    </div>
+                    <div class="field">
+                        <label class="label" for="m-type">Order Type</label>
+                        <select class="select" id="m-type">
+                            <option>Dine In</option>
+                            <option>Take Away</option>
+                        </select>
+                    </div>
+                    <div class="field field-full">
+                        <label class="label" for="m-item">Menu Item</label>
+                        <div class="add-item-row">
+                            <select class="select" id="m-item">
+                                <option>Select Menu Item</option>
+                            </select>
+                            <input class="input input-number" type="number" value="1" min="1" aria-label="Quantity">
+                            <button type="button" class="btn btn-secondary">Add Item</button>
+                        </div>
+                    </div>
+                    <div class="field-full line-items">
+                        <div class="line-items-title">Selected Items</div>
+                        <div class="line-item">
+                            <div>
+                                <div class="line-item-name">Masala Dosa</div>
+                                <div class="line-item-meta">Rs. 200 × 3</div>
+                            </div>
+                            <div class="line-item-actions">
+                                Rs. 600
+                                <button type="button" class="btn btn-ghost btn-icon btn-sm" aria-label="Remove"><i data-icon="close"></i></button>
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <div>
+                                <div class="line-item-name">Cold Coffee</div>
+                                <div class="line-item-meta">Rs. 120 × 1</div>
+                            </div>
+                            <div class="line-item-actions">
+                                Rs. 120
+                                <button type="button" class="btn btn-ghost btn-icon btn-sm" aria-label="Remove"><i data-icon="close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field field-full">
+                        <label class="label" for="m-notes">Special Instructions</label>
+                        <textarea class="textarea" id="m-notes" placeholder="e.g. Less spice, extra cheese, no onions..."></textarea>
+                    </div>
+                    <div class="field-full total-box">
+                        <span>Total Amount</span>
+                        <strong>Rs. 720</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="button" class="btn btn-primary">Create Order</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toast -->
+        <section class="guide-section">
+            <h2>Toast</h2>
+            <p>The message shown after saving.</p>
+            <div class="toast static-toast"><i data-icon="check"></i>Order #1031 created</div>
+        </section>
+
+        <!-- Layout -->
+        <section class="guide-section">
+            <h2>Layout Shell</h2>
+            <p>The same header and sidebar as now (logo, search, notifications, Profile Information), just cleaner.</p>
+            <div class="shell-preview">
+                <header class="topbar">
+                    <a href="#" class="topbar-logo"><img src="assets/logo/website-logo.png" alt="FoodFlow"></a>
+                    <div class="search-input topbar-search">
+                        <i data-icon="search"></i>
+                        <input class="input" type="text" placeholder="Search orders, menu items & customers">
+                    </div>
+                    <div class="topbar-actions">
+                        <button type="button" class="btn btn-ghost btn-icon" aria-label="Notifications"><i data-icon="bell"></i></button>
+                        <button type="button" class="btn btn-secondary">Profile Information</button>
+                    </div>
+                </header>
+                <aside class="sidebar">
+                    <ul class="sidebar-list">
+                        <li><a href="#" class="nav-link active"><i data-icon="dashboard"></i>Dashboard</a></li>
+                        <li><a href="#" class="nav-link"><i data-icon="cart"></i>Orders</a></li>
+                        <li><a href="#" class="nav-link"><i data-icon="menu"></i>Menu</a></li>
+                        <li><a href="#" class="nav-link"><i data-icon="users"></i>Customers</a></li>
+                    </ul>
+                </aside>
+                <div class="shell-preview-content">
+                    <h1 class="page-title">Good morning, Parth!</h1>
+                    <p class="page-subtitle">Here's what's happening at FoodFlow Bistro today.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="js/icons.js"></script>
+</body>
+</html>

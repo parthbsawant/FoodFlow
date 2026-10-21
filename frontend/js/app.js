@@ -66,7 +66,7 @@ function showToast(message){
         document.body.appendChild(toast);
     }
 
-    toast.textContent = message;
+    toast.innerHTML = icon("check") + escapeHTML(message);
     toast.classList.add("show");
 
     clearTimeout(toast.timer);
@@ -191,22 +191,16 @@ function renderRecentOrdersTable(data) {
 
     for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-            <td>#${data[i].id}</td>
+            <td class="cell-strong">#${data[i].id}</td>
             <td>${escapeHTML(data[i].customer)}</td>
-            <td>${getTotalItemQuantity(data[i])} Items</td>
-            <td>${formatPrice(data[i].amount)}</td>
+            <td class="cell-muted">${getTotalItemQuantity(data[i])} Items</td>
+            <td class="cell-strong cell-number">${formatPrice(data[i].amount)}</td>
             <td>
-                <span class="status-badge ${data[i].status.toLowerCase()}">
-                    ${data[i].status}
-                </span>
+                <span class="badge badge-dot badge-${data[i].status.toLowerCase()}">${data[i].status}</span>
             </td>
             <td>
-                <button
-                    type="button"
-                    class="edit-button"
-                    data-order-id="${data[i].id}"
-                >
-                    Edit
+                <button type="button" class="btn btn-secondary btn-sm edit-button" data-order-id="${data[i].id}">
+                    ${icon("edit")}Edit
                 </button>
             </td>
         </tr>`;
@@ -250,11 +244,11 @@ function renderPopularMenuItemsTable(data){
 
     for(let i = 0; i < data.length; i++){
         const row = `<tr>
-                        <td>${i + 1}</td>
-                        <td>${escapeHTML(data[i].item)}</td>
-                        <td>${escapeHTML(data[i].category)}</td>
-                        <td>${data[i].orders}</td>
-                        <td>${formatPrice(data[i].revenue)}</td>
+                        <td class="cell-muted">${i + 1}</td>
+                        <td class="cell-strong">${escapeHTML(data[i].item)}</td>
+                        <td class="cell-muted">${escapeHTML(data[i].category)}</td>
+                        <td class="cell-number">${data[i].orders}</td>
+                        <td class="cell-strong cell-number">${formatPrice(data[i].revenue)}</td>
                     </tr>`
 
         popularMenuItemsTable.innerHTML += row;
@@ -262,7 +256,7 @@ function renderPopularMenuItemsTable(data){
 }
 
 //Summary Cards Section : Dashboard
-const summaryCardsDashboardPage = document.querySelectorAll(".dashboard-page .summary-card");
+const summaryCardsDashboardPage = document.querySelectorAll(".dashboard-page .stat-card");
 
 function renderDashboardSummary(){
     if(summaryCardsDashboardPage.length === 0){
@@ -286,31 +280,24 @@ function renderDashboardSummary(){
     ];
 
     dashboardStats.forEach((stat, index) => {
-        summaryCardsDashboardPage[index].querySelector(".summary-value").textContent = stat;
-        summaryCardsDashboardPage[index].querySelector(".percent-of-total").textContent = dashboardComparisons[index];
+        summaryCardsDashboardPage[index].querySelector(".stat-value").textContent = stat;
+        summaryCardsDashboardPage[index].querySelector(".stat-pill").textContent = dashboardComparisons[index];
     });
 }
 
 //Order-Status Section : Dashboard Page
-const orderStatusSectionCards = document.querySelectorAll(".order-section-card");
+const orderStatusSectionCards = document.querySelectorAll(".status-tile");
 
 function renderOrderStatusSection(){
     if(orderStatusSectionCards.length === 0){
         return;
     }
 
-    const orderStats = completeStats();
+    orderStatusSectionCards.forEach(function(card){
+        const statusCount = orders.filter(order => order.status === card.dataset.status).length;
 
-    const orderStatusSectionValues = [
-        orderStats.pendingOrders,
-        orderStats.preparingOrders,
-        orderStats.completedOrders,
-        orderStats.cancelledOrders,
-        orderStats.readyOrders
-    ];
-
-    orderStatusSectionCards.forEach((card, index) => {
-        card.querySelector(".status-count").textContent = orderStatusSectionValues[index];
+        card.querySelector(".status-tile-count").textContent = statusCount;
+        card.querySelector(".status-tile-bar span").style.width = `${getPercent(statusCount, orders.length)}%`;
     })
 }
 
@@ -365,22 +352,22 @@ function renderSelectedItems(){
     selectedItemsList.innerHTML = "";
 
     if(selectedOrderItems.length === 0){
-        selectedItemsList.innerHTML = `<p class="no-items-text">No items added yet</p>`;
+        selectedItemsList.innerHTML = `<p class="line-items-empty">No items added yet</p>`;
         return;
     }
 
     selectedOrderItems.forEach(function(item, index){
         const selectedItem = document.createElement("div");
-        selectedItem.className = "selected-item";
+        selectedItem.className = "line-item";
 
         selectedItem.innerHTML = `
-            <div class="selected-item-info">
-                <p>${escapeHTML(item.name)}</p>
-                <span>Rs. ${item.price} × ${item.quantity}</span>
+            <div>
+                <div class="line-item-name">${escapeHTML(item.name)}</div>
+                <div class="line-item-meta">Rs. ${item.price} × ${item.quantity}</div>
             </div>
-            <div class="selected-item-actions">
-                <span class="selected-item-total">${formatPrice(item.price * item.quantity)}</span>
-                <button type="button" class="remove-item-button" data-index="${index}" aria-label="Remove ${escapeHTML(item.name)}">×</button>
+            <div class="line-item-actions">
+                ${formatPrice(item.price * item.quantity)}
+                <button type="button" class="btn btn-ghost btn-icon btn-sm remove-item-button" data-index="${index}" aria-label="Remove ${escapeHTML(item.name)}">${icon("close")}</button>
             </div>
         `;
 
@@ -439,8 +426,10 @@ if(buttonNewOrderAddItem){
 
 if(selectedItemsList){
     selectedItemsList.addEventListener("click", function(event){
-        if(event.target.classList.contains("remove-item-button")){
-            const itemIndex = Number(event.target.dataset.index);
+        const removeButton = event.target.closest(".remove-item-button");
+
+        if(removeButton){
+            const itemIndex = Number(removeButton.dataset.index);
             selectedOrderItems.splice(itemIndex, 1);
             renderSelectedItems();
             updateNewOrderTotal();
@@ -535,8 +524,8 @@ const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-actio
 const addMenuItemOverlay = document.querySelector("#add-menu-modal-overlay");
 const closeAddMenuItemModalButton = document.querySelector(".close-add-menu");
 const cancelAddmenuItemModalButton = document.querySelector(".cancel-add-menu");
-const addMenuModalTitle = document.querySelector(".add-menu-header h2");
-const addMenuModalText = document.querySelector(".add-menu-header p");
+const addMenuModalTitle = document.querySelector(".add-menu-header .modal-title");
+const addMenuModalText = document.querySelector(".add-menu-header .modal-subtitle");
 
 const menuItemName = document.querySelector("#item-name");
 const menuItemCategory = document.querySelector("#item-category");
@@ -705,8 +694,8 @@ const addCustomerModalOverlay = document.querySelector("#add-customer-modal-over
 const openAddCustomerModalButton = document.querySelector("#add-customer-quick-action, #open-add-customer");
 const closeAddCustomerModalButton = document.querySelector(".close-add-customer");
 const cancelAddCustomerModalButton = document.querySelector(".cancel-add-customer");
-const addCustomerModalTitle = document.querySelector(".add-customer-header h2");
-const addCustomerModalText = document.querySelector(".add-customer-header p");
+const addCustomerModalTitle = document.querySelector(".add-customer-header .modal-title");
+const addCustomerModalText = document.querySelector(".add-customer-header .modal-subtitle");
 
 const inputNewCustomerName = document.querySelector("#new-customer-name");
 const inputNewCustomerPhone = document.querySelector("#customer-phone");
@@ -891,23 +880,17 @@ function renderAllOrdersTable() {
 
     for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-            <td>#${data[i].id}</td>
+            <td class="cell-strong">#${data[i].id}</td>
             <td>${escapeHTML(data[i].customer)}</td>
-            <td>${getTotalItemQuantity(data[i])} Items</td>
-            <td>${formatPrice(data[i].amount)}</td>
+            <td class="cell-muted">${getTotalItemQuantity(data[i])} Items</td>
+            <td class="cell-strong cell-number">${formatPrice(data[i].amount)}</td>
             <td>
-                <span class="status-badge ${data[i].status.toLowerCase()}">
-                    ${data[i].status}
-                </span>
+                <span class="badge badge-dot badge-${data[i].status.toLowerCase()}">${data[i].status}</span>
             </td>
-            <td class="date-cell">${formatDateTime(data[i].createdAt)}</td>
+            <td class="cell-muted">${formatDateTime(data[i].createdAt)}</td>
             <td>
-                <button
-                    type="button"
-                    class="edit-button"
-                    data-order-id="${data[i].id}"
-                >
-                    Edit
+                <button type="button" class="btn btn-secondary btn-sm edit-button" data-order-id="${data[i].id}">
+                    ${icon("edit")}Edit
                 </button>
             </td>
         </tr>`;
@@ -927,7 +910,7 @@ if(orderStatusFilter){
 }
 
 //Summary Cards : Orders Page
-const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-card");
+const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .stat-card");
 
 function renderOrdersSummary(){
     if(summaryCardsOrdersPage.length === 0){
@@ -951,8 +934,8 @@ function renderOrdersSummary(){
     ];
 
     orderStatusCounts.forEach((count, index) => {
-        summaryCardsOrdersPage[index].querySelector(".summary-value").textContent = count;
-        summaryCardsOrdersPage[index].querySelector(".percent-of-total").textContent = `${orderStatusPercentages[index].toFixed(2)}%`;
+        summaryCardsOrdersPage[index].querySelector(".stat-value").textContent = count;
+        summaryCardsOrdersPage[index].querySelector(".stat-pill").textContent = `${orderStatusPercentages[index].toFixed(2)}%`;
     })
 }
 
@@ -1094,7 +1077,9 @@ const menuAvailabilityFilter = document.querySelector("#menu-availability-filter
 const menuSortSelect = document.querySelector("#menu-sort");
 const menuCountText = document.querySelector("#menu-count-text");
 const menuViewButtons = document.querySelectorAll(".view-button");
-const summaryCardsMenuPage = document.querySelectorAll(".menu-page .summary-card");
+const summaryCardsMenuPage = document.querySelectorAll(".menu-page .stat-card");
+
+const menuLetterColors = ["icon-red", "icon-blue", "icon-purple", "icon-orange", "icon-green", "icon-amber"];
 
 function getCategoryColor(category){
     return getAllCategories().indexOf(category) % 6;
@@ -1152,8 +1137,8 @@ function renderMenuSummary(){
     ];
 
     menuStats.forEach((stat, index) => {
-        summaryCardsMenuPage[index].querySelector(".summary-value").textContent = stat;
-        summaryCardsMenuPage[index].querySelector(".percent-of-total").textContent = menuComparisons[index];
+        summaryCardsMenuPage[index].querySelector(".stat-value").textContent = stat;
+        summaryCardsMenuPage[index].querySelector(".stat-pill").textContent = menuComparisons[index];
     });
 }
 
@@ -1172,48 +1157,54 @@ function renderMenuPage(){
 
     if(data.length === 0){
         menuItemsTable.innerHTML = `<tr><td colspan="7" class="empty-row">No menu items found</td></tr>`;
-        menuCardView.innerHTML = `<p class="empty-row">No menu items found</p>`;
+        menuCardView.innerHTML = `<p class="empty-row" style="grid-column: 1 / -1">No menu items found</p>`;
     }
 
     for(let i = 0; i < data.length; i++){
         const item = data[i];
         const itemOrders = itemStats[item.id] ? itemStats[item.id].orders : 0;
-        const availabilityClass = getAvailabilityClass(item.availability);
-        const categoryClass = `category-color-${getCategoryColor(item.category)}`;
+        const availabilityClass = `badge badge-dot badge-${getAvailabilityClass(item.availability)}`;
+        const categoryColor = getCategoryColor(item.category);
+        const categoryClass = `tag tag-${categoryColor}`;
+        const ordersText = itemOrders === 1 ? "1 order" : `${itemOrders} orders`;
 
         menuItemsTable.innerHTML += `<tr>
-            <td>${i + 1}</td>
+            <td class="cell-muted">${i + 1}</td>
             <td>
-                <p class="item-title">${escapeHTML(item.name)}</p>
-                <span class="item-subtitle">${escapeHTML(item.description || "")}</span>
+                <div class="cell-stack">
+                    <span class="cell-title">${escapeHTML(item.name)}</span>
+                    <span class="cell-subtitle">${escapeHTML(item.description || "")}</span>
+                </div>
             </td>
-            <td><span class="category-badge ${categoryClass}">${escapeHTML(item.category)}</span></td>
-            <td>${formatPrice(item.price)}</td>
-            <td><span class="availability-badge ${availabilityClass}">${item.availability}</span></td>
-            <td>${itemOrders}</td>
+            <td><span class="${categoryClass}">${escapeHTML(item.category)}</span></td>
+            <td class="cell-strong cell-number">${formatPrice(item.price)}</td>
+            <td><span class="${availabilityClass}">${item.availability}</span></td>
+            <td class="col-center cell-number">${itemOrders}</td>
             <td>
                 <div class="row-actions">
-                    <button type="button" class="edit-button" data-item-id="${item.id}">Edit</button>
-                    <button type="button" class="delete-button" data-item-id="${item.id}">Delete</button>
+                    <button type="button" class="btn btn-secondary btn-sm edit-button" data-item-id="${item.id}">${icon("edit")}Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm delete-button" data-item-id="${item.id}">${icon("trash")}Delete</button>
                 </div>
             </td>
         </tr>`;
 
-        menuCardView.innerHTML += `<div class="menu-card">
+        menuCardView.innerHTML += `<div class="card menu-card">
             <div class="menu-card-top">
-                <span class="menu-card-letter ${categoryClass}">${escapeHTML(item.name[0].toUpperCase())}</span>
-                <span class="availability-badge ${availabilityClass}">${item.availability}</span>
+                <span class="icon-box ${menuLetterColors[categoryColor]}">${escapeHTML(item.name[0].toUpperCase())}</span>
+                <span class="${availabilityClass}">${item.availability}</span>
             </div>
-            <h3>${escapeHTML(item.name)}</h3>
-            <p>${escapeHTML(item.description || item.category)}</p>
+            <span class="menu-card-name">${escapeHTML(item.name)}</span>
+            <span class="menu-card-description">${escapeHTML(item.description || item.category)}</span>
             <div class="menu-card-info">
-                <span class="category-badge ${categoryClass}">${escapeHTML(item.category)}</span>
-                <strong>${formatPrice(item.price)}</strong>
+                <span class="${categoryClass}">${escapeHTML(item.category)}</span>
+                <span class="menu-card-price">${formatPrice(item.price)}</span>
             </div>
-            <span class="menu-card-orders">${itemOrders === 1 ? "1 order" : `${itemOrders} orders`}</span>
-            <div class="row-actions">
-                <button type="button" class="edit-button" data-item-id="${item.id}">Edit</button>
-                <button type="button" class="delete-button" data-item-id="${item.id}">Delete</button>
+            <div class="menu-card-footer">
+                <span>${ordersText}</span>
+                <div class="row-actions">
+                    <button type="button" class="btn btn-secondary btn-sm btn-icon edit-button" data-item-id="${item.id}" aria-label="Edit ${escapeHTML(item.name)}">${icon("edit")}</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-icon delete-button" data-item-id="${item.id}" aria-label="Delete ${escapeHTML(item.name)}">${icon("trash")}</button>
+                </div>
             </div>
         </div>`;
     }
@@ -1278,7 +1269,7 @@ const customerSearchInput = document.querySelector("#customer-searchbar");
 const customerTypeFilter = document.querySelector("#customer-type-filter");
 const customerSortSelect = document.querySelector("#customer-sort");
 const customerCountText = document.querySelector("#customer-count-text");
-const summaryCardsCustomersPage = document.querySelectorAll(".customers-page .summary-card");
+const summaryCardsCustomersPage = document.querySelectorAll(".customers-page .stat-card");
 
 function getCustomerStats(customer){
     const customerOrders = orders.filter(order => order.customer.toLowerCase() === customer.name.toLowerCase());
@@ -1328,8 +1319,8 @@ function renderCustomersSummary(customerData){
     ];
 
     customerStats.forEach((stat, index) => {
-        summaryCardsCustomersPage[index].querySelector(".summary-value").textContent = stat;
-        summaryCardsCustomersPage[index].querySelector(".percent-of-total").textContent = customerComparisons[index];
+        summaryCardsCustomersPage[index].querySelector(".stat-value").textContent = stat;
+        summaryCardsCustomersPage[index].querySelector(".stat-pill").textContent = customerComparisons[index];
     });
 }
 
@@ -1380,25 +1371,25 @@ function renderCustomersPage(){
 
         customersTable.innerHTML += `<tr>
             <td>
-                <div class="customer-info">
-                    <span class="customer-avatar avatar-color-${customer.id % 5}">${escapeHTML(getInitials(customer.name))}</span>
-                    <div>
-                        <p class="item-title">${escapeHTML(customer.name)}</p>
-                        <span class="item-subtitle">${escapeHTML(customer.email || "No email")}</span>
+                <div class="cell-person">
+                    <span class="avatar avatar-${customer.id % 5}">${escapeHTML(getInitials(customer.name))}</span>
+                    <div class="cell-stack">
+                        <span class="cell-title">${escapeHTML(customer.name)}</span>
+                        <span class="cell-subtitle">${escapeHTML(customer.email || "No email")}</span>
                     </div>
                 </div>
             </td>
-            <td>+91 ${customer.phone}</td>
+            <td class="cell-muted">+91 ${customer.phone}</td>
             <td>
-                <a href="orders.html?search=${encodeURIComponent(customer.name)}" class="orders-link">${ordersText}</a>
+                <a href="orders.html?search=${encodeURIComponent(customer.name)}" class="card-link orders-link">${ordersText}</a>
             </td>
-            <td>${formatPrice(customer.stats.totalSpent)}</td>
-            <td class="date-cell">${formatDateTime(customer.stats.lastOrder)}</td>
-            <td><span class="customer-type-badge ${customer.stats.type.toLowerCase()}">${customer.stats.type}</span></td>
+            <td class="cell-strong cell-number">${formatPrice(customer.stats.totalSpent)}</td>
+            <td class="cell-muted">${formatDateTime(customer.stats.lastOrder)}</td>
+            <td><span class="badge badge-${customer.stats.type.toLowerCase()}">${customer.stats.type}</span></td>
             <td>
                 <div class="row-actions">
-                    <button type="button" class="edit-button" data-customer-id="${customer.id}">Edit</button>
-                    <button type="button" class="delete-button" data-customer-id="${customer.id}">Delete</button>
+                    <button type="button" class="btn btn-secondary btn-sm edit-button" data-customer-id="${customer.id}">${icon("edit")}Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm delete-button" data-customer-id="${customer.id}">${icon("trash")}Delete</button>
                 </div>
             </td>
         </tr>`;

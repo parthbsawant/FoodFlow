@@ -13,128 +13,120 @@
 </head>
 <body>
     <div class="app">
-        <header class="header">
-            <a href="index.html">
+        <header class="topbar">
+            <a href="index.html" class="topbar-logo">
                 <img src="assets/logo/website-logo.png" alt="FoodFlow">
             </a>
 
-            <div class="search-bar">
-                <img src="assets/icons/searchbar.png" alt="">
-                <!-- <label for="searchbar">Search</label> -->
-                <input type="text" name="search" id="searchbar" placeholder="Search orders, menu items & customers">
+            <div class="search-input topbar-search">
+                <i data-icon="search"></i>
+                <input class="input" type="text" name="search" id="searchbar" placeholder="Search orders, menu items & customers">
             </div>
 
-            <div class="profile-section">
-                <img src="assets/icons/notifications.png" alt="">
-                <button type="button">
-                    Profile Information
-                </button>
+            <div class="topbar-actions">
+                <span class="topbar-bell"><i data-icon="bell"></i></span>
+                <button type="button" class="btn btn-secondary">Profile Information</button>
             </div>
         </header>
 
         <div class="app-body">
-            <aside>
-                <nav class="sidebar-nav">
-                    <ul>
-                        <li class="nav-item active">
-                            <a href="index.html">
-                                <img src="assets/icons/aside-section/dashboard.png" alt="">
+            <aside class="sidebar">
+                <nav>
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="index.html" class="nav-link active">
+                                <i data-icon="dashboard"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">    
-                            <a href="orders.html">
-                                <img src="assets/icons/aside-section/cart.png" alt="">
+                        <li>
+                            <a href="orders.html" class="nav-link">
+                                <i data-icon="cart"></i>
                                 <span>Orders</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="menu.html">
-                                <img src="assets/icons/aside-section/menu.png" alt="">
+                        <li>
+                            <a href="menu.html" class="nav-link">
+                                <i data-icon="menu"></i>
                                 <span>Menu</span>
                             </a>
                         </li>
-                        <li class="nav-item">   
-                            <a href="customers.html">
-                                <img src="assets/icons/aside-section/customers.png" alt="">
+                        <li>
+                            <a href="customers.html" class="nav-link">
+                                <i data-icon="users"></i>
                                 <span>Customers</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
             </aside>
-    
+
             <main class="main-content dashboard-page">
-    
-                <section class="dashboard-intro">
-                    <h1 id="greeting-text">Good morning, Parth!</h1>
-                    <p>Here's what's happening at FoodFlow Bistro today.</p>
+                <section class="page-header">
+                    <div>
+                        <h1 class="page-title" id="greeting-text">Good morning, Parth!</h1>
+                        <p class="page-subtitle">Here's what's happening at FoodFlow Bistro today.</p>
+                    </div>
                 </section>
-    
-                <section class="summary-section">
-                    <div class="summary-cards">
-                        <div class="summary-card">
-                            <img src="assets/icons/summary-section/total-orders.png" alt="Total Orders Image">
-                            <div class="summary-card-information">
-                                <h3>Total Orders</h3>
-                                <p class="summary-value">48</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">placed today</p>
-                                </div>
-                            </div>
-                            <img src="assets/icons/summary-section/graph-total-orders.png" alt="Graph Image">
-                        </div>
 
-                        <div class="summary-card">
-                            <img src="assets/icons/summary-section/total-revenue.png" alt="Total Revenue Image">
-                            <div class="summary-card-information">
-                                <h3>Total Revenue</h3>
-                                <p class="summary-value">Rs. 0</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">avg per order</p>
-                                </div>
-                            </div>
-                            <img src="assets/icons/summary-section/graph-total-revenue.png" alt="Graph Image">
+                <section class="stat-cards">
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-blue"><i data-icon="orders"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-total-orders.png" alt="">
                         </div>
-
-                        <div class="summary-card">
-                            <img src="assets/icons/summary-section/pending-orders.png" alt="Pending Orders Image">
-                            <div class="summary-card-information">
-                                <h3>Pending Orders</h3>
-                                <p class="summary-value">12</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">of total</p>
-                                </div>
-                            </div>
-                            <img src="assets/icons/summary-section/graph-pending-orders.png" alt="Graph Image">
+                        <div class="stat-info">
+                            <span class="stat-label">Total Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill"></span>placed today</div>
                         </div>
+                    </div>
 
-                        <div class="summary-card">
-                            <img src="assets/icons/summary-section/completed-orders.png" alt="Completed Orders Image">
-                            <div class="summary-card-information">
-                                <h3>Completed Orders</h3>
-                                <p class="summary-value">36</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">of total</p>
-                                </div>
-                            </div>
-                            <img src="assets/icons/summary-section/graph-completed-orders.png" alt="Graph Image">
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-green"><i data-icon="rupee"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-total-revenue.png" alt="">
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total Revenue</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill"></span>avg per order</div>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-amber"><i data-icon="clock"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-pending-orders.png" alt="">
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Pending Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill stat-pill-warning"></span>of total</div>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-purple"><i data-icon="check"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-completed-orders.png" alt="">
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Completed Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill"></span>of total</div>
                         </div>
                     </div>
                 </section>
-    
-                <div class="dashboard-row-1">
-                    <section class="recent-orders-section">
-                        <!-- Recent Orders Table -->
-                        <div class="section-heading">
-                            <h2>Recent Orders</h2>
-                            <a href="orders.html">View All</a>
+
+                <div class="dashboard-grid">
+                    <section class="card card-body recent-orders-section">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Orders</h2>
+                            <a href="orders.html" class="card-link">View All</a>
                         </div>
-                         <table>
+                    <div class="table-wrap">
+                        <table class="table ">
                             <thead>
                                 <tr>
                                     <th>Order ID</th>
@@ -148,59 +140,45 @@
                             <tbody>
 
                             </tbody>
-                            <tfoot></tfoot>
-                         </table>
+                        </table>
+                    </div>
                     </section>
-        
-                    <section class="quick-actions-section">
-                        <!-- Quick Action Button Collection -->
-                         <h2>Quick Actions</h2>
-        
-                         <div class="quick-actions-buttons">
-                            <button type="button" class="quick-actions-button" id="new-order-quick-action">
-                                <div class="button-internals">
-                                    <img src="assets/icons/quick-actions-section/new-order.png" alt="New Order Cart Image">
-                                    <p>New Order</p>
-                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
-                                </div>
-                            </button>
 
-                            <button type="button" class="quick-actions-button" id="add-menu-quick-action">
-                                <div class="button-internals">
-                                    <img src="assets/icons/quick-actions-section/add-menu-item.png" alt="Add Menu Item Image">
-                                    <p>Add Menu Item</p>
-                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
-                                </div>
-                            </button>
-
-                            <button type="button" class="quick-actions-button" id="add-customer-quick-action">
-                                <div class="button-internals">
-                                    <img src="assets/icons/quick-actions-section/customers.png" alt="Add Customer Image">
-                                    <p>Add Customer</p>
-                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
-                                </div>
-                            </button>
-
-                            <button type="button" class="quick-actions-button" id="view-all-order-quick-action">
-                                <div class="button-internals">
-                                    <img src="assets/icons/quick-actions-section/view-orders.png" alt="View Orders Image">
-                                    <p>View All Orders</p>
-                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
-                                </div>
-                            </button>
-
-                         </div>
-                    </section>
-                </div>
-    
-                <div class="dashboard-row-2">
-                    <section class="popular-menu-section">
-                        <!-- Popular Menu Items Table -->
-                        <div class="section-heading">
-                            <h2>Popular Menu Items</h2>
-                            <a href="menu.html">View All</a>
+                    <section class="card card-body quick-actions-section">
+                        <div class="card-header">
+                            <h2 class="card-title">Quick Actions</h2>
                         </div>
-                         <table>
+                        <div class="quick-actions">
+                        <button type="button" class="quick-action" id="new-order-quick-action">
+                            <span class="icon-box icon-orange"><i data-icon="cart"></i></span>
+                            <span class="quick-action-label">New Order</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        <button type="button" class="quick-action" id="add-menu-quick-action">
+                            <span class="icon-box icon-green"><i data-icon="menu"></i></span>
+                            <span class="quick-action-label">Add Menu Item</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        <button type="button" class="quick-action" id="add-customer-quick-action">
+                            <span class="icon-box icon-blue"><i data-icon="userPlus"></i></span>
+                            <span class="quick-action-label">Add Customer</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        <button type="button" class="quick-action" id="view-all-order-quick-action">
+                            <span class="icon-box icon-amber"><i data-icon="list"></i></span>
+                            <span class="quick-action-label">View All Orders</span>
+                            <i data-icon="chevronRight"></i>
+                        </button>
+                        </div>
+                    </section>
+
+                    <section class="card card-body popular-menu-section">
+                        <div class="card-header">
+                            <h2 class="card-title">Popular Menu Items</h2>
+                            <a href="menu.html" class="card-link">View All</a>
+                        </div>
+                    <div class="table-wrap">
+                        <table class="table ">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -213,355 +191,210 @@
                             <tbody>
 
                             </tbody>
-                            <tfoot></tfoot>
-                         </table>
+                        </table>
+                    </div>
                     </section>
-        
-                    <section class="order-status-section">
-                        <!-- Order Status Overview Display -->
-                        <h2>Order Status Overview</h2>
-                         <div class="order-section-cards">
-                            <div class="pending-orders order-section-card">
-                                <div class="status-label">
-                                    <img src="assets/icons/order-status-section/yellow.png" alt="">
-                                    <p>Pending Orders</p>
-                                </div>
-                                <p class="status-count">12</p>
-                            </div>
-        
-                            <div class="preparing-orders order-section-card">
-                                <div class="status-label">
-                                    <img src="assets/icons/order-status-section/blue.png" alt="">
-                                    <p>Preparing Orders</p>
-                                </div>
-                                <p class="status-count">10</p>
-                            </div>
-        
-                            <div class="completed-orders order-section-card">
-                                <div class="status-label">
-                                    <img src="assets/icons/order-status-section/green.png" alt="">
-                                    <p>Completed Orders</p>
-                                </div>
-                                <p class="status-count">8</p>
-                            </div>
-        
-                            <div class="cancelled-orders order-section-card">
-                                <div class="status-label">
-                                    <img src="assets/icons/order-status-section/red.png" alt="">
-                                    <p>Cancelled Orders</p>
-                                </div>
-                                <p class="status-count">38</p>
-                            </div>
 
-                           <div class="order-section-card ready-orders">
-                                <div class="status-label">
-                                    <img src="assets/icons/order-status-section/ready-order.png" alt="" >
-                                    <p>Ready Orders </p>
-                                </div>
-                                <span class="status-count">0</span>
-                            </div>
-
-                         </div>
+                    <section class="card card-body order-status-section">
+                        <div class="card-header">
+                            <h2 class="card-title">Order Status Overview</h2>
+                        </div>
+                        <div class="status-tiles">
+                        <div class="status-tile" data-status="Pending">
+                            <span class="icon-box icon-box-sm icon-amber"><i data-icon="clock"></i></span>
+                            <span class="status-tile-label">Pending Orders</span>
+                            <span class="status-tile-bar"><span></span></span>
+                            <span class="status-tile-count">0</span>
+                        </div>
+                        <div class="status-tile" data-status="Preparing">
+                            <span class="icon-box icon-box-sm icon-blue"><i data-icon="chef"></i></span>
+                            <span class="status-tile-label">Preparing Orders</span>
+                            <span class="status-tile-bar"><span></span></span>
+                            <span class="status-tile-count">0</span>
+                        </div>
+                        <div class="status-tile" data-status="Ready">
+                            <span class="icon-box icon-box-sm icon-purple"><i data-icon="ready"></i></span>
+                            <span class="status-tile-label">Ready Orders</span>
+                            <span class="status-tile-bar"><span></span></span>
+                            <span class="status-tile-count">0</span>
+                        </div>
+                        <div class="status-tile" data-status="Completed">
+                            <span class="icon-box icon-box-sm icon-green"><i data-icon="check"></i></span>
+                            <span class="status-tile-label">Completed Orders</span>
+                            <span class="status-tile-bar"><span></span></span>
+                            <span class="status-tile-count">0</span>
+                        </div>
+                        <div class="status-tile" data-status="Cancelled">
+                            <span class="icon-box icon-box-sm icon-red"><i data-icon="cancel"></i></span>
+                            <span class="status-tile-label">Cancelled Orders</span>
+                            <span class="status-tile-bar"><span></span></span>
+                            <span class="status-tile-count">0</span>
+                        </div>
+                        </div>
                     </section>
                 </div>
 
-                <div class="new-order-modal-overlay" id="new-order-modal-overlay" hidden>
-                    <div class="new-order-card">
-                        <div class="new-order-header">
-                            <div class="left-section">
-                                <h2>Create New Order</h2>
-                                <p>Add a new order for a customer</p>
+                <div class="modal-overlay new-order-modal-overlay" id="new-order-modal-overlay" hidden>
+                    <div class="modal modal-lg" role="dialog" aria-modal="true">
+                        <div class="modal-header new-order-header">
+                            <div>
+                                <h2 class="modal-title">Create New Order</h2>
+                                <p class="modal-subtitle">Add a new order for a customer</p>
                             </div>
-                            <div class="right-section">
-                                <button type="button" class="close-new-order" aria-label="Close modal">
-                                    <img src="assets/icons/close.png" alt="Close modal">
-                                </button>
-                            </div>
+                            <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close close-new-order" aria-label="Close modal">
+                                <i data-icon="close"></i>
+                            </button>
                         </div>
-                        <div class="new-order-body">
-                            <div class="customer-name">
-                                <label for="customer-name">Customer Name</label>
-                                <input type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" list="customer-list" autocomplete="off">
+
+                        <div class="modal-body">
+                            <div class="field">
+                                <label class="label" for="customer-name">Customer Name</label>
+                                <input class="input" type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" list="customer-list" autocomplete="off">
                                 <datalist id="customer-list"></datalist>
                             </div>
-    
-                            <div class="order-type">
-                                <label for="order-type">Order Type</label>
-                                <select name="order-type" id="order-type">
-                                    <option value="dine-in" selected> Dine In </option>
-                                    <option value="take-away"> Take Away </option>
+
+                            <div class="field">
+                                <label class="label" for="order-type">Order Type</label>
+                                <select class="select" name="order-type" id="order-type">
+                                    <option value="dine-in" selected>Dine In</option>
+                                    <option value="take-away">Take Away</option>
                                 </select>
                             </div>
 
-                            
-                            <div class="items">
-                                <label for="menu-item">Menu Item</label>
+                            <div class="field field-full">
+                                <label class="label" for="menu-item">Menu Item</label>
                                 <div class="add-item-row">
-                                    <select name="menu-item" id="menu-item">
+                                    <select class="select" name="menu-item" id="menu-item">
                                         <option value="" selected disabled>Select Menu Item</option>
                                     </select>
-                                    <input type="number" name="item-quantity" id="item-quantity" min="1" value="1" placeholder="Qty">
-                                    <button type="button" class="add-item-button">Add Item</button>
-                                </div>
-
-                                <div class="selected-items">
-                                    <h3>Selected Items</h3>
-                                    <div class="selected-items-list"></div>
+                                    <input class="input input-number" type="number" name="item-quantity" id="item-quantity" min="1" value="1" aria-label="Quantity">
+                                    <button type="button" class="btn btn-secondary add-item-button">Add Item</button>
                                 </div>
                             </div>
 
-    
-    
-                            <!-- Special Instructions -->
-                            <div class="special-instructions">
-    
-                                <label for="special-instructions">
-                                    Special Instructions
-                                </label>
-    
-                                <textarea
-                                    name="special-instructions"
-                                    id="special-instructions"
-                                    placeholder="e.g. Less spice, extra cheese, no onions..."
-                                ></textarea>
-    
+                            <div class="field-full line-items">
+                                <div class="line-items-title">Selected Items</div>
+                                <div class="selected-items-list"></div>
                             </div>
-    
-    
-                            <!-- Order Total -->
-                            <div class="order-total">
-    
+
+                            <div class="field field-full">
+                                <label class="label" for="special-instructions">Special Instructions</label>
+                                <textarea class="textarea" name="special-instructions" id="special-instructions" placeholder="e.g. Less spice, extra cheese, no onions..."></textarea>
+                            </div>
+
+                            <div class="field-full total-box">
                                 <span>Total Amount</span>
-    
                                 <strong id="new-order-total">Rs. 0</strong>
-    
                             </div>
-    
                         </div>
-                        <div class="new-order-footer">
-    
-                            <button
-                                type="button"
-                                class="cancel-new-order"
-                            >
-                                Cancel
-                            </button>
-    
-                            <button
-                                type="button"
-                                class="create-new-order"
-                            >
-                                Create Order
-                            </button>
-    
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cancel-new-order">Cancel</button>
+                            <button type="button" class="btn btn-primary create-new-order">Create Order</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="add-menu-modal-overlay" id="add-menu-modal-overlay" hidden>
-                    <div class="add-menu-card">
-
-                        <div class="add-menu-header">
-
-                            <div class="left-section">
-
-                                <h2>Add New Menu Item</h2>
-
-                                <p>Add a new menu item to your restaurant menu</p>
-
-                            </div>
-
-                            <div class="right-section">
-
-                                <button
-                                    type="button"
-                                    class="close-add-menu"
-                                    aria-label="Close modal"
-                                >
-
-                                    <img
-                                        src="assets/icons/close.png"
-                                        alt="Close modal"
-                                    >
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <div class="add-menu-body">
-
-                            <div class="item-name">
-
-                                <label for="item-name">Item Name</label>
-
-                                <input
-                                    type="text"
-                                    name="item-name"
-                                    id="item-name"
-                                    placeholder="Enter menu item name"
-                                >
-
-                            </div>
-
-
-                            <div class="item-category">
-
-                                <label for="item-category">Category</label>
-
-                                <select
-                                    name="item-category"
-                                    id="item-category"
-                                >
-
-                                    <option value="" selected disabled>
-                                        Select category
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-                            <div class="item-price">
-
-                                <label for="item-price">Price (Rs.)</label>
-
-                                <input
-                                    type="number"
-                                    name="item-price"
-                                    id="item-price"
-                                    placeholder="Enter price"
-                                    min="0"
-                                >
-
-                            </div>
-
-                            <div class="item-description">
-
-                                <label for="item-description">
-                                    Description (Optional)
-                                </label>
-
-                                <textarea
-                                    name="item-description"
-                                    id="item-description"
-                                    placeholder="Enter a short description..."
-                                ></textarea>
-
-                            </div>
-
-                        </div>
-
-                        <div class="add-menu-footer">
-
-                            <button
-                                type="button"
-                                class="cancel-add-menu"
-                            >
-                                Cancel
-                            </button>
-
-                            <button
-                                type="button"
-                                class="add-menu-item"
-                            >
-                                Add Item
-                            </button>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="add-customer-modal-overlay" id="add-customer-modal-overlay" hidden>
-                    <div class="add-customer-card">
-                        <div class="add-customer-header">
-
-                            <div class="left-section">
-
-                                <h2>Add New Customer</h2>
-
-                                <p>Add a new customer to your restaurant</p>
-
-                            </div>
-
-                            <div class="right-section">
-
-                                <button
-                                    type="button"
-                                    class="close-add-customer"
-                                    aria-label="Close modal"
-                                >
-
-                                    <img
-                                        src="assets/icons/close.png"
-                                        alt="Close modal"
-                                    >
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <div class="add-customer-body">
-                            <div class="customer-name">
-                                <label for="new-customer-name"> Customer Name  </label>
-                                <input type="text" name="new-customer-name" id="new-customer-name" placeholder="Enter customer name">
-                            </div>
-                            <div class="customer-phone">
-                                <label for="customer-phone"> Phone Number </label>
-                                <input type="tel"  name="customer-phone"  id="customer-phone" placeholder="Enter phone number" maxlength="10">
-                            </div>
-                            <div class="customer-email">
-                                <label for="customer-email"> Email (Optional) </label>
-                                <input type="email" name="customer-email" id="customer-email" placeholder="Enter email address">
-                            </div>
-                        </div>
-
-                        <div class="add-customer-footer">
-                            <button type="button" class="cancel-add-customer" > Cancel </button>
-                            <button type="button" class="add-customer-button" > Add Customer </button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Edit Order Modal -->
-                <div class="edit-order-modal-overlay" id="edit-order-modal-overlay" hidden>
-                    <div class="edit-order-card" role="dialog" aria-modal="true" aria-labelledby="edit-order-title">
-
-                        <div class="edit-order-header">
+                <div class="modal-overlay add-menu-modal-overlay" id="add-menu-modal-overlay" hidden>
+                    <div class="modal" role="dialog" aria-modal="true">
+                        <div class="modal-header add-menu-header">
                             <div>
-                                <h2 id="edit-order-title">Edit Order</h2>
-                                <p>Update the order details below.</p>
+                                <h2 class="modal-title">Add New Menu Item</h2>
+                                <p class="modal-subtitle">Add a new menu item to your restaurant menu</p>
                             </div>
-
-                            <button
-                                type="button"
-                                class="close-edit-order"
-                                aria-label="Close modal"
-                            >
-                                &times;
+                            <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close close-add-menu" aria-label="Close modal">
+                                <i data-icon="close"></i>
                             </button>
                         </div>
 
-                        <div class="edit-order-body">
-                            <div class="edit-order-field">
-                                <label for="edit-order-customer">Customer Name</label>
-                                <input
-                                    type="text"
-                                    id="edit-order-customer"
-                                    placeholder="Enter customer name"
-                                    required
-                                >
+                        <div class="modal-body">
+                            <div class="field field-full">
+                                <label class="label" for="item-name">Item Name</label>
+                                <input class="input" type="text" name="item-name" id="item-name" placeholder="Enter menu item name">
                             </div>
 
-                            <div class="edit-order-field">
-                                <label for="edit-order-status">Order Status</label>
-                                <select id="edit-order-status">
+                            <div class="field">
+                                <label class="label" for="item-category">Category</label>
+                                <select class="select" name="item-category" id="item-category">
+                                    <option value="" selected disabled>Select category</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" for="item-price">Price (Rs.)</label>
+                                <input class="input" type="number" name="item-price" id="item-price" placeholder="Enter price" min="0">
+                            </div>
+
+                            <div class="field field-full">
+                                <label class="label" for="item-description">Description (Optional)</label>
+                                <textarea class="textarea" name="item-description" id="item-description" placeholder="Enter a short description..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cancel-add-menu">Cancel</button>
+                            <button type="button" class="btn btn-primary add-menu-item">Add Item</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay add-customer-modal-overlay" id="add-customer-modal-overlay" hidden>
+                    <div class="modal" role="dialog" aria-modal="true">
+                        <div class="modal-header add-customer-header">
+                            <div>
+                                <h2 class="modal-title">Add New Customer</h2>
+                                <p class="modal-subtitle">Add a new customer to your restaurant</p>
+                            </div>
+                            <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close close-add-customer" aria-label="Close modal">
+                                <i data-icon="close"></i>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="field field-full">
+                                <label class="label" for="new-customer-name">Customer Name</label>
+                                <input class="input" type="text" name="new-customer-name" id="new-customer-name" placeholder="Enter customer name">
+                            </div>
+
+                            <div class="field">
+                                <label class="label" for="customer-phone">Phone Number</label>
+                                <input class="input" type="tel" name="customer-phone" id="customer-phone" placeholder="Enter phone number" maxlength="10">
+                            </div>
+
+                            <div class="field">
+                                <label class="label" for="customer-email">Email (Optional)</label>
+                                <input class="input" type="email" name="customer-email" id="customer-email" placeholder="Enter email address">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cancel-add-customer">Cancel</button>
+                            <button type="button" class="btn btn-primary add-customer-button">Add Customer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay edit-order-modal-overlay" id="edit-order-modal-overlay" hidden>
+                    <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="edit-order-title">
+                        <div class="modal-header">
+                            <div>
+                                <h2 class="modal-title" id="edit-order-title">Edit Order</h2>
+                                <p class="modal-subtitle">Update the order details below.</p>
+                            </div>
+                            <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close close-edit-order" aria-label="Close modal">
+                                <i data-icon="close"></i>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="field field-full">
+                                <label class="label" for="edit-order-customer">Customer Name</label>
+                                <input class="input" type="text" id="edit-order-customer" placeholder="Enter customer name" required>
+                            </div>
+
+                            <div class="field field-full">
+                                <label class="label" for="edit-order-status">Order Status</label>
+                                <select class="select" id="edit-order-status">
                                     <option value="Pending">Pending</option>
                                     <option value="Preparing">Preparing</option>
                                     <option value="Ready">Ready</option>
@@ -570,40 +403,27 @@
                                 </select>
                             </div>
 
-                            <div class="edit-order-field">
-                                <label for="edit-order-instructions">Special Instructions</label>
-                                <textarea
-                                    id="edit-order-instructions"
-                                    placeholder="Optional instructions"
-                                    rows="3"
-                                ></textarea>
+                            <div class="field field-full">
+                                <label class="label" for="edit-order-instructions">Special Instructions</label>
+                                <textarea class="textarea" id="edit-order-instructions" placeholder="Optional instructions" rows="3"></textarea>
                             </div>
                         </div>
 
-                        <div class="edit-order-footer">
-                            <button type="button" class="delete-edit-order">
-                                Delete Order
-                            </button>
-
-                            <div class="edit-order-actions">
-                                <button type="button" class="cancel-edit-order">
-                                    Cancel
-                                </button>
-
-                                <button type="button" class="save-edit-order">
-                                    Save Changes
-                                </button>
+                        <div class="modal-footer modal-footer-split">
+                            <button type="button" class="btn btn-danger delete-edit-order">Delete Order</button>
+                            <div class="modal-footer-actions">
+                                <button type="button" class="btn btn-secondary cancel-edit-order">Cancel</button>
+                                <button type="button" class="btn btn-primary save-edit-order">Save Changes</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
-    
             </main>
         </div>
     </div>
 
     <script src="js/data.js"></script>
+    <script src="js/icons.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

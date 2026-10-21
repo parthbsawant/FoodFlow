@@ -1,31 +1,19 @@
 body{
     font-family: var(--font-family-base);
-    font-size: var(--font-size-md);
-    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-body);
     background-color: var(--color-background);
-    line-height: 1.5;
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
 }
 
-h1{
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-bold);
-}
-
-h2{
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-}
-
-h3{
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
+h1, h2, h3, h4{
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
 }
 
 p{
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
     color: var(--color-text-secondary);
-    line-height: 1.5;
 }
 
 a{
@@ -46,17 +34,6 @@ button{
 input, select, textarea{
     font-family: inherit;
     font-size: inherit;
-    border: 1px solid var(--color-border);
-    background-color: var(--color-surface);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
 }
 
 img{
@@ -64,13 +41,11 @@ img{
     display: block;
 }
 
-table {
+table{
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td{
-    padding: var(--spacing-sm);
-    border-bottom: 1px solid var(--color-border);
-    text-align: left;
+[hidden]{
+    display: none !important;
 }

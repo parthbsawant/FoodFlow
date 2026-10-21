@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,219 +11,137 @@
 
     <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
     <div class="app">
-        <!-- Header -->
-        <header class="header">
-            <a href="index.html">
+        <header class="topbar">
+            <a href="index.html" class="topbar-logo">
                 <img src="assets/logo/website-logo.png" alt="FoodFlow">
             </a>
-            <!-- Search Bar -->
-            <div class="search-bar">
-                <img src="assets/icons/searchbar.png" alt="">
-                <input
-                    type="text"
-                    name="search"
-                    id="searchbar"
-                    placeholder="Search orders, menu items & customers"
-                >
+
+            <div class="search-input topbar-search">
+                <i data-icon="search"></i>
+                <input class="input" type="text" name="search" id="searchbar" placeholder="Search orders, menu items & customers">
             </div>
-            <!-- Profile Section -->
-            <div class="profile-section">
-                <img src="assets/icons/notifications.png" alt="">
-                <button type="button">
-                    Profile Information
-                </button>
+
+            <div class="topbar-actions">
+                <span class="topbar-bell"><i data-icon="bell"></i></span>
+                <button type="button" class="btn btn-secondary">Profile Information</button>
             </div>
         </header>
+
         <div class="app-body">
-            <aside>
-                <nav class="sidebar-nav">
-                    <ul>
-                        <li class="nav-item">
-                            <a href="index.html">
-                                <img src="assets/icons/aside-section/dashboard.png" alt="">
+            <aside class="sidebar">
+                <nav>
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="index.html" class="nav-link">
+                                <i data-icon="dashboard"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a href="orders.html">
-                                <img
-                                    src="assets/icons/aside-section/cart.png"
-                                    alt=""
-                                >
+                        <li>
+                            <a href="orders.html" class="nav-link active">
+                                <i data-icon="cart"></i>
                                 <span>Orders</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="menu.html">
-                                <img
-                                    src="assets/icons/aside-section/menu.png"
-                                    alt=""
-                                >
+                        <li>
+                            <a href="menu.html" class="nav-link">
+                                <i data-icon="menu"></i>
                                 <span>Menu</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="customers.html">
-                                <img
-                                    src="assets/icons/aside-section/customers.png"
-                                    alt=""
-                                >
+                        <li>
+                            <a href="customers.html" class="nav-link">
+                                <i data-icon="users"></i>
                                 <span>Customers</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
             </aside>
-            
+
             <main class="main-content orders-page">
-                <!-- Orders Introduction -->
-                <section class="dashboard-intro">
-                    <div class="intro-info">
-                        <h1>Orders</h1>
-                        <p>
-                            Manage and track all the restaurant orders.
-                        </p>
+                <section class="page-header">
+                    <div>
+                        <h1 class="page-title">Orders</h1>
+                        <p class="page-subtitle">Manage and track all the restaurant orders.</p>
                     </div>
-                    <div class="new-order-button">
-                        <button type="button" id="new-order-quick-action">
-                            + New Order
-                        </button>
-                    </div>
+                    <button type="button" class="btn btn-primary" id="new-order-quick-action">
+                        <i data-icon="plus"></i>New Order
+                    </button>
                 </section>
 
-                <section class="summary-section">
-                    <div class="summary-cards">
-
-                        <div class="summary-card">
-                            <img
-                                src="assets/icons/summary-section/total-orders.png"
-                                alt="Total Orders"
-                            >
-                            <div class="summary-card-information">
-                                <h3>Total Orders</h3>
-                                <p class="summary-value">48</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">of total</p>
-                                </div>
-                            </div>
-                            <img
-                                src="assets/icons/summary-section/graph-total-orders.png"
-                                alt=""
-                            >
+                <section class="stat-cards">
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-green"><i data-icon="orders"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-total-revenue.png" alt="">
                         </div>
-
-                        <div class="summary-card">
-                            <img
-                                src="assets/icons/summary-section/pending-orders-summary-card.png"
-                                alt="Preparing Orders"
-                            >
-                            <div class="summary-card-information">
-                                <h3>Preparing Orders</h3>
-                                <p class="summary-value">10</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">of total</p>
-                                </div>
-                            </div>
-                            <img
-                                src="assets/icons/summary-section/graph-total-revenue.png"
-                                alt=""
-                            >
+                        <div class="stat-info">
+                            <span class="stat-label">Total Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill"></span>of total</div>
                         </div>
+                    </div>
 
-                        <div class="summary-card">
-                            <img
-                                src="assets/icons/summary-section/pending-orders.png"
-                                alt="Pending Orders"
-                            >
-                            <div class="summary-card-information">
-                                <h3>Pending Orders</h3>
-                                <p class="summary-value">12</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">of total</p>
-                                </div>
-                            </div>
-                            <img
-                                src="assets/icons/summary-section/graph-pending-orders.png"
-                                alt=""
-                            >
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-blue"><i data-icon="chef"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-total-orders.png" alt="">
                         </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Preparing Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill"></span>of total</div>
+                        </div>
+                    </div>
 
-                        <div class="summary-card">
-                            <img
-                                src="assets/icons/summary-section/completed-orders.png"
-                                alt="Completed Orders"
-                            >
-                            <div class="summary-card-information">
-                                <h3>Completed Orders</h3>
-                                <p class="summary-value">36</p>
-                                <div class="change-comparison">
-                                    <p class="percent-of-total"></p>
-                                    <p class="comparison-text">of total</p>
-                                </div>
-                            </div>
-                            <img
-                                src="assets/icons/summary-section/graph-completed-orders.png"
-                                alt=""
-                            >
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-amber"><i data-icon="clock"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-pending-orders.png" alt="">
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Pending Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill stat-pill-warning"></span>of total</div>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div class="stat-card-top">
+                            <span class="icon-box icon-purple"><i data-icon="check"></i></span>
+                            <img class="stat-graph" src="assets/icons/summary-section/graph-completed-orders.png" alt="">
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Completed Orders</span>
+                            <span class="stat-value">0</span>
+                            <div class="stat-meta"><span class="stat-pill"></span>of total</div>
                         </div>
                     </div>
                 </section>
 
-                <section class="all-orders-table">
-                    <!-- All Orders Header -->
-                    <div class="all-orders-header">
-                        <h2>All Orders</h2>
-                        <div class="all-orders-functionalities">
-                            <!-- Orders Search -->
-                            <div class="search-bar">
-                                <img
-                                    src="assets/icons/searchbar.png"
-                                    alt=""
-                                >
-                                <input
-                                    type="text"
-                                    name="order-search"
-                                    id="order-searchbar"
-                                    placeholder="Search by order ID or customer"
-                                >
+                <section class="card card-body">
+                    <div class="card-header">
+                        <h2 class="card-title">All Orders</h2>
+                        <div class="toolbar">
+                            <div class="search-input">
+                                <i data-icon="search"></i>
+                                <input class="input" type="text" name="order-search" id="order-searchbar" placeholder="Search by order ID or customer">
                             </div>
-                            <!-- Order Status Filter -->
-                            <div class="all-orders-status">
-                                <select
-                                    name="order-status"
-                                    id="order-status"
-                                >
-                                    <option value="all">
-                                        All Status
-                                    </option>
-                                    <option value="pending">
-                                        Pending
-                                    </option>
-                                    <option value="preparing">
-                                        Preparing
-                                    </option>
-                                    <option value="ready">
-                                        Ready
-                                    </option>
-                                    <option value="completed">
-                                        Completed
-                                    </option>
-                                    <option value="cancelled">
-                                        Cancelled
-                                    </option>
-                                </select>
-                            </div>
+                            <select class="select" name="order-status" id="order-status">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="preparing">Preparing</option>
+                                <option value="ready">Ready</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
                         </div>
                     </div>
-                    <!-- Orders Table -->
-                    <div class="all-orders">
-                        <table>
+                    <div class="table-wrap all-orders">
+                        <table class="table ">
                             <thead>
                                 <tr>
                                     <th>Order ID</th>
@@ -238,139 +154,96 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                     </div>
 
-                    <p class="table-footer-text" id="order-count-text"></p>
+                    <p class="card-footer-text" id="order-count-text"></p>
                 </section>
 
-                <div class="new-order-modal-overlay" id="new-order-modal-overlay" hidden>
-                    <div class="new-order-card">
-                        <div class="new-order-header">
-                            <div class="left-section">
-                                <h2>Create New Order</h2>
-                                <p>Add a new order for a customer</p>
+                <div class="modal-overlay new-order-modal-overlay" id="new-order-modal-overlay" hidden>
+                    <div class="modal modal-lg" role="dialog" aria-modal="true">
+                        <div class="modal-header new-order-header">
+                            <div>
+                                <h2 class="modal-title">Create New Order</h2>
+                                <p class="modal-subtitle">Add a new order for a customer</p>
                             </div>
-                            <div class="right-section">
-                                <button type="button" class="close-new-order" aria-label="Close modal">
-                                    <img src="assets/icons/close.png" alt="Close modal">
-                                </button>
-                            </div>
+                            <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close close-new-order" aria-label="Close modal">
+                                <i data-icon="close"></i>
+                            </button>
                         </div>
-                        <div class="new-order-body">
-                            <div class="customer-name">
-                                <label for="customer-name">Customer Name</label>
-                                <input type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" list="customer-list" autocomplete="off">
+
+                        <div class="modal-body">
+                            <div class="field">
+                                <label class="label" for="customer-name">Customer Name</label>
+                                <input class="input" type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" list="customer-list" autocomplete="off">
                                 <datalist id="customer-list"></datalist>
                             </div>
-    
-                            <div class="order-type">
-                                <label for="order-type">Order Type</label>
-                                <select name="order-type" id="order-type">
-                                    <option value="dine-in" selected> Dine In </option>
-                                    <option value="take-away"> Take Away </option>
+
+                            <div class="field">
+                                <label class="label" for="order-type">Order Type</label>
+                                <select class="select" name="order-type" id="order-type">
+                                    <option value="dine-in" selected>Dine In</option>
+                                    <option value="take-away">Take Away</option>
                                 </select>
                             </div>
 
-                            
-                            <div class="items">
-                                <label for="menu-item">Menu Item</label>
+                            <div class="field field-full">
+                                <label class="label" for="menu-item">Menu Item</label>
                                 <div class="add-item-row">
-                                    <select name="menu-item" id="menu-item">
+                                    <select class="select" name="menu-item" id="menu-item">
                                         <option value="" selected disabled>Select Menu Item</option>
                                     </select>
-                                    <input type="number" name="item-quantity" id="item-quantity" min="1" value="1" placeholder="Qty">
-                                    <button type="button" class="add-item-button">Add Item</button>
-                                </div>
-
-                                <div class="selected-items">
-                                    <h3>Selected Items</h3>
-                                    <div class="selected-items-list"></div>
+                                    <input class="input input-number" type="number" name="item-quantity" id="item-quantity" min="1" value="1" aria-label="Quantity">
+                                    <button type="button" class="btn btn-secondary add-item-button">Add Item</button>
                                 </div>
                             </div>
 
-    
-    
-                            <!-- Special Instructions -->
-                            <div class="special-instructions">
-    
-                                <label for="special-instructions">
-                                    Special Instructions
-                                </label>
-    
-                                <textarea
-                                    name="special-instructions"
-                                    id="special-instructions"
-                                    placeholder="e.g. Less spice, extra cheese, no onions..."
-                                ></textarea>
-    
+                            <div class="field-full line-items">
+                                <div class="line-items-title">Selected Items</div>
+                                <div class="selected-items-list"></div>
                             </div>
-    
-    
-                            <!-- Order Total -->
-                            <div class="order-total">
-    
+
+                            <div class="field field-full">
+                                <label class="label" for="special-instructions">Special Instructions</label>
+                                <textarea class="textarea" name="special-instructions" id="special-instructions" placeholder="e.g. Less spice, extra cheese, no onions..."></textarea>
+                            </div>
+
+                            <div class="field-full total-box">
                                 <span>Total Amount</span>
-    
                                 <strong id="new-order-total">Rs. 0</strong>
-    
                             </div>
-    
                         </div>
-                        <div class="new-order-footer">
-    
-                            <button
-                                type="button"
-                                class="cancel-new-order"
-                            >
-                                Cancel
-                            </button>
-    
-                            <button
-                                type="button"
-                                class="create-new-order"
-                            >
-                                Create Order
-                            </button>
-    
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cancel-new-order">Cancel</button>
+                            <button type="button" class="btn btn-primary create-new-order">Create Order</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="edit-order-modal-overlay" id="edit-order-modal-overlay" hidden>
-                    <div class="edit-order-card" role="dialog" aria-modal="true" aria-labelledby="edit-order-title">
-
-                        <div class="edit-order-header">
+                <div class="modal-overlay edit-order-modal-overlay" id="edit-order-modal-overlay" hidden>
+                    <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="edit-order-title">
+                        <div class="modal-header">
                             <div>
-                                <h2 id="edit-order-title">Edit Order</h2>
-                                <p>Update the order details below.</p>
+                                <h2 class="modal-title" id="edit-order-title">Edit Order</h2>
+                                <p class="modal-subtitle">Update the order details below.</p>
                             </div>
-
-                            <button
-                                type="button"
-                                class="close-edit-order"
-                                aria-label="Close modal"
-                            >
-                                &times;
+                            <button type="button" class="btn btn-ghost btn-icon btn-sm modal-close close-edit-order" aria-label="Close modal">
+                                <i data-icon="close"></i>
                             </button>
                         </div>
 
-                        <div class="edit-order-body">
-                            <div class="edit-order-field">
-                                <label for="edit-order-customer">Customer Name</label>
-                                <input
-                                    type="text"
-                                    id="edit-order-customer"
-                                    placeholder="Enter customer name"
-                                    required
-                                >
+                        <div class="modal-body">
+                            <div class="field field-full">
+                                <label class="label" for="edit-order-customer">Customer Name</label>
+                                <input class="input" type="text" id="edit-order-customer" placeholder="Enter customer name" required>
                             </div>
 
-                            <div class="edit-order-field">
-                                <label for="edit-order-status">Order Status</label>
-                                <select id="edit-order-status">
+                            <div class="field field-full">
+                                <label class="label" for="edit-order-status">Order Status</label>
+                                <select class="select" id="edit-order-status">
                                     <option value="Pending">Pending</option>
                                     <option value="Preparing">Preparing</option>
                                     <option value="Ready">Ready</option>
@@ -379,38 +252,27 @@
                                 </select>
                             </div>
 
-                            <div class="edit-order-field">
-                                <label for="edit-order-instructions">Special Instructions</label>
-                                <textarea
-                                    id="edit-order-instructions"
-                                    placeholder="Optional instructions"
-                                    rows="3"
-                                ></textarea>
+                            <div class="field field-full">
+                                <label class="label" for="edit-order-instructions">Special Instructions</label>
+                                <textarea class="textarea" id="edit-order-instructions" placeholder="Optional instructions" rows="3"></textarea>
                             </div>
                         </div>
 
-                        <div class="edit-order-footer">
-                            <button type="button" class="delete-edit-order">
-                                Delete Order
-                            </button>
-
-                            <div class="edit-order-actions">
-                                <button type="button" class="cancel-edit-order">
-                                    Cancel
-                                </button>
-
-                                <button type="button" class="save-edit-order">
-                                    Save Changes
-                                </button>
+                        <div class="modal-footer modal-footer-split">
+                            <button type="button" class="btn btn-danger delete-edit-order">Delete Order</button>
+                            <div class="modal-footer-actions">
+                                <button type="button" class="btn btn-secondary cancel-edit-order">Cancel</button>
+                                <button type="button" class="btn btn-primary save-edit-order">Save Changes</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </main>
         </div>
     </div>
+
     <script src="js/data.js"></script>
+    <script src="js/icons.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

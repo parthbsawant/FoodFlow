@@ -1,0 +1,118 @@
+/* Top Header */
+
+.topbar{
+    position: sticky;
+    top: 0;
+
+    height: var(--header-height);
+    padding: 0 var(--spacing-xl);
+
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+
+    z-index: 100;
+}
+
+.topbar-logo img{
+    width: 150px;
+}
+
+.topbar-search{
+    flex: 1;
+    max-width: 440px;
+}
+
+.topbar-search .input{
+    background-color: var(--gray-50);
+    box-shadow: none;
+}
+
+.topbar-search .input:focus{
+    background-color: var(--color-surface);
+}
+
+.topbar-actions{
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+
+/* Sidebar */
+
+.sidebar{
+    padding: var(--spacing-lg) var(--spacing-md);
+    background-color: var(--color-background-sidebar);
+}
+
+.sidebar-list{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    list-style: none;
+}
+
+.nav-link{
+    height: 44px;
+    padding: 0 var(--spacing-md);
+
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+
+    border-radius: var(--radius-md);
+
+    color: var(--color-sidebar-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.nav-link:hover{
+    background-color: var(--color-sidebar-hover);
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.nav-link.active{
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+
+/* Page Heading */
+
+.page-header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.page-title{
+    font-size: 28px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: var(--line-height-tight);
+}
+
+.page-subtitle{
+    margin-top: var(--spacing-xs);
+
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}

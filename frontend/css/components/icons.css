@@ -1,0 +1,66 @@
+/* Icons */
+
+.icon{
+    width: var(--icon-size);
+    height: var(--icon-size);
+    flex-shrink: 0;
+    display: block;
+}
+
+.icon-box{
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: var(--radius-lg);
+}
+
+.icon-box .icon{
+    width: 24px;
+    height: 24px;
+}
+
+.icon-box-sm{
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+}
+
+.icon-box-sm .icon{
+    width: 18px;
+    height: 18px;
+}
+
+.icon-orange{
+    color: var(--color-primary-600);
+    background-color: var(--color-primary-100);
+}
+
+.icon-blue{
+    color: var(--color-secondary);
+    background-color: var(--color-secondary-100);
+}
+
+.icon-green{
+    color: var(--color-success);
+    background-color: var(--color-success-100);
+}
+
+.icon-amber{
+    color: var(--color-warning-700);
+    background-color: var(--color-warning-100);
+}
+
+.icon-purple{
+    color: var(--color-accent);
+    background-color: var(--color-accent-100);
+}
+
+.icon-red{
+    color: var(--color-danger);
+    background-color: var(--color-danger-100);
+}

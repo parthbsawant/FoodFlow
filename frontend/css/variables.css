@@ -1,35 +1,77 @@
 :root{
-    /* Colors */
-    --color-primary: #FF6B35; 
-    --color-secondary: #2563EB;
-    --color-success: #16A34A;
-    --color-accent: #8B5CF6;
-    --color-warning: #F59E0B;
-    --color-danger: #EF4444;
-    --color-info: #06B6D4;
+    /* Brand */
+    --color-primary: #FF6B35;
+    --color-primary-50: #FFF5F0;
+    --color-primary-100: #FFE6DA;
+    --color-primary-200: #FFC9B0;
+    --color-primary-600: #EA5A24;
+    --color-primary-700: #C2410C;
 
-    --color-background: #F8FAFC; 
+    /* Neutrals */
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-500: #64748B;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1E293B;
+    --gray-900: #0F172A;
+
+    /* Status : base / light background / dark text */
+    --color-success: #16A34A;
+    --color-success-50: #F0FDF4;
+    --color-success-100: #DCFCE7;
+    --color-success-700: #15803D;
+
+    --color-warning: #F59E0B;
+    --color-warning-50: #FFFBEB;
+    --color-warning-100: #FEF3C7;
+    --color-warning-700: #B45309;
+
+    --color-danger: #EF4444;
+    --color-danger-50: #FEF2F2;
+    --color-danger-100: #FEE2E2;
+    --color-danger-700: #B91C1C;
+
+    --color-secondary: #2563EB;
+    --color-secondary-50: #EFF6FF;
+    --color-secondary-100: #DBEAFE;
+    --color-secondary-700: #1D4ED8;
+
+    --color-accent: #8B5CF6;
+    --color-accent-50: #F5F3FF;
+    --color-accent-100: #EDE9FE;
+    --color-accent-700: #6D28D9;
+
+    --color-info: #06B6D4;
+    --color-info-50: #ECFEFF;
+    --color-info-100: #CFFAFE;
+    --color-info-700: #0E7490;
+
+    /* Surfaces & Text */
+    --color-background: var(--gray-50);
     --color-surface: #FFFFFF;
 
-    --color-text-primary: #0F172A;
-    --color-text-secondary: #64748B;
+    --color-text-primary: var(--gray-900);
+    --color-text-body: var(--gray-700);
+    --color-text-secondary: var(--gray-500);
+    --color-muted: var(--gray-400);
 
-    --color-border: #E2E8F0;
-    --color-muted: #94A3BB;
+    --color-border: var(--gray-200);
+    --color-border-strong: var(--gray-300);
 
-    --color-background-sidebar: #1E293B;
+    --color-background-sidebar: var(--gray-800);
+    --color-sidebar-hover: rgba(255, 255, 255, 0.06);
+    --color-sidebar-text: #CBD5E1;
     --color-sidebar-active: #FFEDD5;
 
-    /* Spacing 
-    XS   → very small
-    SM   → small
-    MD   → normal
-    LG   → large
-    XL   → extra large
-    2XL  → very large
-    3XL  → very large+
-    4XL  → maximum common spacing */
+    --color-overlay: rgba(15, 23, 42, 0.5);
+    --focus-ring: 0 0 0 3px rgba(255, 107, 53, 0.18);
+    --focus-ring-danger: 0 0 0 3px rgba(239, 68, 68, 0.15);
 
+    /* Spacing (4px scale) */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 12px;
@@ -40,34 +82,51 @@
     --spacing-4xl: 48px;
 
     /* Border Radius */
-    --radius-sm : 6px;
-    --radius-md : 8px;
-    --radius-lg : 12px;
-    --radius-xl : 16px;
-    --radius-full : 9999px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
 
     /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
+    --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.16);
 
     /* Typography */
-    
-    /* Font Family */
-    --font-family-base: "Inter", sans-serif;
-    
-    /* Font Sizes */
+    --font-family-base: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
     --font-size-xs: 12px;
+    --font-size-13: 13px;
     --font-size-sm: 14px;
     --font-size-md: 16px;
     --font-size-lg: 18px;
     --font-size-xl: 20px;
     --font-size-2xl: 24px;
     --font-size-3xl: 30px;
-    
-    /* Font Weights */
+
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-base: 1.5;
+
+    /* Sizes */
+    --header-height: 64px;
+    --sidebar-width: 240px;
+    --control-height-sm: 32px;
+    --control-height: 40px;
+    --icon-size-sm: 16px;
+    --icon-size: 20px;
+
+    /* Motion */
+    --transition-fast: 0.15s ease;
+    --transition: 0.2s ease;
+
+    /* Layers */
+    --z-modal: 1000;
+    --z-toast: 2000;
 }
