@@ -89,6 +89,11 @@
                             Manage and track all the restaurant orders.
                         </p>
                     </div>
+                    <div class="new-order-button">
+                        <button type="button" id="new-order-quick-action">
+                            + New Order
+                        </button>
+                    </div>
                 </section>
 
                 <section class="summary-section">
@@ -228,6 +233,7 @@
                                     <th>Items</th>
                                     <th>Amount</th>
                                     <th>Status</th>
+                                    <th>Date &amp; Time</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -236,7 +242,102 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <p class="table-footer-text" id="order-count-text"></p>
                 </section>
+
+                <div class="new-order-modal-overlay" id="new-order-modal-overlay" hidden>
+                    <div class="new-order-card">
+                        <div class="new-order-header">
+                            <div class="left-section">
+                                <h2>Create New Order</h2>
+                                <p>Add a new order for a customer</p>
+                            </div>
+                            <div class="right-section">
+                                <button type="button" class="close-new-order" aria-label="Close modal">
+                                    <img src="assets/icons/close.png" alt="Close modal">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="new-order-body">
+                            <div class="customer-name">
+                                <label for="customer-name">Customer Name</label>
+                                <input type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" list="customer-list" autocomplete="off">
+                                <datalist id="customer-list"></datalist>
+                            </div>
+    
+                            <div class="order-type">
+                                <label for="order-type">Order Type</label>
+                                <select name="order-type" id="order-type">
+                                    <option value="dine-in" selected> Dine In </option>
+                                    <option value="take-away"> Take Away </option>
+                                </select>
+                            </div>
+
+                            
+                            <div class="items">
+                                <label for="menu-item">Menu Item</label>
+                                <div class="add-item-row">
+                                    <select name="menu-item" id="menu-item">
+                                        <option value="" selected disabled>Select Menu Item</option>
+                                    </select>
+                                    <input type="number" name="item-quantity" id="item-quantity" min="1" value="1" placeholder="Qty">
+                                    <button type="button" class="add-item-button">Add Item</button>
+                                </div>
+
+                                <div class="selected-items">
+                                    <h3>Selected Items</h3>
+                                    <div class="selected-items-list"></div>
+                                </div>
+                            </div>
+
+    
+    
+                            <!-- Special Instructions -->
+                            <div class="special-instructions">
+    
+                                <label for="special-instructions">
+                                    Special Instructions
+                                </label>
+    
+                                <textarea
+                                    name="special-instructions"
+                                    id="special-instructions"
+                                    placeholder="e.g. Less spice, extra cheese, no onions..."
+                                ></textarea>
+    
+                            </div>
+    
+    
+                            <!-- Order Total -->
+                            <div class="order-total">
+    
+                                <span>Total Amount</span>
+    
+                                <strong id="new-order-total">Rs. 0</strong>
+    
+                            </div>
+    
+                        </div>
+                        <div class="new-order-footer">
+    
+                            <button
+                                type="button"
+                                class="cancel-new-order"
+                            >
+                                Cancel
+                            </button>
+    
+                            <button
+                                type="button"
+                                class="create-new-order"
+                            >
+                                Create Order
+                            </button>
+    
+                        </div>
+                    </div>
+                </div>
 
                 <div class="edit-order-modal-overlay" id="edit-order-modal-overlay" hidden>
                     <div class="edit-order-card" role="dialog" aria-modal="true" aria-labelledby="edit-order-title">

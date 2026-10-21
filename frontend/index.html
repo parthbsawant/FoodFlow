@@ -14,7 +14,7 @@
 <body>
     <div class="app">
         <header class="header">
-            <a href="#">
+            <a href="index.html">
                 <img src="assets/logo/website-logo.png" alt="FoodFlow">
             </a>
 
@@ -37,26 +37,26 @@
                 <nav class="sidebar-nav">
                     <ul>
                         <li class="nav-item active">
-                            <a href="#">
-                                <img src="/frontend/assets/icons/aside-section/dashboard.png" alt="">
+                            <a href="index.html">
+                                <img src="assets/icons/aside-section/dashboard.png" alt="">
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">    
                             <a href="orders.html">
-                                <img src="/frontend/assets/icons/aside-section/cart.png" alt="">
+                                <img src="assets/icons/aside-section/cart.png" alt="">
                                 <span>Orders</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#">
-                                <img src="/frontend/assets/icons/aside-section/menu.png" alt="">
+                            <a href="menu.html">
+                                <img src="assets/icons/aside-section/menu.png" alt="">
                                 <span>Menu</span>
                             </a>
                         </li>
                         <li class="nav-item">   
-                            <a href="#">
-                                <img src="/frontend/assets/icons/aside-section/customers.png" alt="">
+                            <a href="customers.html">
+                                <img src="assets/icons/aside-section/customers.png" alt="">
                                 <span>Customers</span>
                             </a>
                         </li>
@@ -67,66 +67,62 @@
             <main class="main-content dashboard-page">
     
                 <section class="dashboard-intro">
-                    <h1>Good morning, Parth!</h1>
+                    <h1 id="greeting-text">Good morning, Parth!</h1>
                     <p>Here's what's happening at FoodFlow Bistro today.</p>
                 </section>
     
                 <section class="summary-section">
                     <div class="summary-cards">
                         <div class="summary-card">
-                            <img src="/frontend/assets/icons/summary-section/total-orders.png" alt="Total Orders Image">
+                            <img src="assets/icons/summary-section/total-orders.png" alt="Total Orders Image">
                             <div class="summary-card-information">
                                 <h3>Total Orders</h3>
                                 <p class="summary-value">48</p>
                                 <div class="change-comparison">
-                                    <p>%xyz</p>
-                                    <p>v/s</p>
-                                    <p>Yesterday</p>
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">placed today</p>
                                 </div>
                             </div>
-                            <img src="/frontend/assets/icons/summary-section/graph-total-orders.png" alt="Graph Image">
+                            <img src="assets/icons/summary-section/graph-total-orders.png" alt="Graph Image">
                         </div>
 
                         <div class="summary-card">
-                            <img src="/frontend/assets/icons/summary-section/total-revenue.png" alt="Total Revenue Image">
+                            <img src="assets/icons/summary-section/total-revenue.png" alt="Total Revenue Image">
                             <div class="summary-card-information">
-                                <h3>Today's Revenue</h3>
-                                <p class="summary-value">Rs.18450</p>
+                                <h3>Total Revenue</h3>
+                                <p class="summary-value">Rs. 0</p>
                                 <div class="change-comparison">
-                                    <p>%xyz</p>
-                                    <p>v/s</p>
-                                    <p>Yesterday</p>
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">avg per order</p>
                                 </div>
                             </div>
-                            <img src="/frontend/assets/icons/summary-section/graph-total-revenue.png" alt="Graph Image">
+                            <img src="assets/icons/summary-section/graph-total-revenue.png" alt="Graph Image">
                         </div>
 
                         <div class="summary-card">
-                            <img src="/frontend/assets/icons/summary-section/pending-orders.png" alt="Pending Orders Image">
+                            <img src="assets/icons/summary-section/pending-orders.png" alt="Pending Orders Image">
                             <div class="summary-card-information">
                                 <h3>Pending Orders</h3>
                                 <p class="summary-value">12</p>
                                 <div class="change-comparison">
-                                    <p>%xyz</p>
-                                    <p>v/s</p>
-                                    <p>Yesterday</p>
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">of total</p>
                                 </div>
                             </div>
-                            <img src="/frontend/assets/icons/summary-section/graph-pending-orders.png" alt="Graph Image">
+                            <img src="assets/icons/summary-section/graph-pending-orders.png" alt="Graph Image">
                         </div>
 
                         <div class="summary-card">
-                            <img src="/frontend/assets/icons/summary-section/completed-orders.png" alt="Completed Orders Image">
+                            <img src="assets/icons/summary-section/completed-orders.png" alt="Completed Orders Image">
                             <div class="summary-card-information">
                                 <h3>Completed Orders</h3>
                                 <p class="summary-value">36</p>
                                 <div class="change-comparison">
-                                    <p>%xyz</p>
-                                    <p>v/s</p>
-                                    <p>Yesterday</p>
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">of total</p>
                                 </div>
                             </div>
-                            <img src="/frontend/assets/icons/summary-section/graph-completed-orders.png" alt="Graph Image">
+                            <img src="assets/icons/summary-section/graph-completed-orders.png" alt="Graph Image">
                         </div>
                     </div>
                 </section>
@@ -134,7 +130,10 @@
                 <div class="dashboard-row-1">
                     <section class="recent-orders-section">
                         <!-- Recent Orders Table -->
-                        <h2>Recent Orders</h2>
+                        <div class="section-heading">
+                            <h2>Recent Orders</h2>
+                            <a href="orders.html">View All</a>
+                        </div>
                          <table>
                             <thead>
                                 <tr>
@@ -147,35 +146,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1234</td>
-                                    <td>Parth Sawant</td>
-                                    <td>4</td>
-                                    <td>Rs. 1290</td>
-                                    <td>
-                                        <span class="status-badge pending">Pending</span>
-                                    </td>
-                                    <td>15 min</td>
-                                    <td>
-                                        <button type="button" class="edit-button">
-                                           Edit 
-                                        </button>
-                                    </td>
-                                </tr>
-        
-                                <tr>
-                                    <td>4321</td>
-                                    <td>Tanishka Sawant</td>
-                                    <td>12</td>
-                                    <td>Rs. 1430</td>
-                                    <td><span class="status-badge completed">Completed</span></td>
-                                    <td>5 min</td>
-                                    <td>
-                                        <button type="button" class="edit-button">
-                                           Edit 
-                                        </button>
-                                    </td>
-                                </tr>
+
                             </tbody>
                             <tfoot></tfoot>
                          </table>
@@ -188,33 +159,33 @@
                          <div class="quick-actions-buttons">
                             <button type="button" class="quick-actions-button" id="new-order-quick-action">
                                 <div class="button-internals">
-                                    <img src="/frontend/assets/icons/quick-actions-section/new-order.png" alt="New Order Cart Image">
+                                    <img src="assets/icons/quick-actions-section/new-order.png" alt="New Order Cart Image">
                                     <p>New Order</p>
-                                    <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
+                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
 
                             <button type="button" class="quick-actions-button" id="add-menu-quick-action">
                                 <div class="button-internals">
-                                    <img src="/frontend/assets/icons/quick-actions-section/add-menu-item.png" alt="Add Menu Item Image">
+                                    <img src="assets/icons/quick-actions-section/add-menu-item.png" alt="Add Menu Item Image">
                                     <p>Add Menu Item</p>
-                                    <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
+                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
 
                             <button type="button" class="quick-actions-button" id="add-customer-quick-action">
                                 <div class="button-internals">
-                                    <img src="/frontend/assets/icons/quick-actions-section/customers.png" alt="Add Customer Image">
+                                    <img src="assets/icons/quick-actions-section/customers.png" alt="Add Customer Image">
                                     <p>Add Customer</p>
-                                    <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
+                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
 
                             <button type="button" class="quick-actions-button" id="view-all-order-quick-action">
                                 <div class="button-internals">
-                                    <img src="/frontend/assets/icons/quick-actions-section/view-orders.png" alt="View Orders Image">
+                                    <img src="assets/icons/quick-actions-section/view-orders.png" alt="View Orders Image">
                                     <p>View All Orders</p>
-                                    <img src="/frontend/assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
+                                    <img src="assets/icons/quick-actions-section/arrow.png" alt="Arrow Image">
                                 </div>
                             </button>
 
@@ -225,7 +196,10 @@
                 <div class="dashboard-row-2">
                     <section class="popular-menu-section">
                         <!-- Popular Menu Items Table -->
-                        <h2>Popular Menu Items</h2>
+                        <div class="section-heading">
+                            <h2>Popular Menu Items</h2>
+                            <a href="menu.html">View All</a>
+                        </div>
                          <table>
                             <thead>
                                 <tr>
@@ -237,37 +211,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Masala Dosa</td>
-                                    <td>South Indian</td>
-                                    <td>100</td>
-                                    <td>Rs. 20,000</td>
-                                </tr>
 
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pav Bhaji</td>
-                                    <td>Breakfast</td>
-                                    <td>200</td>
-                                    <td>Rs. 23,000</td>
-                                </tr>
-
-                                <tr>
-                                    <td>3</td>
-                                    <td>Paneer Tikka</td>
-                                    <td>Starters</td>
-                                    <td>42</td>
-                                    <td>Rs. 8,400</td>
-                                </tr>
-
-                                <tr>
-                                    <td>4</td>
-                                    <td>Veg Biryani</td>
-                                    <td>Main Course</td>
-                                    <td>38</td>
-                                    <td>Rs. 7,600</td>
-                                </tr>
                             </tbody>
                             <tfoot></tfoot>
                          </table>
@@ -279,7 +223,7 @@
                          <div class="order-section-cards">
                             <div class="pending-orders order-section-card">
                                 <div class="status-label">
-                                    <img src="/frontend/assets/icons/order-status-section/yellow.png" alt="">
+                                    <img src="assets/icons/order-status-section/yellow.png" alt="">
                                     <p>Pending Orders</p>
                                 </div>
                                 <p class="status-count">12</p>
@@ -287,7 +231,7 @@
         
                             <div class="preparing-orders order-section-card">
                                 <div class="status-label">
-                                    <img src="/frontend/assets/icons/order-status-section/blue.png" alt="">
+                                    <img src="assets/icons/order-status-section/blue.png" alt="">
                                     <p>Preparing Orders</p>
                                 </div>
                                 <p class="status-count">10</p>
@@ -295,7 +239,7 @@
         
                             <div class="completed-orders order-section-card">
                                 <div class="status-label">
-                                    <img src="/frontend/assets/icons/order-status-section/green.png" alt="">
+                                    <img src="assets/icons/order-status-section/green.png" alt="">
                                     <p>Completed Orders</p>
                                 </div>
                                 <p class="status-count">8</p>
@@ -303,7 +247,7 @@
         
                             <div class="cancelled-orders order-section-card">
                                 <div class="status-label">
-                                    <img src="/frontend/assets/icons/order-status-section/red.png" alt="">
+                                    <img src="assets/icons/order-status-section/red.png" alt="">
                                     <p>Cancelled Orders</p>
                                 </div>
                                 <p class="status-count">38</p>
@@ -330,14 +274,15 @@
                             </div>
                             <div class="right-section">
                                 <button type="button" class="close-new-order" aria-label="Close modal">
-                                    <img src="/frontend/assets/icons/close.png" alt="Close modal">
+                                    <img src="assets/icons/close.png" alt="Close modal">
                                 </button>
                             </div>
                         </div>
                         <div class="new-order-body">
                             <div class="customer-name">
                                 <label for="customer-name">Customer Name</label>
-                                <input type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" >
+                                <input type="text" name="customer-name" id="customer-name" placeholder="Enter customer name" list="customer-list" autocomplete="off">
+                                <datalist id="customer-list"></datalist>
                             </div>
     
                             <div class="order-type">
@@ -354,10 +299,6 @@
                                 <div class="add-item-row">
                                     <select name="menu-item" id="menu-item">
                                         <option value="" selected disabled>Select Menu Item</option>
-                                        <option value="101">Margherita Pizza - Rs. 260</option>
-                                        <option value="102">Paneer Tikka - Rs. 220</option>
-                                        <option value="103">Masala Dosa - Rs. 200</option>
-                                        <option value="105">Veg Biryani - Rs. 200</option>
                                     </select>
                                     <input type="number" name="item-quantity" id="item-quantity" min="1" value="1" placeholder="Qty">
                                     <button type="button" class="add-item-button">Add Item</button>
@@ -439,7 +380,7 @@
                                 >
 
                                     <img
-                                        src="/frontend/assets/icons/close.png"
+                                        src="assets/icons/close.png"
                                         alt="Close modal"
                                     >
 
@@ -476,26 +417,6 @@
 
                                     <option value="" selected disabled>
                                         Select category
-                                    </option>
-
-                                    <option value="starters">
-                                        Starters
-                                    </option>
-
-                                    <option value="main-course">
-                                        Main Course
-                                    </option>
-
-                                    <option value="south-indian">
-                                        South Indian
-                                    </option>
-
-                                    <option value="desserts">
-                                        Desserts
-                                    </option>
-
-                                    <option value="beverages">
-                                        Beverages
                                     </option>
 
                                 </select>
@@ -575,7 +496,7 @@
                                 >
 
                                     <img
-                                        src="/frontend/assets/icons/close.png"
+                                        src="assets/icons/close.png"
                                         alt="Close modal"
                                     >
 
@@ -592,7 +513,7 @@
                             </div>
                             <div class="customer-phone">
                                 <label for="customer-phone"> Phone Number </label>
-                                <input type="tel"  name="customer-phone"  id="customer-phone" placeholder="Enter phone number" >
+                                <input type="tel"  name="customer-phone"  id="customer-phone" placeholder="Enter phone number" maxlength="10">
                             </div>
                             <div class="customer-email">
                                 <label for="customer-email"> Email (Optional) </label>

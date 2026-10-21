@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodFlow - Customers</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <a href="index.html">
+                <img src="assets/logo/website-logo.png" alt="FoodFlow">
+            </a>
+            <div class="search-bar">
+                <img src="assets/icons/searchbar.png" alt="">
+                <input
+                    type="text"
+                    name="search"
+                    id="searchbar"
+                    placeholder="Search orders, menu items & customers"
+                >
+            </div>
+            <div class="profile-section">
+                <img src="assets/icons/notifications.png" alt="">
+                <button type="button">
+                    Profile Information
+                </button>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <aside>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="nav-item">
+                            <a href="index.html">
+                                <img src="assets/icons/aside-section/dashboard.png" alt="">
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="orders.html">
+                                <img src="assets/icons/aside-section/cart.png" alt="">
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="menu.html">
+                                <img src="assets/icons/aside-section/menu.png" alt="">
+                                <span>Menu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="customers.html">
+                                <img src="assets/icons/aside-section/customers.png" alt="">
+                                <span>Customers</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content customers-page">
+                <section class="dashboard-intro">
+                    <div class="intro-info">
+                        <h1>Customers</h1>
+                        <p>View and manage everyone who orders from FoodFlow Bistro.</p>
+                    </div>
+                    <div class="new-order-button">
+                        <button type="button" id="open-add-customer">
+                            + Add Customer
+                        </button>
+                    </div>
+                </section>
+
+                <section class="summary-section">
+                    <div class="summary-cards">
+
+                        <div class="summary-card">
+                            <img src="assets/icons/quick-actions-section/customers.png" alt="Total Customers">
+                            <div class="summary-card-information">
+                                <h3>Total Customers</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">have ordered</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-total-orders.png" alt="">
+                        </div>
+
+                        <div class="summary-card">
+                            <img src="assets/icons/summary-section/total-revenue.png" alt="Customer Revenue">
+                            <div class="summary-card-information">
+                                <h3>Customer Revenue</h3>
+                                <p class="summary-value">Rs. 0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">avg per customer</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-total-revenue.png" alt="">
+                        </div>
+
+                        <div class="summary-card">
+                            <img src="assets/icons/summary-section/pending-orders.png" alt="New Customers">
+                            <div class="summary-card-information">
+                                <h3>New Customers</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">no orders yet</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-pending-orders.png" alt="">
+                        </div>
+
+                        <div class="summary-card">
+                            <img src="assets/icons/summary-section/completed-orders.png" alt="Loyal Customers">
+                            <div class="summary-card-information">
+                                <h3>Loyal Customers</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">3+ orders</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-completed-orders.png" alt="">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="table-card">
+                    <div class="table-card-header">
+                        <h2>All Customers</h2>
+                        <div class="table-filters">
+                            <div class="search-bar">
+                                <img src="assets/icons/searchbar.png" alt="">
+                                <input
+                                    type="text"
+                                    name="customer-search"
+                                    id="customer-searchbar"
+                                    placeholder="Search by name, phone or email"
+                                >
+                            </div>
+                            <select name="customer-type-filter" id="customer-type-filter">
+                                <option value="all">All Customers</option>
+                                <option value="New">New</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Loyal">Loyal</option>
+                            </select>
+                            <select name="customer-sort" id="customer-sort">
+                                <option value="default">Sort by</option>
+                                <option value="name">Name (A - Z)</option>
+                                <option value="orders">Most Orders</option>
+                                <option value="spent">Highest Spent</option>
+                                <option value="recent">Recently Added</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="customers-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Phone</th>
+                                    <th>Orders</th>
+                                    <th>Total Spent</th>
+                                    <th>Last Order</th>
+                                    <th>Type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="table-footer-text" id="customer-count-text"></p>
+                </section>
+
+                <div class="add-customer-modal-overlay" id="add-customer-modal-overlay" hidden>
+                    <div class="add-customer-card">
+                        <div class="add-customer-header">
+                            <div class="left-section">
+                                <h2>Add New Customer</h2>
+                                <p>Add a new customer to your restaurant</p>
+                            </div>
+                            <div class="right-section">
+                                <button type="button" class="close-add-customer" aria-label="Close modal">
+                                    <img src="assets/icons/close.png" alt="Close modal">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="add-customer-body">
+                            <div class="customer-name">
+                                <label for="new-customer-name">Customer Name</label>
+                                <input type="text" name="new-customer-name" id="new-customer-name" placeholder="Enter customer name">
+                            </div>
+                            <div class="customer-phone">
+                                <label for="customer-phone">Phone Number</label>
+                                <input type="tel" name="customer-phone" id="customer-phone" placeholder="Enter phone number" maxlength="10">
+                            </div>
+                            <div class="customer-email">
+                                <label for="customer-email">Email (Optional)</label>
+                                <input type="email" name="customer-email" id="customer-email" placeholder="Enter email address">
+                            </div>
+                        </div>
+
+                        <div class="add-customer-footer">
+                            <button type="button" class="cancel-add-customer">Cancel</button>
+                            <button type="button" class="add-customer-button">Add Customer</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

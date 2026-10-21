@@ -1,4 +1,132 @@
-//ALl Calculations Rquired : 
+//Helpers
+function formatPrice(amount){
+    return `Rs. ${Number(amount).toLocaleString("en-IN")}`;
+}
+
+function escapeHTML(text){
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function getTotalItemQuantity(order){
+    if(Array.isArray(order.items)){
+        return order.items.reduce((total, item) => total + item.quantity, 0);
+    }
+
+    return order.items;
+}
+
+function getSortedOrders(){
+    return [...orders].sort((a, b) => b.id - a.id);
+}
+
+function getNextId(data, startId){
+    return data.length ? Math.max(...data.map(item => item.id)) + 1 : startId;
+}
+
+function getPercent(value, total){
+    if(!total){
+        return 0;
+    }
+
+    return (value / total) * 100;
+}
+
+function getInitials(name){
+    return name
+        .trim()
+        .split(" ")
+        .filter(word => word)
+        .slice(0, 2)
+        .map(word => word[0].toUpperCase())
+        .join("");
+}
+
+function formatDateTime(date){
+    if(!date){
+        return "-";
+    }
+
+    return new Date(date).toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+function showToast(message){
+    let toast = document.querySelector(".toast");
+
+    if(!toast){
+        toast = document.createElement("div");
+        toast.className = "toast";
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(function(){
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+function showFieldError(input){
+    input.classList.add("input-error");
+    input.focus();
+}
+
+function clearFieldError(event){
+    if(event.target.classList && event.target.classList.contains("input-error")){
+        event.target.classList.remove("input-error");
+    }
+}
+
+document.addEventListener("input", clearFieldError);
+document.addEventListener("change", clearFieldError);
+
+function getAllCategories(){
+    const categories = [...menuCategories];
+
+    menuItems.forEach(function(item){
+        if(!categories.includes(item.category)){
+            categories.push(item.category);
+        }
+    });
+
+    return categories;
+}
+
+function getMenuItemStats(){
+    const itemStats = {};
+
+    orders.forEach(function(order){
+        if(order.status === "Cancelled" || !Array.isArray(order.items)){
+            return;
+        }
+
+        order.items.forEach(function(item){
+            if(!itemStats[item.id]){
+                itemStats[item.id] = {
+                    name: item.name,
+                    orders: 0,
+                    revenue: 0
+                };
+            }
+
+            itemStats[item.id].orders += item.quantity;
+            itemStats[item.id].revenue += item.price * item.quantity;
+        });
+    });
+
+    return itemStats;
+}
+
+//ALl Calculations Rquired :
 function completeStats(){
     const pendingOrders = orders.filter(order => order.status === "Pending").length;
     const preparingOrders = orders.filter(order => order.status === "Preparing").length;
@@ -6,9 +134,14 @@ function completeStats(){
     const completedOrders = orders.filter(order => order.status === "Completed").length;
     const cancelledOrders = orders.filter(order => order.status === "Cancelled").length;
 
-    const totalRevenue = orders.reduce((total, order) => total + order.amount, 0);
+    const validOrders = orders.filter(order => order.status !== "Cancelled");
+    const totalRevenue = validOrders.reduce((total, order) => total + order.amount, 0);
     const totalOrders = orders.length;
 
+    const today = new Date().toDateString();
+    const todayOrders = orders.filter(order => order.createdAt && new Date(order.createdAt).toDateString() === today).length;
+
+    const averageOrderValue = validOrders.length ? Math.round(totalRevenue / validOrders.length) : 0;
 
     return{
         pendingOrders,
@@ -17,20 +150,32 @@ function completeStats(){
         completedOrders,
         cancelledOrders,
         totalRevenue,
-        totalOrders
+        totalOrders,
+        todayOrders,
+        averageOrderValue
     }
 }
 
-const orderStats = completeStats();
-
 //Dashboard
-//Recent Orders Table : Dashboard
-const recentOrdersTable =
-    document.querySelector(".recent-orders-section tbody");
+//Greeting : Dashboard
+const greetingText = document.querySelector("#greeting-text");
 
-if(recentOrdersTable){
-    renderRecentOrdersTable(orders);
+if(greetingText){
+    const currentHour = new Date().getHours();
+    let greeting = "Good evening";
+
+    if(currentHour < 12){
+        greeting = "Good morning";
+    }
+    else if(currentHour < 17){
+        greeting = "Good afternoon";
+    }
+
+    greetingText.textContent = `${greeting}, Parth!`;
 }
+
+//Recent Orders Table : Dashboard
+const recentOrdersTable = document.querySelector(".recent-orders-section tbody");
 
 function renderRecentOrdersTable(data) {
     if (!recentOrdersTable) {
@@ -39,19 +184,17 @@ function renderRecentOrdersTable(data) {
 
     recentOrdersTable.innerHTML = "";
 
-    for (let i = 0; i < data.length; i++) {
-        const totalItemQuantity = Array.isArray(data[i].items)
-            ? data[i].items.reduce(
-                (total, item) => total + item.quantity,
-                0
-            )
-            : data[i].items;
+    if(data.length === 0){
+        recentOrdersTable.innerHTML = `<tr><td colspan="6" class="empty-row">No orders yet</td></tr>`;
+        return;
+    }
 
+    for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-            <td>${data[i].id}</td>
-            <td>${data[i].customer}</td>
-            <td>${totalItemQuantity} Items</td>
-            <td>Rs. ${data[i].amount}</td>
+            <td>#${data[i].id}</td>
+            <td>${escapeHTML(data[i].customer)}</td>
+            <td>${getTotalItemQuantity(data[i])} Items</td>
+            <td>${formatPrice(data[i].amount)}</td>
             <td>
                 <span class="status-badge ${data[i].status.toLowerCase()}">
                     ${data[i].status}
@@ -75,23 +218,45 @@ function renderRecentOrdersTable(data) {
 //Popular Menu Items Table : Dashboard
 const popularMenuItemsTable = document.querySelector(".popular-menu-section tbody");
 
-if(popularMenuItemsTable){
-    renderPopularMenuItemsTable(popularMenuItems);
+function getPopularMenuItems(){
+    const itemStats = getMenuItemStats();
+
+    return Object.keys(itemStats)
+        .map(function(itemId){
+            const menuItem = menuItems.find(item => item.id === Number(itemId));
+
+            return {
+                item: menuItem ? menuItem.name : itemStats[itemId].name,
+                category: menuItem ? menuItem.category : "-",
+                orders: itemStats[itemId].orders,
+                revenue: itemStats[itemId].revenue
+            }
+        })
+        .sort((a, b) => b.orders - a.orders)
+        .slice(0, 5);
 }
 
 function renderPopularMenuItemsTable(data){
+    if(!popularMenuItemsTable){
+        return;
+    }
 
     popularMenuItemsTable.innerHTML = "";
 
+    if(data.length === 0){
+        popularMenuItemsTable.innerHTML = `<tr><td colspan="5" class="empty-row">No items ordered yet</td></tr>`;
+        return;
+    }
+
     for(let i = 0; i < data.length; i++){
         const row = `<tr>
-                        <td>${data[i].rank}</td>
-                        <td>${data[i].item}</td>
-                        <td>${data[i].category}</td>
+                        <td>${i + 1}</td>
+                        <td>${escapeHTML(data[i].item)}</td>
+                        <td>${escapeHTML(data[i].category)}</td>
                         <td>${data[i].orders}</td>
-                        <td>${data[i].revenue}</td> 
+                        <td>${formatPrice(data[i].revenue)}</td>
                     </tr>`
-        
+
         popularMenuItemsTable.innerHTML += row;
     }
 }
@@ -99,17 +264,54 @@ function renderPopularMenuItemsTable(data){
 //Summary Cards Section : Dashboard
 const summaryCardsDashboardPage = document.querySelectorAll(".dashboard-page .summary-card");
 
-const dashboardStats = [
-    orderStats.totalOrders,
-    orderStats.totalRevenue,
-    orderStats.pendingOrders,
-    orderStats.completedOrders
-];
+function renderDashboardSummary(){
+    if(summaryCardsDashboardPage.length === 0){
+        return;
+    }
 
-if(summaryCardsDashboardPage.length > 0){
+    const orderStats = completeStats();
+
+    const dashboardStats = [
+        orderStats.totalOrders,
+        formatPrice(orderStats.totalRevenue),
+        orderStats.pendingOrders,
+        orderStats.completedOrders
+    ];
+
+    const dashboardComparisons = [
+        orderStats.todayOrders,
+        formatPrice(orderStats.averageOrderValue),
+        `${getPercent(orderStats.pendingOrders, orderStats.totalOrders).toFixed(0)}%`,
+        `${getPercent(orderStats.completedOrders, orderStats.totalOrders).toFixed(0)}%`
+    ];
+
     dashboardStats.forEach((stat, index) => {
         summaryCardsDashboardPage[index].querySelector(".summary-value").textContent = stat;
+        summaryCardsDashboardPage[index].querySelector(".percent-of-total").textContent = dashboardComparisons[index];
     });
+}
+
+//Order-Status Section : Dashboard Page
+const orderStatusSectionCards = document.querySelectorAll(".order-section-card");
+
+function renderOrderStatusSection(){
+    if(orderStatusSectionCards.length === 0){
+        return;
+    }
+
+    const orderStats = completeStats();
+
+    const orderStatusSectionValues = [
+        orderStats.pendingOrders,
+        orderStats.preparingOrders,
+        orderStats.completedOrders,
+        orderStats.cancelledOrders,
+        orderStats.readyOrders
+    ];
+
+    orderStatusSectionCards.forEach((card, index) => {
+        card.querySelector(".status-count").textContent = orderStatusSectionValues[index];
+    })
 }
 
 //Quick Actions Section : Add New Order Modal
@@ -127,19 +329,45 @@ const inputNewOrderSpecialInstructions = document.querySelector("#special-instru
 const createOrderButton = document.querySelector(".create-new-order");
 const selectedItemsList = document.querySelector(".selected-items-list");
 const newOrderTotalDisplay = document.querySelector("#new-order-total");
+const customerList = document.querySelector("#customer-list");
 
 const selectedOrderItems = [];
+
+function fillNewOrderOptions(){
+    if(inputNewOrderMenuItem){
+        inputNewOrderMenuItem.innerHTML = `<option value="" selected disabled>Select Menu Item</option>`;
+
+        menuItems
+            .filter(item => item.availability !== "Unavailable")
+            .forEach(function(item){
+                inputNewOrderMenuItem.innerHTML += `<option value="${item.id}">${escapeHTML(item.name)} - ${formatPrice(item.price)}</option>`;
+            });
+    }
+
+    if(customerList){
+        customerList.innerHTML = "";
+
+        customers.forEach(function(customer){
+            customerList.innerHTML += `<option value="${escapeHTML(customer.name)}"></option>`;
+        });
+    }
+}
 
 function updateNewOrderTotal(){
     const totalAmount = selectedOrderItems.reduce(function(total, item){
         return total + item.price * item.quantity;
     }, 0);
 
-    newOrderTotalDisplay.textContent = `Rs. ${totalAmount}`;
+    newOrderTotalDisplay.textContent = formatPrice(totalAmount);
 }
 
 function renderSelectedItems(){
     selectedItemsList.innerHTML = "";
+
+    if(selectedOrderItems.length === 0){
+        selectedItemsList.innerHTML = `<p class="no-items-text">No items added yet</p>`;
+        return;
+    }
 
     selectedOrderItems.forEach(function(item, index){
         const selectedItem = document.createElement("div");
@@ -147,17 +375,27 @@ function renderSelectedItems(){
 
         selectedItem.innerHTML = `
             <div class="selected-item-info">
-                <p>${item.name}</p>
+                <p>${escapeHTML(item.name)}</p>
                 <span>Rs. ${item.price} × ${item.quantity}</span>
             </div>
             <div class="selected-item-actions">
-                <span class="selected-item-total">Rs. ${item.price * item.quantity}</span>
-                <button type="button" class="remove-item-button" data-index="${index}" aria-label="Remove ${item.name}">×</button>
+                <span class="selected-item-total">${formatPrice(item.price * item.quantity)}</span>
+                <button type="button" class="remove-item-button" data-index="${index}" aria-label="Remove ${escapeHTML(item.name)}">×</button>
             </div>
         `;
 
         selectedItemsList.appendChild(selectedItem);
     });
+}
+
+function resetNewOrderForm(){
+    inputNewOrderCustomerName.value = "";
+    inputNewOrderCustomerOrderType.value = "dine-in";
+    inputNewOrderItemQuantity.value = 1;
+    inputNewOrderSpecialInstructions.value = "";
+    selectedOrderItems.length = 0;
+    renderSelectedItems();
+    updateNewOrderTotal();
 }
 
 if(buttonNewOrderAddItem){
@@ -167,18 +405,33 @@ if(buttonNewOrderAddItem){
 
         const selectedMenuItem = menuItems.find(menuItem => menuItem.id === Number(newOrderMenuItem));
 
-        if(!selectedMenuItem || newOrderItemQuantity < 1 || !Number.isInteger(newOrderItemQuantity)){
+        if(!selectedMenuItem){
+            showFieldError(inputNewOrderMenuItem);
             return;
         }
 
-        const selectedItemData = {
-            id: selectedMenuItem.id,
-            name: selectedMenuItem.name,
-            price: selectedMenuItem.price,
-            quantity: newOrderItemQuantity
-        };
+        if(newOrderItemQuantity < 1 || !Number.isInteger(newOrderItemQuantity)){
+            showFieldError(inputNewOrderItemQuantity);
+            return;
+        }
 
-        selectedOrderItems.push(selectedItemData);
+        const alreadyAdded = selectedOrderItems.find(item => item.id === selectedMenuItem.id);
+
+        if(alreadyAdded){
+            alreadyAdded.quantity += newOrderItemQuantity;
+        }
+        else{
+            selectedOrderItems.push({
+                id: selectedMenuItem.id,
+                name: selectedMenuItem.name,
+                price: selectedMenuItem.price,
+                quantity: newOrderItemQuantity
+            });
+        }
+
+        inputNewOrderMenuItem.value = "";
+        inputNewOrderItemQuantity.value = 1;
+
         updateNewOrderTotal();
         renderSelectedItems();
     });
@@ -197,11 +450,17 @@ if(selectedItemsList){
 
 if(createOrderButton){
     createOrderButton.addEventListener("click", function(){
-        const newOrderCustomerName = inputNewOrderCustomerName.value;
+        const newOrderCustomerName = inputNewOrderCustomerName.value.trim();
         const newOrderCustomerOrderType = inputNewOrderCustomerOrderType.value;
-        const newOrderSpecialInstructions = inputNewOrderSpecialInstructions.value;
+        const newOrderSpecialInstructions = inputNewOrderSpecialInstructions.value.trim();
 
-        if(!newOrderCustomerName.trim() || selectedOrderItems.length === 0){
+        if(!newOrderCustomerName){
+            showFieldError(inputNewOrderCustomerName);
+            return;
+        }
+
+        if(selectedOrderItems.length === 0){
+            showFieldError(inputNewOrderMenuItem);
             return;
         }
 
@@ -210,30 +469,37 @@ if(createOrderButton){
         }, 0);
 
         const orderData = {
-            id: orders.length ? Math.max(...orders.map(order => order.id)) + 1 : 1,
+            id: getNextId(orders, 1001),
             customer: newOrderCustomerName,
             orderType: newOrderCustomerOrderType,
             items: selectedOrderItems.map(item => ({...item})),
             amount: newOrderTotalAmount,
             specialInstructions: newOrderSpecialInstructions,
-            status: "Pending"
+            status: "Pending",
+            createdAt: new Date().toISOString()
         };
 
         orders.push(orderData);
-        renderRecentOrdersTable(orders);
-        selectedOrderItems.length = 0;
-        renderSelectedItems();
+        saveOrders();
+
+        resetNewOrderForm();
         closeNewOrderModal();
-        updateNewOrderTotal();
+        refreshPage();
+        showToast(`Order #${orderData.id} created`);
     });
 }
 
 function closeNewOrderModal(){
     newOrderModalOverlay.hidden = true;
+    document.body.classList.remove("modal-open");
 }
 
 function openNewOrderModal(){
+    fillNewOrderOptions();
+    renderSelectedItems();
     newOrderModalOverlay.hidden = false;
+    document.body.classList.add("modal-open");
+    inputNewOrderCustomerName.focus();
 }
 
 if(openNewOrderModalButton){
@@ -250,6 +516,7 @@ if(closeNewOrderModalButton){
 
 if(cancelNewOrderModalButton){
     cancelNewOrderModalButton.addEventListener("click", function(){
+        resetNewOrderForm();
         closeNewOrderModal();
     });
 }
@@ -262,54 +529,148 @@ if(newOrderModalOverlay){
     });
 }
 
-document.addEventListener("keydown", function(event){
-    if(newOrderModalOverlay && event.key === "Escape"){
-        closeNewOrderModal();
-    }
-});
 
-
-
-
-//Quick Actions Section : Add New Menu Item Modal
-const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-action");
+//Quick Actions Section : Add New Menu Item Modal (also used for Edit on Menu Page)
+const openAddMenuItemModalButton = document.querySelector("#add-menu-quick-action, #open-add-menu-item");
 const addMenuItemOverlay = document.querySelector("#add-menu-modal-overlay");
 const closeAddMenuItemModalButton = document.querySelector(".close-add-menu");
 const cancelAddmenuItemModalButton = document.querySelector(".cancel-add-menu");
+const addMenuModalTitle = document.querySelector(".add-menu-header h2");
+const addMenuModalText = document.querySelector(".add-menu-header p");
 
 const menuItemName = document.querySelector("#item-name");
 const menuItemCategory = document.querySelector("#item-category");
 const menuItemPrice = document.querySelector("#item-price");
+const menuItemAvailability = document.querySelector("#item-availability");
 const menuItemDescription = document.querySelector("#item-description");
 const addMenuItemButton = document.querySelector(".add-menu-item");
 
+let editingMenuItemId = null;
+
+function fillCategoryOptions(selectElement, firstOption){
+    if(!selectElement){
+        return;
+    }
+
+    selectElement.innerHTML = firstOption;
+
+    getAllCategories().forEach(function(category){
+        selectElement.innerHTML += `<option value="${escapeHTML(category)}">${escapeHTML(category)}</option>`;
+    });
+}
+
+function resetAddMenuForm(){
+    fillCategoryOptions(menuItemCategory, `<option value="" selected disabled>Select category</option>`);
+
+    menuItemName.value = "";
+    menuItemPrice.value = "";
+    menuItemDescription.value = "";
+
+    if(menuItemAvailability){
+        menuItemAvailability.value = "Available";
+    }
+}
+
 if(addMenuItemButton){
     addMenuItemButton.addEventListener("click", function(){
-        const itemName = menuItemName.value;
+        const itemName = menuItemName.value.trim();
         const itemCategory = menuItemCategory.value;
         const itemPrice = Number(menuItemPrice.value);
-        const itemDescription = menuItemDescription.value;
+        const itemDescription = menuItemDescription.value.trim();
+        const itemAvailability = menuItemAvailability ? menuItemAvailability.value : "Available";
 
-        const newMenuItemData = {
-            id : menuItems.length+1,
-            name : itemName,
-            category : itemCategory,
-            price : itemPrice,
-            available: true
+        const sameNameItem = menuItems.find(item => item.name.toLowerCase() === itemName.toLowerCase() && item.id !== editingMenuItemId);
+
+        if(!itemName || sameNameItem){
+            showFieldError(menuItemName);
+            return;
         }
 
-        menuItems.push(newMenuItemData);
+        if(!itemCategory){
+            showFieldError(menuItemCategory);
+            return;
+        }
 
+        if(!itemPrice || itemPrice <= 0){
+            showFieldError(menuItemPrice);
+            return;
+        }
+
+        if(editingMenuItemId !== null){
+            const selectedMenuItem = menuItems.find(item => item.id === editingMenuItemId);
+
+            selectedMenuItem.name = itemName;
+            selectedMenuItem.category = itemCategory;
+            selectedMenuItem.price = itemPrice;
+            selectedMenuItem.description = itemDescription;
+            selectedMenuItem.availability = itemAvailability;
+
+            showToast(`${itemName} updated`);
+        }
+        else{
+            const newMenuItemData = {
+                id : getNextId(menuItems, 101),
+                name : itemName,
+                category : itemCategory,
+                price : itemPrice,
+                description : itemDescription,
+                availability: itemAvailability
+            }
+
+            menuItems.push(newMenuItemData);
+            showToast(`${itemName} added to menu`);
+        }
+
+        saveMenuItems();
         closeAddMenuModal();
+        refreshPage();
     })
 }
 
 function openAddMenuModal(){
+    editingMenuItemId = null;
+    resetAddMenuForm();
+
+    addMenuModalTitle.textContent = "Add New Menu Item";
+    addMenuModalText.textContent = "Add a new menu item to your restaurant menu";
+    addMenuItemButton.textContent = "Add Item";
+
     addMenuItemOverlay.hidden = false;
+    document.body.classList.add("modal-open");
+    menuItemName.focus();
+}
+
+function openEditMenuModal(itemId){
+    const selectedMenuItem = menuItems.find(item => item.id === Number(itemId));
+
+    if(!selectedMenuItem || !addMenuItemOverlay){
+        return;
+    }
+
+    resetAddMenuForm();
+    editingMenuItemId = selectedMenuItem.id;
+
+    menuItemName.value = selectedMenuItem.name;
+    menuItemCategory.value = selectedMenuItem.category;
+    menuItemPrice.value = selectedMenuItem.price;
+    menuItemDescription.value = selectedMenuItem.description || "";
+
+    if(menuItemAvailability){
+        menuItemAvailability.value = selectedMenuItem.availability;
+    }
+
+    addMenuModalTitle.textContent = "Edit Menu Item";
+    addMenuModalText.textContent = "Update the details of this menu item";
+    addMenuItemButton.textContent = "Save Changes";
+
+    addMenuItemOverlay.hidden = false;
+    document.body.classList.add("modal-open");
 }
 
 function closeAddMenuModal(){
     addMenuItemOverlay.hidden = true;
+    editingMenuItemId = null;
+    document.body.classList.remove("modal-open");
 }
 
 if(openAddMenuItemModalButton){
@@ -338,53 +699,126 @@ if(addMenuItemOverlay){
     })
 }
 
-if(document){
-    document.addEventListener("keydown", function(event){
-        if(addMenuItemOverlay && event.key === "Escape"){
-            closeAddMenuModal();
-        }
-    })
-}
 
-
-//Quick Actions Section : Add New Customer
+//Quick Actions Section : Add New Customer (also used for Edit on Customers Page)
 const addCustomerModalOverlay = document.querySelector("#add-customer-modal-overlay");
-const openAddCustomerModalButton = document.querySelector("#add-customer-quick-action");
+const openAddCustomerModalButton = document.querySelector("#add-customer-quick-action, #open-add-customer");
 const closeAddCustomerModalButton = document.querySelector(".close-add-customer");
 const cancelAddCustomerModalButton = document.querySelector(".cancel-add-customer");
+const addCustomerModalTitle = document.querySelector(".add-customer-header h2");
+const addCustomerModalText = document.querySelector(".add-customer-header p");
 
 const inputNewCustomerName = document.querySelector("#new-customer-name");
 const inputNewCustomerPhone = document.querySelector("#customer-phone");
 const inputNewCustomerEmail = document.querySelector("#customer-email");
 const addCustomerModalButton = document.querySelector(".add-customer-button");
 
+let editingCustomerId = null;
 
 if(addCustomerModalButton){
     addCustomerModalButton.addEventListener("click", function(){
-        const customerName = inputNewCustomerName.value;
-        const customerPhone = inputNewCustomerPhone.value;
-        const customerEmail = inputNewCustomerEmail.value;
+        const customerName = inputNewCustomerName.value.trim();
+        const customerPhone = inputNewCustomerPhone.value.trim();
+        const customerEmail = inputNewCustomerEmail.value.trim();
 
-        const customersData = {
-            id: customers.length + 1,
-            name: customerName,
-            phone: customerPhone,
-            email: customerEmail
+        const samePhoneCustomer = customers.find(customer => customer.phone === customerPhone && customer.id !== editingCustomerId);
+
+        if(!customerName){
+            showFieldError(inputNewCustomerName);
+            return;
         }
 
-        customers.push(customersData);
+        if(!/^[0-9]{10}$/.test(customerPhone) || samePhoneCustomer){
+            showFieldError(inputNewCustomerPhone);
+            return;
+        }
 
+        if(customerEmail && !inputNewCustomerEmail.checkValidity()){
+            showFieldError(inputNewCustomerEmail);
+            return;
+        }
 
+        if(editingCustomerId !== null){
+            const selectedCustomer = customers.find(customer => customer.id === editingCustomerId);
+            const oldName = selectedCustomer.name;
+
+            selectedCustomer.name = customerName;
+            selectedCustomer.phone = customerPhone;
+            selectedCustomer.email = customerEmail;
+
+            if(oldName !== customerName){
+                orders.forEach(function(order){
+                    if(order.customer === oldName){
+                        order.customer = customerName;
+                    }
+                });
+                saveOrders();
+            }
+
+            showToast(`${customerName} updated`);
+        }
+        else{
+            const customersData = {
+                id: getNextId(customers, 1),
+                name: customerName,
+                phone: customerPhone,
+                email: customerEmail
+            }
+
+            customers.push(customersData);
+            showToast(`${customerName} added`);
+        }
+
+        saveCustomers();
         closeAddCustomerModal();
+        refreshPage();
     });
 }
 
+function resetAddCustomerForm(){
+    inputNewCustomerName.value = "";
+    inputNewCustomerPhone.value = "";
+    inputNewCustomerEmail.value = "";
+}
+
 function openAddCustomerModal(){
+    editingCustomerId = null;
+    resetAddCustomerForm();
+
+    addCustomerModalTitle.textContent = "Add New Customer";
+    addCustomerModalText.textContent = "Add a new customer to your restaurant";
+    addCustomerModalButton.textContent = "Add Customer";
+
     addCustomerModalOverlay.hidden = false;
+    document.body.classList.add("modal-open");
+    inputNewCustomerName.focus();
+}
+
+function openEditCustomerModal(customerId){
+    const selectedCustomer = customers.find(customer => customer.id === Number(customerId));
+
+    if(!selectedCustomer || !addCustomerModalOverlay){
+        return;
+    }
+
+    editingCustomerId = selectedCustomer.id;
+
+    inputNewCustomerName.value = selectedCustomer.name;
+    inputNewCustomerPhone.value = selectedCustomer.phone;
+    inputNewCustomerEmail.value = selectedCustomer.email || "";
+
+    addCustomerModalTitle.textContent = "Edit Customer";
+    addCustomerModalText.textContent = "Update the customer details";
+    addCustomerModalButton.textContent = "Save Changes";
+
+    addCustomerModalOverlay.hidden = false;
+    document.body.classList.add("modal-open");
 }
 
 function closeAddCustomerModal(){
     addCustomerModalOverlay.hidden = true;
+    editingCustomerId = null;
+    document.body.classList.remove("modal-open");
 }
 
 if(openAddCustomerModalButton){
@@ -413,12 +847,6 @@ if(addCustomerModalOverlay){
     })
 }
 
-document.addEventListener("keydown", function(event){
-    if(addCustomerModalOverlay && event.key === "Escape"){
-        closeAddCustomerModal();
-    }
-})
-
 //Quick Actions Section : View Orders Button
 const viewAllOrdersButton = document.querySelector("#view-all-order-quick-action");
 
@@ -429,97 +857,50 @@ if(viewAllOrdersButton){
 }
 
 
-// Add New Order Modal Functionality
-const openOrderModalButton = document.getElementById("open-order-modal");
-const orderModal = document.getElementById("order-modal");
-const closeOrderModalButton = document.getElementById("close-order-modal");
-const cancelOrderModalButton = document.getElementById("cancel-order-modal");
-
-function closeOrderModal(){
-    orderModal.hidden = true;
-}
-
-function openOrderModal(){
-    orderModal.hidden = false;
-}
-
-if(openOrderModalButton){
-    openOrderModalButton.addEventListener("click", function(){
-        orderModal.hidden = false;
-    });
-}
-
-if(closeOrderModalButton){
-    closeOrderModalButton.addEventListener("click", function(){
-        closeOrderModal();
-    });
-}
-
-if(cancelOrderModalButton){
-    cancelOrderModalButton.addEventListener("click", function(){
-        closeOrderModal();
-    });
-}
-
-if(orderModal){
-    orderModal.addEventListener("click", function(event){
-        if(event.target === orderModal){
-            closeOrderModal();
-        }
-    });
-}
-
-
-//Order-Status Section : Dashboard Page
-const orderStatusSectionCards = document.querySelectorAll(".order-section-card");
-
-const orderStatusSectionValues = [
-    orderStats.pendingOrders,
-    orderStats.preparingOrders,
-    orderStats.readyOrders,
-    orderStats.completedOrders,
-    orderStats.cancelledOrders
-];
-
-if(orderStatusSectionCards.length > 0){
-    orderStatusSectionCards.forEach((card, index) => {
-        card.querySelector(".status-count").textContent = orderStatusSectionValues[index];
-    })
-}
-
 //Orders Page
 //All Orders Table
 const allOrdersTable = document.querySelector(".all-orders tbody");
+const orderSearchInput = document.querySelector("#order-searchbar");
+const orderStatusFilter = document.querySelector("#order-status");
+const orderCountText = document.querySelector("#order-count-text");
 
-if(allOrdersTable){
-    renderAllOrdersTable(orders);
+function getFilteredOrders(){
+    const searchText = orderSearchInput.value.trim().toLowerCase().replace("#", "");
+    const statusValue = orderStatusFilter.value;
+
+    return getSortedOrders().filter(function(order){
+        const matchesSearch = String(order.id).includes(searchText) || order.customer.toLowerCase().includes(searchText);
+        const matchesStatus = statusValue === "all" || order.status.toLowerCase() === statusValue;
+
+        return matchesSearch && matchesStatus;
+    });
 }
 
-function renderAllOrdersTable(data) {
+function renderAllOrdersTable() {
     if (!allOrdersTable) {
         return;
     }
 
+    const data = getFilteredOrders();
+
     allOrdersTable.innerHTML = "";
 
-    for (let i = 0; i < data.length; i++) {
-        const totalItemQuantity = Array.isArray(data[i].items)
-            ? data[i].items.reduce(
-                (total, item) => total + item.quantity,
-                0
-            )
-            : data[i].items;
+    if(data.length === 0){
+        allOrdersTable.innerHTML = `<tr><td colspan="7" class="empty-row">No orders found</td></tr>`;
+    }
 
+    for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-            <td>${data[i].id}</td>
-            <td>${data[i].customer}</td>
-            <td>${totalItemQuantity} Items</td>
-            <td>Rs. ${data[i].amount}</td>
+            <td>#${data[i].id}</td>
+            <td>${escapeHTML(data[i].customer)}</td>
+            <td>${getTotalItemQuantity(data[i])} Items</td>
+            <td>${formatPrice(data[i].amount)}</td>
             <td>
                 <span class="status-badge ${data[i].status.toLowerCase()}">
                     ${data[i].status}
                 </span>
             </td>
+            <td class="date-cell">${formatDateTime(data[i].createdAt)}</td>
             <td>
                 <button
                     type="button"
@@ -533,12 +914,27 @@ function renderAllOrdersTable(data) {
 
         allOrdersTable.innerHTML += row;
     }
+
+    orderCountText.textContent = `Showing ${data.length} of ${orders.length} orders`;
+}
+
+if(orderSearchInput){
+    orderSearchInput.addEventListener("input", renderAllOrdersTable);
+}
+
+if(orderStatusFilter){
+    orderStatusFilter.addEventListener("change", renderAllOrdersTable);
 }
 
 //Summary Cards : Orders Page
 const summaryCardsOrdersPage = document.querySelectorAll(".orders-page .summary-card");
 
-if(summaryCardsOrdersPage.length > 0){
+function renderOrdersSummary(){
+    if(summaryCardsOrdersPage.length === 0){
+        return;
+    }
+
+    const orderStats = completeStats();
 
     const orderStatusCounts = [
         orderStats.totalOrders,
@@ -547,15 +943,11 @@ if(summaryCardsOrdersPage.length > 0){
         orderStats.completedOrders
     ]
 
-    const percentPendingOrders = ((orderStats.pendingOrders/orderStats.totalOrders) * 100);
-    const percentPreparingOrders = ((orderStats.preparingOrders/orderStats.totalOrders) * 100);
-    const percentCompletedOrders = ((orderStats.completedOrders/orderStats.totalOrders) * 100);
-
     const orderStatusPercentages = [
-        100,
-        percentPreparingOrders,
-        percentPendingOrders,
-        percentCompletedOrders
+        orderStats.totalOrders ? 100 : 0,
+        getPercent(orderStats.preparingOrders, orderStats.totalOrders),
+        getPercent(orderStats.pendingOrders, orderStats.totalOrders),
+        getPercent(orderStats.completedOrders, orderStats.totalOrders)
     ];
 
     orderStatusCounts.forEach((count, index) => {
@@ -565,16 +957,11 @@ if(summaryCardsOrdersPage.length > 0){
 }
 
 //Edit Order Modal : Dashboard Page and Orders Page
-
-const editOrderModalOverlay = document.querySelector(
-    "#edit-order-modal-overlay"
-);
+const editOrderModalOverlay = document.querySelector("#edit-order-modal-overlay");
 
 const editOrderCustomer = document.querySelector("#edit-order-customer");
 const editOrderStatus = document.querySelector("#edit-order-status");
-const editOrderInstructions = document.querySelector(
-    "#edit-order-instructions"
-);
+const editOrderInstructions = document.querySelector("#edit-order-instructions");
 
 const closeEditOrderButton = document.querySelector(".close-edit-order");
 const cancelEditOrderButton = document.querySelector(".cancel-edit-order");
@@ -584,9 +971,7 @@ const deleteEditOrderButton = document.querySelector(".delete-edit-order");
 let selectedOrderId = null;
 
 function openEditOrderModal(orderId) {
-    const selectedOrder = orders.find(
-        order => order.id === Number(orderId)
-    );
+    const selectedOrder = orders.find(order => order.id === Number(orderId));
 
     if (!selectedOrder || !editOrderModalOverlay) {
         return;
@@ -599,6 +984,7 @@ function openEditOrderModal(orderId) {
     editOrderInstructions.value = selectedOrder.specialInstructions || "";
 
     editOrderModalOverlay.hidden = false;
+    document.body.classList.add("modal-open");
 }
 
 function closeEditOrderModal() {
@@ -608,6 +994,7 @@ function closeEditOrderModal() {
 
     editOrderModalOverlay.hidden = true;
     selectedOrderId = null;
+    document.body.classList.remove("modal-open");
 }
 
 function handleEditOrderClick(event) {
@@ -619,7 +1006,6 @@ function handleEditOrderClick(event) {
 
     openEditOrderModal(editButton.dataset.orderId);
 }
-
 
 if (recentOrdersTable) {
     recentOrdersTable.addEventListener("click", handleEditOrderClick);
@@ -633,13 +1019,12 @@ if (saveEditOrderButton) {
     saveEditOrderButton.addEventListener("click", function () {
         const customerName = editOrderCustomer.value.trim();
 
-        if (!customerName || selectedOrderId === null) {
+        if (!customerName) {
+            showFieldError(editOrderCustomer);
             return;
         }
 
-        const selectedOrder = orders.find(
-            order => order.id === selectedOrderId
-        );
+        const selectedOrder = orders.find(order => order.id === selectedOrderId);
 
         if (!selectedOrder) {
             closeEditOrderModal();
@@ -648,55 +1033,48 @@ if (saveEditOrderButton) {
 
         selectedOrder.customer = customerName;
         selectedOrder.status = editOrderStatus.value;
-        selectedOrder.specialInstructions =
-            editOrderInstructions.value.trim();
+        selectedOrder.specialInstructions = editOrderInstructions.value.trim();
 
-        // Re-render whichever tables exist on this page
-        renderRecentOrdersTable(orders);
-        renderAllOrdersTable(orders);
-
+        saveOrders();
+        showToast(`Order #${selectedOrder.id} updated`);
         closeEditOrderModal();
+        refreshPage();
     });
 }
-
 
 if (deleteEditOrderButton) {
     deleteEditOrderButton.addEventListener("click", function () {
         if (selectedOrderId === null) {
             return;
         }
-        const shouldDelete = window.confirm(
-            "Are you sure you want to delete this order?"
-        );
+
+        const shouldDelete = window.confirm("Are you sure you want to delete this order?");
+
         if (!shouldDelete) {
             return;
         }
-        const orderIndex = orders.findIndex(
-            order => order.id === selectedOrderId
-        );
-        if (orderIndex === -1) {
-            closeEditOrderModal();
-            return;
+
+        const orderIndex = orders.findIndex(order => order.id === selectedOrderId);
+
+        if (orderIndex !== -1) {
+            orders.splice(orderIndex, 1);
+            saveOrders();
+            showToast("Order deleted");
         }
-        orders.splice(orderIndex, 1);
-        renderRecentOrdersTable(orders);
-        renderAllOrdersTable(orders);
 
         closeEditOrderModal();
+        refreshPage();
     });
 }
+
 if (closeEditOrderButton) {
-    closeEditOrderButton.addEventListener(
-        "click",
-        closeEditOrderModal
-    );
+    closeEditOrderButton.addEventListener("click", closeEditOrderModal);
 }
+
 if (cancelEditOrderButton) {
-    cancelEditOrderButton.addEventListener(
-        "click",
-        closeEditOrderModal
-    );
+    cancelEditOrderButton.addEventListener("click", closeEditOrderModal);
 }
+
 if (editOrderModalOverlay) {
     editOrderModalOverlay.addEventListener("click", function (event) {
         if (event.target === editOrderModalOverlay) {
@@ -704,12 +1082,445 @@ if (editOrderModalOverlay) {
         }
     });
 }
-document.addEventListener("keydown", function (event) {
-    if (
-        editOrderModalOverlay &&
-        event.key === "Escape" &&
-        !editOrderModalOverlay.hidden
-    ) {
+
+
+//Menu Page
+const menuItemsTable = document.querySelector(".menu-items-table tbody");
+const menuTableView = document.querySelector(".menu-table-view");
+const menuCardView = document.querySelector(".menu-card-view");
+const menuSearchInput = document.querySelector("#menu-searchbar");
+const menuCategoryFilter = document.querySelector("#menu-category-filter");
+const menuAvailabilityFilter = document.querySelector("#menu-availability-filter");
+const menuSortSelect = document.querySelector("#menu-sort");
+const menuCountText = document.querySelector("#menu-count-text");
+const menuViewButtons = document.querySelectorAll(".view-button");
+const summaryCardsMenuPage = document.querySelectorAll(".menu-page .summary-card");
+
+function getCategoryColor(category){
+    return getAllCategories().indexOf(category) % 6;
+}
+
+function getAvailabilityClass(availability){
+    return availability.toLowerCase().replace(" ", "-");
+}
+
+function getFilteredMenuItems(itemStats){
+    const searchText = menuSearchInput.value.trim().toLowerCase();
+    const categoryValue = menuCategoryFilter.value;
+    const availabilityValue = menuAvailabilityFilter.value;
+    const sortValue = menuSortSelect.value;
+
+    const filteredItems = menuItems.filter(function(item){
+        const matchesSearch = item.name.toLowerCase().includes(searchText) || item.category.toLowerCase().includes(searchText);
+        const matchesCategory = categoryValue === "all" || item.category === categoryValue;
+        const matchesAvailability = availabilityValue === "all" || item.availability === availabilityValue;
+
+        return matchesSearch && matchesCategory && matchesAvailability;
+    });
+
+    const getOrders = item => itemStats[item.id] ? itemStats[item.id].orders : 0;
+
+    if(sortValue === "name"){
+        filteredItems.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    else if(sortValue === "price-low"){
+        filteredItems.sort((a, b) => a.price - b.price);
+    }
+    else if(sortValue === "price-high"){
+        filteredItems.sort((a, b) => b.price - a.price);
+    }
+    else if(sortValue === "orders"){
+        filteredItems.sort((a, b) => getOrders(b) - getOrders(a));
+    }
+
+    return filteredItems;
+}
+
+function renderMenuSummary(){
+    const totalItems = menuItems.length;
+    const availableItems = menuItems.filter(item => item.availability === "Available").length;
+    const lowStockItems = menuItems.filter(item => item.availability === "Low Stock").length;
+    const unavailableItems = menuItems.filter(item => item.availability === "Unavailable").length;
+    const usedCategories = new Set(menuItems.map(item => item.category)).size;
+
+    const menuStats = [totalItems, availableItems, lowStockItems, unavailableItems];
+    const menuComparisons = [
+        usedCategories,
+        `${getPercent(availableItems, totalItems).toFixed(0)}%`,
+        `${getPercent(lowStockItems, totalItems).toFixed(0)}%`,
+        `${getPercent(unavailableItems, totalItems).toFixed(0)}%`
+    ];
+
+    menuStats.forEach((stat, index) => {
+        summaryCardsMenuPage[index].querySelector(".summary-value").textContent = stat;
+        summaryCardsMenuPage[index].querySelector(".percent-of-total").textContent = menuComparisons[index];
+    });
+}
+
+function renderMenuPage(){
+    if(!menuItemsTable){
+        return;
+    }
+
+    renderMenuSummary();
+
+    const itemStats = getMenuItemStats();
+    const data = getFilteredMenuItems(itemStats);
+
+    menuItemsTable.innerHTML = "";
+    menuCardView.innerHTML = "";
+
+    if(data.length === 0){
+        menuItemsTable.innerHTML = `<tr><td colspan="7" class="empty-row">No menu items found</td></tr>`;
+        menuCardView.innerHTML = `<p class="empty-row">No menu items found</p>`;
+    }
+
+    for(let i = 0; i < data.length; i++){
+        const item = data[i];
+        const itemOrders = itemStats[item.id] ? itemStats[item.id].orders : 0;
+        const availabilityClass = getAvailabilityClass(item.availability);
+        const categoryClass = `category-color-${getCategoryColor(item.category)}`;
+
+        menuItemsTable.innerHTML += `<tr>
+            <td>${i + 1}</td>
+            <td>
+                <p class="item-title">${escapeHTML(item.name)}</p>
+                <span class="item-subtitle">${escapeHTML(item.description || "")}</span>
+            </td>
+            <td><span class="category-badge ${categoryClass}">${escapeHTML(item.category)}</span></td>
+            <td>${formatPrice(item.price)}</td>
+            <td><span class="availability-badge ${availabilityClass}">${item.availability}</span></td>
+            <td>${itemOrders}</td>
+            <td>
+                <div class="row-actions">
+                    <button type="button" class="edit-button" data-item-id="${item.id}">Edit</button>
+                    <button type="button" class="delete-button" data-item-id="${item.id}">Delete</button>
+                </div>
+            </td>
+        </tr>`;
+
+        menuCardView.innerHTML += `<div class="menu-card">
+            <div class="menu-card-top">
+                <span class="menu-card-letter ${categoryClass}">${escapeHTML(item.name[0].toUpperCase())}</span>
+                <span class="availability-badge ${availabilityClass}">${item.availability}</span>
+            </div>
+            <h3>${escapeHTML(item.name)}</h3>
+            <p>${escapeHTML(item.description || item.category)}</p>
+            <div class="menu-card-info">
+                <span class="category-badge ${categoryClass}">${escapeHTML(item.category)}</span>
+                <strong>${formatPrice(item.price)}</strong>
+            </div>
+            <span class="menu-card-orders">${itemOrders === 1 ? "1 order" : `${itemOrders} orders`}</span>
+            <div class="row-actions">
+                <button type="button" class="edit-button" data-item-id="${item.id}">Edit</button>
+                <button type="button" class="delete-button" data-item-id="${item.id}">Delete</button>
+            </div>
+        </div>`;
+    }
+
+    menuCountText.textContent = `Showing ${data.length} of ${menuItems.length} menu items`;
+}
+
+function handleMenuActionClick(event){
+    const editButton = event.target.closest(".edit-button");
+    const deleteButton = event.target.closest(".delete-button");
+
+    if(editButton){
+        openEditMenuModal(editButton.dataset.itemId);
+    }
+
+    if(deleteButton){
+        const itemIndex = menuItems.findIndex(item => item.id === Number(deleteButton.dataset.itemId));
+
+        if(itemIndex === -1){
+            return;
+        }
+
+        const shouldDelete = window.confirm(`Delete ${menuItems[itemIndex].name} from the menu?`);
+
+        if(!shouldDelete){
+            return;
+        }
+
+        const deletedItem = menuItems.splice(itemIndex, 1)[0];
+        saveMenuItems();
+        refreshPage();
+        showToast(`${deletedItem.name} deleted`);
+    }
+}
+
+if(menuItemsTable){
+    fillCategoryOptions(menuCategoryFilter, `<option value="all">All Categories</option>`);
+
+    menuItemsTable.addEventListener("click", handleMenuActionClick);
+    menuCardView.addEventListener("click", handleMenuActionClick);
+
+    menuSearchInput.addEventListener("input", renderMenuPage);
+    menuCategoryFilter.addEventListener("change", renderMenuPage);
+    menuAvailabilityFilter.addEventListener("change", renderMenuPage);
+    menuSortSelect.addEventListener("change", renderMenuPage);
+
+    menuViewButtons.forEach(function(button){
+        button.addEventListener("click", function(){
+            menuViewButtons.forEach(viewButton => viewButton.classList.remove("active"));
+            button.classList.add("active");
+
+            menuTableView.hidden = button.dataset.view !== "table";
+            menuCardView.hidden = button.dataset.view !== "card";
+        });
+    });
+}
+
+
+//Customers Page
+const customersTable = document.querySelector(".customers-table tbody");
+const customerSearchInput = document.querySelector("#customer-searchbar");
+const customerTypeFilter = document.querySelector("#customer-type-filter");
+const customerSortSelect = document.querySelector("#customer-sort");
+const customerCountText = document.querySelector("#customer-count-text");
+const summaryCardsCustomersPage = document.querySelectorAll(".customers-page .summary-card");
+
+function getCustomerStats(customer){
+    const customerOrders = orders.filter(order => order.customer.toLowerCase() === customer.name.toLowerCase());
+    const totalSpent = customerOrders
+        .filter(order => order.status !== "Cancelled")
+        .reduce((total, order) => total + order.amount, 0);
+
+    let lastOrder = null;
+
+    customerOrders.forEach(function(order){
+        if(order.createdAt && (!lastOrder || new Date(order.createdAt) > new Date(lastOrder))){
+            lastOrder = order.createdAt;
+        }
+    });
+
+    let type = "New";
+
+    if(customerOrders.length >= 3){
+        type = "Loyal";
+    }
+    else if(customerOrders.length >= 1){
+        type = "Regular";
+    }
+
+    return {
+        totalOrders: customerOrders.length,
+        totalSpent,
+        lastOrder,
+        type
+    }
+}
+
+function renderCustomersSummary(customerData){
+    const totalCustomers = customerData.length;
+    const orderedCustomers = customerData.filter(customer => customer.stats.totalOrders > 0).length;
+    const newCustomers = customerData.filter(customer => customer.stats.type === "New").length;
+    const loyalCustomers = customerData.filter(customer => customer.stats.type === "Loyal").length;
+    const customerRevenue = customerData.reduce((total, customer) => total + customer.stats.totalSpent, 0);
+    const averageSpent = orderedCustomers ? Math.round(customerRevenue / orderedCustomers) : 0;
+
+    const customerStats = [totalCustomers, formatPrice(customerRevenue), newCustomers, loyalCustomers];
+    const customerComparisons = [
+        `${getPercent(orderedCustomers, totalCustomers).toFixed(0)}%`,
+        formatPrice(averageSpent),
+        `${getPercent(newCustomers, totalCustomers).toFixed(0)}%`,
+        `${getPercent(loyalCustomers, totalCustomers).toFixed(0)}%`
+    ];
+
+    customerStats.forEach((stat, index) => {
+        summaryCardsCustomersPage[index].querySelector(".summary-value").textContent = stat;
+        summaryCardsCustomersPage[index].querySelector(".percent-of-total").textContent = customerComparisons[index];
+    });
+}
+
+function renderCustomersPage(){
+    if(!customersTable){
+        return;
+    }
+
+    const customerData = customers.map(customer => ({...customer, stats: getCustomerStats(customer)}));
+
+    renderCustomersSummary(customerData);
+
+    const searchText = customerSearchInput.value.trim().toLowerCase();
+    const typeValue = customerTypeFilter.value;
+    const sortValue = customerSortSelect.value;
+
+    const data = customerData.filter(function(customer){
+        const matchesSearch = customer.name.toLowerCase().includes(searchText)
+            || customer.phone.includes(searchText)
+            || (customer.email || "").toLowerCase().includes(searchText);
+        const matchesType = typeValue === "all" || customer.stats.type === typeValue;
+
+        return matchesSearch && matchesType;
+    });
+
+    if(sortValue === "name"){
+        data.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    else if(sortValue === "orders"){
+        data.sort((a, b) => b.stats.totalOrders - a.stats.totalOrders);
+    }
+    else if(sortValue === "spent"){
+        data.sort((a, b) => b.stats.totalSpent - a.stats.totalSpent);
+    }
+    else if(sortValue === "recent"){
+        data.sort((a, b) => b.id - a.id);
+    }
+
+    customersTable.innerHTML = "";
+
+    if(data.length === 0){
+        customersTable.innerHTML = `<tr><td colspan="7" class="empty-row">No customers found</td></tr>`;
+    }
+
+    for(let i = 0; i < data.length; i++){
+        const customer = data[i];
+        const ordersText = customer.stats.totalOrders === 1 ? "1 order" : `${customer.stats.totalOrders} orders`;
+
+        customersTable.innerHTML += `<tr>
+            <td>
+                <div class="customer-info">
+                    <span class="customer-avatar avatar-color-${customer.id % 5}">${escapeHTML(getInitials(customer.name))}</span>
+                    <div>
+                        <p class="item-title">${escapeHTML(customer.name)}</p>
+                        <span class="item-subtitle">${escapeHTML(customer.email || "No email")}</span>
+                    </div>
+                </div>
+            </td>
+            <td>+91 ${customer.phone}</td>
+            <td>
+                <a href="orders.html?search=${encodeURIComponent(customer.name)}" class="orders-link">${ordersText}</a>
+            </td>
+            <td>${formatPrice(customer.stats.totalSpent)}</td>
+            <td class="date-cell">${formatDateTime(customer.stats.lastOrder)}</td>
+            <td><span class="customer-type-badge ${customer.stats.type.toLowerCase()}">${customer.stats.type}</span></td>
+            <td>
+                <div class="row-actions">
+                    <button type="button" class="edit-button" data-customer-id="${customer.id}">Edit</button>
+                    <button type="button" class="delete-button" data-customer-id="${customer.id}">Delete</button>
+                </div>
+            </td>
+        </tr>`;
+    }
+
+    customerCountText.textContent = `Showing ${data.length} of ${customers.length} customers`;
+}
+
+if(customersTable){
+    customersTable.addEventListener("click", function(event){
+        const editButton = event.target.closest(".edit-button");
+        const deleteButton = event.target.closest(".delete-button");
+
+        if(editButton){
+            openEditCustomerModal(editButton.dataset.customerId);
+        }
+
+        if(deleteButton){
+            const customerIndex = customers.findIndex(customer => customer.id === Number(deleteButton.dataset.customerId));
+
+            if(customerIndex === -1){
+                return;
+            }
+
+            const shouldDelete = window.confirm(`Delete ${customers[customerIndex].name}? Their past orders will stay.`);
+
+            if(!shouldDelete){
+                return;
+            }
+
+            const deletedCustomer = customers.splice(customerIndex, 1)[0];
+            saveCustomers();
+            refreshPage();
+            showToast(`${deletedCustomer.name} deleted`);
+        }
+    });
+
+    customerSearchInput.addEventListener("input", renderCustomersPage);
+    customerTypeFilter.addEventListener("change", renderCustomersPage);
+    customerSortSelect.addEventListener("change", renderCustomersPage);
+}
+
+
+//Header Search : All Pages
+const headerSearchInput = document.querySelector("#searchbar");
+const pageSearchInput = document.querySelector("#order-searchbar, #menu-searchbar, #customer-searchbar");
+const searchFromUrl = new URLSearchParams(window.location.search).get("search");
+
+if(pageSearchInput && searchFromUrl){
+    pageSearchInput.value = searchFromUrl;
+}
+
+function getSearchPage(searchText){
+    const text = searchText.toLowerCase().replace("#", "");
+
+    if(menuItems.some(item => item.name.toLowerCase().includes(text))){
+        return "menu.html";
+    }
+
+    if(orders.some(order => String(order.id).includes(text) || order.customer.toLowerCase().includes(text))){
+        return "orders.html";
+    }
+
+    if(customers.some(customer => customer.name.toLowerCase().includes(text) || customer.phone.includes(text))){
+        return "customers.html";
+    }
+
+    return "orders.html";
+}
+
+if(headerSearchInput){
+    headerSearchInput.addEventListener("input", function(){
+        if(pageSearchInput){
+            pageSearchInput.value = headerSearchInput.value;
+            pageSearchInput.dispatchEvent(new Event("input"));
+        }
+    });
+
+    headerSearchInput.addEventListener("keydown", function(event){
+        const searchText = headerSearchInput.value.trim();
+
+        if(event.key === "Enter" && !pageSearchInput && searchText){
+            window.location.href = `${getSearchPage(searchText)}?search=${encodeURIComponent(searchText)}`;
+        }
+    });
+}
+
+
+//Escape Key : Close any open modal
+document.addEventListener("keydown", function(event){
+    if(event.key !== "Escape"){
+        return;
+    }
+
+    if(newOrderModalOverlay && !newOrderModalOverlay.hidden){
+        closeNewOrderModal();
+    }
+
+    if(addMenuItemOverlay && !addMenuItemOverlay.hidden){
+        closeAddMenuModal();
+    }
+
+    if(addCustomerModalOverlay && !addCustomerModalOverlay.hidden){
+        closeAddCustomerModal();
+    }
+
+    if(editOrderModalOverlay && !editOrderModalOverlay.hidden){
         closeEditOrderModal();
     }
 });
+
+
+//Render everything on the current page
+function refreshPage(){
+    renderRecentOrdersTable(getSortedOrders().slice(0, 5));
+    renderPopularMenuItemsTable(getPopularMenuItems());
+    renderDashboardSummary();
+    renderOrderStatusSection();
+    renderAllOrdersTable();
+    renderOrdersSummary();
+    renderMenuPage();
+    renderCustomersPage();
+}
+
+refreshPage();

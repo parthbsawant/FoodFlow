@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodFlow - Menu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <a href="index.html">
+                <img src="assets/logo/website-logo.png" alt="FoodFlow">
+            </a>
+            <div class="search-bar">
+                <img src="assets/icons/searchbar.png" alt="">
+                <input
+                    type="text"
+                    name="search"
+                    id="searchbar"
+                    placeholder="Search orders, menu items & customers"
+                >
+            </div>
+            <div class="profile-section">
+                <img src="assets/icons/notifications.png" alt="">
+                <button type="button">
+                    Profile Information
+                </button>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <aside>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="nav-item">
+                            <a href="index.html">
+                                <img src="assets/icons/aside-section/dashboard.png" alt="">
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="orders.html">
+                                <img src="assets/icons/aside-section/cart.png" alt="">
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="menu.html">
+                                <img src="assets/icons/aside-section/menu.png" alt="">
+                                <span>Menu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="customers.html">
+                                <img src="assets/icons/aside-section/customers.png" alt="">
+                                <span>Customers</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content menu-page">
+                <section class="dashboard-intro">
+                    <div class="intro-info">
+                        <h1>Menu</h1>
+                        <p>Manage your menu items, categories and availability.</p>
+                    </div>
+                    <div class="new-order-button">
+                        <button type="button" id="open-add-menu-item">
+                            + Add Menu Item
+                        </button>
+                    </div>
+                </section>
+
+                <section class="summary-section">
+                    <div class="summary-cards">
+
+                        <div class="summary-card">
+                            <img src="assets/icons/summary-section/total-orders.png" alt="Total Menu Items">
+                            <div class="summary-card-information">
+                                <h3>Total Menu Items</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">categories</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-total-orders.png" alt="">
+                        </div>
+
+                        <div class="summary-card">
+                            <img src="assets/icons/quick-actions-section/add-menu-item.png" alt="Available Items">
+                            <div class="summary-card-information">
+                                <h3>Available Items</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">of menu</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-total-revenue.png" alt="">
+                        </div>
+
+                        <div class="summary-card">
+                            <img src="assets/icons/summary-section/pending-orders.png" alt="Low Stock Items">
+                            <div class="summary-card-information">
+                                <h3>Low Stock Items</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">of menu</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-pending-orders.png" alt="">
+                        </div>
+
+                        <div class="summary-card">
+                            <img src="assets/icons/order-status-section/red.png" alt="Unavailable Items">
+                            <div class="summary-card-information">
+                                <h3>Unavailable Items</h3>
+                                <p class="summary-value">0</p>
+                                <div class="change-comparison">
+                                    <p class="percent-of-total"></p>
+                                    <p class="comparison-text">of menu</p>
+                                </div>
+                            </div>
+                            <img src="assets/icons/summary-section/graph-pending-orders.png" alt="">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="table-card">
+                    <div class="table-card-header">
+                        <h2>All Menu Items</h2>
+                        <div class="table-filters">
+                            <div class="search-bar">
+                                <img src="assets/icons/searchbar.png" alt="">
+                                <input
+                                    type="text"
+                                    name="menu-search"
+                                    id="menu-searchbar"
+                                    placeholder="Search menu items..."
+                                >
+                            </div>
+                            <select name="menu-category-filter" id="menu-category-filter">
+                                <option value="all">All Categories</option>
+                            </select>
+                            <select name="menu-availability-filter" id="menu-availability-filter">
+                                <option value="all">All Availability</option>
+                                <option value="Available">Available</option>
+                                <option value="Low Stock">Low Stock</option>
+                                <option value="Unavailable">Unavailable</option>
+                            </select>
+                            <select name="menu-sort" id="menu-sort">
+                                <option value="default">Sort by</option>
+                                <option value="name">Name (A - Z)</option>
+                                <option value="price-low">Price (Low - High)</option>
+                                <option value="price-high">Price (High - Low)</option>
+                                <option value="orders">Most Ordered</option>
+                            </select>
+                            <div class="view-toggle">
+                                <button type="button" class="view-button active" data-view="table">Table View</button>
+                                <button type="button" class="view-button" data-view="card">Card View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper menu-table-view">
+                        <table class="menu-items-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Availability</th>
+                                    <th>Orders</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="menu-card-view" hidden></div>
+
+                    <p class="table-footer-text" id="menu-count-text"></p>
+                </section>
+
+                <div class="add-menu-modal-overlay" id="add-menu-modal-overlay" hidden>
+                    <div class="add-menu-card">
+                        <div class="add-menu-header">
+                            <div class="left-section">
+                                <h2>Add New Menu Item</h2>
+                                <p>Add a new menu item to your restaurant menu</p>
+                            </div>
+                            <div class="right-section">
+                                <button type="button" class="close-add-menu" aria-label="Close modal">
+                                    <img src="assets/icons/close.png" alt="Close modal">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="add-menu-body">
+                            <div class="item-name">
+                                <label for="item-name">Item Name</label>
+                                <input type="text" name="item-name" id="item-name" placeholder="Enter menu item name">
+                            </div>
+
+                            <div class="item-category">
+                                <label for="item-category">Category</label>
+                                <select name="item-category" id="item-category">
+                                    <option value="" selected disabled>Select category</option>
+                                </select>
+                            </div>
+
+                            <div class="item-price">
+                                <label for="item-price">Price (Rs.)</label>
+                                <input type="number" name="item-price" id="item-price" placeholder="Enter price" min="0">
+                            </div>
+
+                            <div class="item-availability">
+                                <label for="item-availability">Availability</label>
+                                <select name="item-availability" id="item-availability">
+                                    <option value="Available">Available</option>
+                                    <option value="Low Stock">Low Stock</option>
+                                    <option value="Unavailable">Unavailable</option>
+                                </select>
+                            </div>
+
+                            <div class="item-description">
+                                <label for="item-description">Description (Optional)</label>
+                                <textarea name="item-description" id="item-description" placeholder="Enter a short description..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="add-menu-footer">
+                            <button type="button" class="cancel-add-menu">Cancel</button>
+                            <button type="button" class="add-menu-item">Add Item</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

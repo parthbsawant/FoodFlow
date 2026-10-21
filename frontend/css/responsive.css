@@ -172,6 +172,10 @@
         margin-left: 0;
     }
 
+    .header .search-bar{
+        flex-basis: 100%;
+    }
+
     .search-bar input{
         width: 100%;
     }
@@ -328,6 +332,70 @@
     /* Order Status Cards */
 
     .order-section-card{
+        margin: var(--spacing-sm);
+    }
+
+}
+
+/* Menu Page and Customers Page */
+
+@media (max-width: 1200px){
+
+    .table-card-header{
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 768px){
+
+    .orders-page .dashboard-intro,
+    .menu-page .dashboard-intro,
+    .customers-page .dashboard-intro{
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .all-orders-header{
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .all-orders-functionalities{
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .all-orders-functionalities .search-bar input{
+        width: 100%;
+    }
+
+    .all-orders table{
+        min-width: 760px;
+    }
+
+    .table-filters,
+    .table-filters .search-bar{
+        width: 100%;
+    }
+
+    .table-filters .search-bar,
+    .all-orders-functionalities .search-bar{
+        order: -1;
+    }
+
+    .table-filters .search-bar input{
+        width: 100%;
+    }
+
+    .table-filters select{
+        flex: 1;
+    }
+
+    .table-card,
+    .all-orders-table{
         margin: var(--spacing-sm);
     }
 
